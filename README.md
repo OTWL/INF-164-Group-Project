@@ -27,11 +27,11 @@ Click the link to read all about what you should know about
 
 | Form | What it does |
 |---|---|
-| 🔐 **Login** | Gatekeeps the app. Your password is a `.txt` file. Deal with it. |
+| 🔐 **Login** | Gatekeeps the app. Your password is stored in a `.txt` file. |
 | 📝 **Create Account** | New user? Type a username, hope nobody else has it. |
 | 🏠 **Home** | Welcome message, your playlists, upload songs, some stats to feel smart about. |
 | 🎶 **Playlist** | Where the actual "Spotify" happens — play, sort, add, delete songs. |
-| ❔ More to come? | Should we think of more forms add them here|
+| ❔ More to come? | Should we think of more forms, add them here|
 ---
 
 ## 🛠️ Tech Stack
