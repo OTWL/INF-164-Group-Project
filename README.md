@@ -19,7 +19,7 @@ Media Player control doing its best.
 ---
 ## 🛣️ New to Git?
 Click below to read all about what you should know
-[Git.md file](https://github.com/OTWL/INF-164-Group-Project/blob/main/HOW_TO_GIT.md)
+[Git.md](https://github.com/OTWL/INF-164-Group-Project/blob/main/HOW_TO_GIT.md) file
 
 ---
 
