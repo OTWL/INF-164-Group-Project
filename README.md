@@ -1,4 +1,4 @@
-# 🎧 INF 164 Group Project — Spotify Clone (but make it WinForms)
+# 🎧 INF 164 Group Project — Spotify on a Budget 
 
 > Building the world's most *limited* music streaming platform, one merge conflict at a time.
 
