@@ -32,6 +32,12 @@ namespace GroupProject
                 return;
             }
 
+            if(Global.TryGetUserInfo(username))
+            {
+                MessageBox.Show("This username already exists. Please choose another one.", "Registration Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             try
             {
 
@@ -41,7 +47,7 @@ namespace GroupProject
 
                 using (System.IO.StreamWriter writer = new System.IO.StreamWriter("users.txt", true))
                 {
-                    writer.WriteLine(username + "," + password);
+                    writer.WriteLine(username + "|" + password);
                 }
 
                 MessageBox.Show("Account created successfully!");
