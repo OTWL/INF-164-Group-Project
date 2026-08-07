@@ -1,4 +1,4 @@
-<img width="1920" height="1058" alt="image" src="https://github.com/user-attachments/assets/f44cef7b-35d8-4265-aa4b-ea5d5b5f1c03" /># 🧭 How to Use Git — Step by Step
+# 🧭 How to Use Git — Step by Step
 
 A brief walkthrough for anyone on the team who is new to Git. Everything
 here is done inside **Visual Studio** — no terminal needed.
