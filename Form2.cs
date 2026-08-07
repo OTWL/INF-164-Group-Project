@@ -43,7 +43,7 @@ namespace GroupProject
         private void btnGoToPlaylist_Click(object sender, EventArgs e)
         {
             //Go to PlayList Page
-            
+
             //Check if this does not close everything
             Application.Exit();
         }
