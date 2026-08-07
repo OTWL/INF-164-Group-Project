@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Runtime.Remoting.Messaging;
 using System.Windows.Forms;
-using System;
 using System.Drawing.Text;
 
 namespace GroupProject
@@ -92,7 +91,7 @@ namespace GroupProject
             }
         }
 
-        //Gloab var to acces user object everywhere
+        // Global var to access the current user object everywhere
         public static User CurrentUser;
 
         public class Playlist
