@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -8,6 +9,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace GroupProject
 {
@@ -24,34 +26,50 @@ namespace GroupProject
             //button for the Register button when the UI is made, btnCreateAccount
 
             string username = txtUsername.Text.Trim();
-            string password= txtPassword.Text.Trim();
+            string password = txtPassword.Text.Trim();
 
-            if(username.Length==0 || password.Length==0)
+            if (username.Length == 0 || password.Length == 0)
             {
-                MessageBox.Show("Please fill in both username and password fields.", "Validation Errror",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("Please fill in both username and password fields.", "Validation Errror", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            //saving details to text file
-
-            using(System.IO.StreamWriter writer=new System.IO.StreamWriter("users.txt",true))
+            string dummyOutput;
+            if (Global.TryGetUserInfo(username, "Users.txt", out dummyOutput))
             {
-                writer.WriteLine(username + "," + password);
+                MessageBox.Show("This username already exists. Please choose another one.", "Registration Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
-            MessageBox.Show("Account created successfully!");
+            try
+            {
 
-            //redirected back to the login page
-            frmLogin loginForm=new frmLogin();
-            this.Hide();
-            loginForm.ShowDialog();
+
+
+                //saving details to text file
+
+                using (StreamWriter writer = new StreamWriter("users.txt", true))
+                {
+                    writer.WriteLine(username + "|" + password);
+                }
+
+                MessageBox.Show("Account created successfully!");
+
+                //redirected back to the login page
+                frmLogin loginForm = new frmLogin();
+                this.Hide();
+                loginForm.ShowDialog();
+
+            }
+
+
+
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred:" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
-
-        CatchBlock(Exception ex)
-        {
-            MessageBox.Show("An error occurred while creatting the account");
-        }
-
         private void btnToLogin_Click(object sender, EventArgs e)
         {
             frmLogin frmLogin = new frmLogin();

@@ -1,4 +1,4 @@
-# 🎧 INF 164 Group Project — Spotify Clone (but make it WinForms)
+# 🎧 INF 164 Group Project — Spotify on a Budget 
 
 > Building the world's most *limited* music streaming platform, one merge conflict at a time.
 
@@ -11,15 +11,15 @@
 
 ## 🎵 What is this?
 
-A group project for **IN 164** where 8 people attempt to build a (very) scoped-down
-Spotify clone using **C# WinForms**. No streaming servers, no record deals, no lawsuits
+A group project for **INF 164** where 8 people attempt to build a (very) scoped-down
+Spotify clone using **C# WinForms**. No streaming servers, no record deals, no lawsuits,No Databases
 — just 4 forms, some text files pretending to be a database, and an embedded Windows
 Media Player control doing its best.
 
 ---
 ## 🛣️ New to Git?
-Click below to read all about what you should know
-[Git.md file](https://github.com/OTWL/INF-164-Group-Project/blob/main/HOW_TO_GIT.md)
+Click the link to read all about what you should know about 
+[Git](https://github.com/OTWL/INF-164-Group-Project/blob/main/HOW_TO_GIT.md) or use the docs that were sent on WhatsApp
 
 ---
 
@@ -27,11 +27,11 @@ Click below to read all about what you should know
 
 | Form | What it does |
 |---|---|
-| 🔐 **Login** | Gatekeeps the app. Your password is a `.txt` file. Deal with it. |
+| 🔐 **Login** | Gatekeeps the app. Your password is stored in a `.txt` file. |
 | 📝 **Create Account** | New user? Type a username, hope nobody else has it. |
 | 🏠 **Home** | Welcome message, your playlists, upload songs, some stats to feel smart about. |
 | 🎶 **Playlist** | Where the actual "Spotify" happens — play, sort, add, delete songs. |
-| ❔ More to come? | Should we think of more forms add them here|
+| ❔ More to come? | Should we think of more forms, add them here|
 ---
 
 ## 🛠️ Tech Stack
@@ -95,7 +95,7 @@ makes this project actually fun to show off.
 1. Commit often. Push often. A commit that never gets pushed helps no one.
 2. Renaming or deleting something someone else wrote? Give them a heads-up first.
 3. Merge conflict ≠ emergency. Nothing is lost.
-4. If in doubt, ask before you `git push --force`. Actually, just never do that.
+4. If in doubt, ask before you `git push --force`. Actually, just NEVER do that.
 5. **Know your own code.** We *will* be asked to explain what you wrote, don't just copy-paste something you don't understand.
 
 ---
