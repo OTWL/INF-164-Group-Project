@@ -9,6 +9,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace GroupProject
 {
@@ -34,8 +35,8 @@ namespace GroupProject
             }
 
             string dummyOutput;
-            if(Global.TryGetUserInfo(username,"users.txt",out dummyOutput))
-            { 
+            if (Global.TryGetUserInfo(username, "users.txt", out dummyOutput))
+            {
                 MessageBox.Show("This username already exists. Please choose another one.", "Registration Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -47,7 +48,7 @@ namespace GroupProject
 
                 //saving details to text file
 
-                using (System.IO.StreamWriter writer = new System.IO.StreamWriter("users.txt", true))
+                using (StreamWriter writer = new StreamWriter("users.txt", true))
                 {
                     writer.WriteLine(username + "|" + password);
                 }
