@@ -65,7 +65,7 @@ namespace GroupProject
                 }
                 else
                 {
-                    MessageBox.Show("Usernane or password is incorect");
+                    MessageBox.Show("Username or password is incorect");
 
                 }
             }
