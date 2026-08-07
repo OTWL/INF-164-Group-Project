@@ -24,11 +24,11 @@ namespace GroupProject
             //button for the Register button when the UI is made, btnCreateAccount
 
             string username = txtUsername.Text.Trim();
-            string password= txtPassword.Text.Trim();
+            string password = txtPassword.Text.Trim();
 
-            if(username.Length==0 || password.Length==0)
+            if (username.Length == 0 || password.Length == 0)
             {
-                MessageBox.Show("Please fill in both username and password fields.", "Validation Errror",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("Please fill in both username and password fields.", "Validation Errror", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -53,13 +53,14 @@ namespace GroupProject
 
             }
 
-            
 
-        catch (Exception ex)
-        {
-            MessageBox.Show("An error occurred:"+ ex.Message, "Error", MessageBoxButtons.OK,MessageBoxIcon.Error);
+
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred:" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
-
         private void btnToLogin_Click(object sender, EventArgs e)
         {
             frmLogin frmLogin = new frmLogin();
