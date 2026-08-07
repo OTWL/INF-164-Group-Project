@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -32,8 +33,9 @@ namespace GroupProject
                 return;
             }
 
-            if(Global.TryGetUserInfo(username))
-            {
+            string dummyOutput;
+            if(Global.TryGetUserInfo(username,"users.txt",out dummyOutput))
+            { 
                 MessageBox.Show("This username already exists. Please choose another one.", "Registration Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
