@@ -32,24 +32,32 @@ namespace GroupProject
                 return;
             }
 
-            //saving details to text file
-
-            using(System.IO.StreamWriter writer=new System.IO.StreamWriter("users.txt",true))
+            try
             {
-                writer.WriteLine(username + "," + password);
+
+
+
+                //saving details to text file
+
+                using (System.IO.StreamWriter writer = new System.IO.StreamWriter("users.txt", true))
+                {
+                    writer.WriteLine(username + "," + password);
+                }
+
+                MessageBox.Show("Account created successfully!");
+
+                //redirected back to the login page
+                frmLogin loginForm = new frmLogin();
+                this.Hide();
+                loginForm.ShowDialog();
+
             }
 
-            MessageBox.Show("Account created successfully!");
+            
 
-            //redirected back to the login page
-            frmLogin loginForm=new frmLogin();
-            this.Hide();
-            loginForm.ShowDialog();
-        }
-
-        CatchBlock(Exception ex)
+        catch (Exception ex)
         {
-            MessageBox.Show("An error occurred while creatting the account");
+            MessageBox.Show("An error occurred:"+ ex.Message, "Error", MessageBoxButtons.OK,MessageBoxIcon.Error);
         }
 
         private void btnToLogin_Click(object sender, EventArgs e)
