@@ -35,7 +35,7 @@ namespace GroupProject
             }
 
             string dummyOutput;
-            if (Global.TryGetUserInfo(username, "users.txt", out dummyOutput))
+            if (Global.TryGetUserInfo(username, "Users.txt", out dummyOutput))
             {
                 MessageBox.Show("This username already exists. Please choose another one.", "Registration Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
