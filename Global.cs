@@ -92,7 +92,7 @@ namespace GroupProject
             }
         }
 
-        //Gloab var to acces user object everywhere
+        // Global var to access the current user object everywhere
         public static User CurrentUser;
 
         public class Playlist
