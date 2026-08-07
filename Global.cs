@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Runtime.Remoting.Messaging;
 using System.Windows.Forms;
-using System;
 using System.Drawing.Text;
 
 namespace GroupProject
@@ -78,7 +77,7 @@ namespace GroupProject
             }
             catch (Exception)
             {
-                MessageBox.Show("An error occured\nPlease try again");
+                MessageBox.Show("An error occurred\nPlease try again");
                 Output = "";
                 return false;
             }
@@ -92,7 +91,7 @@ namespace GroupProject
             }
         }
 
-        //Gloab var to acces user object everywhere
+        // Global var to access the current user object everywhere
         public static User CurrentUser;
 
         public class Playlist
@@ -168,21 +167,22 @@ namespace GroupProject
             public List<Playlist> GetPlaylists()
             {
                 //Return all playlist names date of creation 
-                StreamReader inputFile;
-                inputFile = new StreamReader("Playlists.txt");
+                mPlaylists.Clear();
 
-                string line = inputFile.ReadLine();
-
-                int Username = 0;
-                int Title = 1;
-                int DateOfCreation = 2;
-                int Path = 3;
-                while (line != null)
+                StreamReader inputFile = null;
+                try
                 {
-                    //Username|Title|yyyy-MM-dddd|File Path
+                    inputFile = new StreamReader("Playlists.txt");
 
-                    if (CurrentUser.GetUsername() == line.Substring(0, line.IndexOf("|")))
+                    string line = inputFile.ReadLine();
+
+                    int Username = 0;
+                    int Title = 1;
+                    int DateOfCreation = 2;
+                    int Path = 3;
+                    while (line != null)
                     {
+                        //Username|Title|yyyy-MM-dddd|File Path
 
                         string[] parts = line.Split('|');
                         if (parts[Username] == CurrentUser.GetUsername())
@@ -190,19 +190,36 @@ namespace GroupProject
                             Playlist p = new Playlist(parts[Title], parts[Path], parts[DateOfCreation]);
                             mPlaylists.Add(p);
                         }
+
+
+                        //Go to next line
+                        line = inputFile.ReadLine();
+
+
                     }
 
-                    //Go to next line
-                    line = inputFile.ReadLine();
-
-
+                    return mPlaylists;
                 }
-
-                inputFile.Close();
-
-                return mPlaylists;
-
+                catch (FileNotFoundException)
+                {
+                    MessageBox.Show("Could not find file");
+                    //CAn return as it's empty
+                    return mPlaylists;
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Something went wrong, please try again later");
+                    return mPlaylists;
+                }
+                finally
+                {
+                    if (inputFile != null)
+                    {
+                        inputFile.Close();
+                    }
+                }
                 /*
+                 * 
                   Playlist look like this:
                   UserName|PlaylistName|Create Date|Music Title - Artist|Songs->
                 
@@ -215,16 +232,6 @@ namespace GroupProject
                 //Add the playlist to the link
                 //  mPlaylists.Add(Playlist);
             }
-
-
-
-
-
-
-
-
-
-
 
             //Return List of Song object
             /*
