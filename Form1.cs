@@ -40,21 +40,27 @@ namespace GroupProject
             }
 
             string value;
-            //User Found
-            if (Global.TryGetUser(Username, out value))
-            {
-                //We get the password of the username we entered
 
-                if (value == Password)
+            //Get rid of magic numbers
+            const int UserPassword = 0;
+            const int UserFilePath = 1;
+
+            //User Found
+            if (Global.TryGetUserInfo(Username, "Users.txt", out value))
+            {
+                //We get this from the function Password|FilePath
+                string[] valueArray = value.Split('|');
+
+                if (valueArray[UserPassword] == Password)
                 {
                     //Go to next form
                     MessageBox.Show("Welcome user");
                     // Create the user
 
-                    Global.CurrentUser = new User(Username);
-
-
-
+                    Global.CurrentUser = new User(Username, valueArray[UserFilePath]);
+                    frmHome frmHome = new frmHome();
+                    this.Hide();
+                    frmHome.Show();
 
                 }
                 else
