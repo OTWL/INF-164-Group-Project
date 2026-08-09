@@ -70,6 +70,7 @@ namespace GroupProject
             //Forgot to push this to main
             List<Global.Playlist> PlayLists = Global.CurrentUser.GetPlaylists();
 
+            //Loop over list
             foreach (Global.Playlist p in PlayLists)
             {
                 lstPlaylists.Items.Add(p.GetTitle() + " - Created: " + p.GetDateOfCreation());
