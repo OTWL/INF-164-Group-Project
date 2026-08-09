@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Text;
+using System.IO;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
-using System.IO;
-using System.Runtime.Remoting.Messaging;
 using System.Windows.Forms;
-using System.Drawing.Text;
+using static GroupProject.Global;
 
 namespace GroupProject
 {
@@ -142,6 +143,11 @@ namespace GroupProject
 
             //Create List that stores all the playlists
             private List<Playlist> mPlaylists = new List<Playlist>();
+
+            public Playlist GetPlaylistByIndex(int index)
+            {
+                return mPlaylists[index];
+            }
 
             //Constructor
             public User(string Username, string FilePath)
