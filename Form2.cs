@@ -44,8 +44,73 @@ namespace GroupProject
         {
             //Go to PlayList Page
 
+            try
+            {
+                //control name for listbox should be lstPlaylists
+
+                if(lstPlaylists.SelectedItem !=null)
+                {
+                    string selectedLine= lstPlaylists.SelectedItem.ToString();
+                    string[] playlistDetails= selectedLine.Split('|');
+                    
+
+                   if(playlistDetails.Length > 0 )
+                    {
+                        string playlistName= playlistDetails[0].Trim();
+
+                        frmPlaylist playlistForm= new frmPlaylist(playlistName);
+
+                        this.Hide();
+                        playlistForm.ShowDialog();
+                        this.Show();
+                    }
+                    
+                    
+                }
+                else
+                {
+                    MessageBox.Show("Please select a playlist to open." , "Selection required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("An error occurred:" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+
             //Check if this does not close everything
             Application.Exit();
+        }
+
+        private void LoadUserPlaylists()
+        {
+            try
+            {
+                lstPlaylists.Items.Clear();
+
+                //check if file exists then read line by line 
+                string filePath = "playlists.txt";
+                if(System.IO.File.Exists(filePath))
+                {
+                    using(System.IO.StreamReader reader  = new System.IO.StreamReader(filePath))
+                    {
+                        string line;
+                        while((line = reader.ReadLine()) != null)
+                        {
+                            if(line.Contains("|"))
+                            {
+                                lstPlaylists.Items.Add(line);
+                            }
+                        }
+                    }
+                }
+
+            }
+
+            catch(Exception ex)
+            {
+                MessageBox.Show("Error loading playlists:" + ex.Message, "File Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
