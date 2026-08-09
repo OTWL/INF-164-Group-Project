@@ -233,6 +233,8 @@ namespace GroupProject
                 //  mPlaylists.Add(Playlist);
             }
 
+
+
             //Return List of Song object
             /*
              * 
@@ -277,6 +279,38 @@ namespace GroupProject
                         songs.Add(SongObject);
                     }
             */
+
+            private string mSelectedPlaylistId;
+
+            //setter to store selected id
+            public void setSelectedPlaylistId(string id )
+            {
+                mSelectedPlaylistId = id;
+            }
+
+
+            //getter to get the selected id 
+            public string GetSelectedPlaylistId()
+            {
+                return mSelectedPlaylistId;
+            }
+
+            //method to get playlist object by its id
+            public Playlist GetPlaylistID(string id)
+            {
+                //making sure list is populated
+                List<Playlist> list = GetPlaylists();
+
+                foreach(Playlist p in list)
+                {
+                    if(p.GetTitle() == id)
+                    {
+                        return p;
+                    }
+                }
+
+                return null;
+            }
         }
 
 
