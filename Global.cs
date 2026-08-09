@@ -138,6 +138,11 @@ namespace GroupProject
             //Create List that stores all the playlists
             private List<Playlist> mPlaylists = new List<Playlist>();
 
+            public Playlist GetPlaylistByIndex(int index)
+            {
+                return mPlaylists[index];
+            }
+
             //Constructor
             public User(string Username, string FilePath)
             {
