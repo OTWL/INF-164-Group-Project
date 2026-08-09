@@ -35,7 +35,7 @@
             // 
             // btnGoToPlaylist
             // 
-            this.btnGoToPlaylist.Location = new System.Drawing.Point(98, 240);
+            this.btnGoToPlaylist.Location = new System.Drawing.Point(135, 309);
             this.btnGoToPlaylist.Name = "btnGoToPlaylist";
             this.btnGoToPlaylist.Size = new System.Drawing.Size(106, 42);
             this.btnGoToPlaylist.TabIndex = 0;
@@ -46,10 +46,10 @@
             // lblWelcome
             // 
             this.lblWelcome.AutoSize = true;
-            this.lblWelcome.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWelcome.Location = new System.Drawing.Point(94, 31);
+            this.lblWelcome.Font = new System.Drawing.Font("Microsoft Uighur", 24F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWelcome.Location = new System.Drawing.Point(72, 34);
             this.lblWelcome.Name = "lblWelcome";
-            this.lblWelcome.Size = new System.Drawing.Size(155, 20);
+            this.lblWelcome.Size = new System.Drawing.Size(268, 48);
             this.lblWelcome.TabIndex = 1;
             this.lblWelcome.Text = "Welcome UserName";
             // 
@@ -57,7 +57,7 @@
             // 
             this.lstPlaylists.FormattingEnabled = true;
             this.lstPlaylists.ItemHeight = 16;
-            this.lstPlaylists.Location = new System.Drawing.Point(29, 81);
+            this.lstPlaylists.Location = new System.Drawing.Point(59, 102);
             this.lstPlaylists.Name = "lstPlaylists";
             this.lstPlaylists.Size = new System.Drawing.Size(296, 116);
             this.lstPlaylists.TabIndex = 2;
