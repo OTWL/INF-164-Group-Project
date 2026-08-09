@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GroupProject
@@ -15,8 +8,8 @@ namespace GroupProject
     {
         private string activePlaylistName;
 
-        
-        public frmPlaylist(string playlistName)
+
+        public frmPlaylist()
         {
             InitializeComponent();
             LoadSelectedPlaylist();
@@ -27,22 +20,25 @@ namespace GroupProject
             try
             {
                 //call user object to get id
+                //ID is the tilte of the playlist
                 string playlistId = Global.CurrentUser.GetSelectedPlaylistId();
 
-                if(!string.IsNullOrEmpty(playlistId))
+                //We can check if it is null as we return null if none found
+                if (!string.IsNullOrEmpty(playlistId))
                 {
                     //calling method to get playlist id 
                     var currentPlaylist = Global.CurrentUser.GetPlaylistID(playlistId);
 
-                    if(currentPlaylist!=null)
+                    if (currentPlaylist != null)
                     {
-                        this.Text = "Playlist -" + currentPlaylist.GetTitle();
+                        //Set's the current form name to name of the playlist
+                        this.Text = "Playlist - " + currentPlaylist.GetTitle();
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("Error loading playlist data:"+ ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error loading playlist data:" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

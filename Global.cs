@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
-using System.Runtime.Remoting.Messaging;
 using System.Windows.Forms;
-using System.Drawing.Text;
 
 namespace GroupProject
 {
@@ -235,7 +230,7 @@ namespace GroupProject
 
 
 
-            //Return List of Song object
+            // *Return List of Song object
             /*
              * 
              * This is for the 2nd Deliverable
@@ -280,10 +275,11 @@ namespace GroupProject
                     }
             */
 
+            //Value is Null
             private string mSelectedPlaylistId;
 
             //setter to store selected id
-            public void setSelectedPlaylistId(string id )
+            public void setSelectedPlaylistId(string id)
             {
                 mSelectedPlaylistId = id;
             }
@@ -301,14 +297,16 @@ namespace GroupProject
                 //making sure list is populated
                 List<Playlist> list = GetPlaylists();
 
-                foreach(Playlist p in list)
+                //Loop through the list and return the playlist if it's titke matches the one given
+                foreach (Playlist p in list)
                 {
-                    if(p.GetTitle() == id)
+                    if (p.GetTitle() == id)
                     {
                         return p;
                     }
                 }
 
+                //Found nothing return null
                 return null;
             }
         }
