@@ -60,6 +60,7 @@ namespace GroupProject
                 }
 
                 string userInfo = Username + "|" + Password + "|" + profilePath;
+                //Append to file if not exist create it and create new line
                 File.AppendAllText("Users.txt", userInfo + Environment.NewLine);
 
                 MessageBox.Show("Account created successfully!");

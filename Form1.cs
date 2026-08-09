@@ -46,11 +46,9 @@ namespace GroupProject
 
                 if (valueArray[UserPassword] == Password)
                 {
-                    //Go to next form
-                    MessageBox.Show("Welcome user");
-                    // Create the user
-
+                    // Create the user object
                     Global.CurrentUser = new User(Username, valueArray[UserFilePath]);
+                    //Go to next form
                     frmHome frmHome = new frmHome();
                     this.Hide();
                     frmHome.Show();
@@ -61,6 +59,11 @@ namespace GroupProject
                     MessageBox.Show("Username or password is incorect");
 
                 }
+            }
+            //If no user found
+            else
+            {
+                MessageBox.Show("Username or password is incorect");
             }
         }
 
