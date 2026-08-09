@@ -31,51 +31,67 @@
             this.btnGoToPlaylist = new System.Windows.Forms.Button();
             this.lblWelcome = new System.Windows.Forms.Label();
             this.lstPlaylists = new System.Windows.Forms.ListBox();
+            this.pnlHome = new System.Windows.Forms.Panel();
+            this.pnlHome.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnGoToPlaylist
             // 
-            this.btnGoToPlaylist.Location = new System.Drawing.Point(135, 309);
+            this.btnGoToPlaylist.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(154)))), ((int)(((byte)(54)))));
+            this.btnGoToPlaylist.Location = new System.Drawing.Point(145, 377);
             this.btnGoToPlaylist.Name = "btnGoToPlaylist";
             this.btnGoToPlaylist.Size = new System.Drawing.Size(106, 42);
             this.btnGoToPlaylist.TabIndex = 0;
             this.btnGoToPlaylist.Text = "Open Playlist";
-            this.btnGoToPlaylist.UseVisualStyleBackColor = true;
+            this.btnGoToPlaylist.UseVisualStyleBackColor = false;
             this.btnGoToPlaylist.Click += new System.EventHandler(this.btnGoToPlaylist_Click);
             // 
             // lblWelcome
             // 
             this.lblWelcome.AutoSize = true;
-            this.lblWelcome.Font = new System.Drawing.Font("Microsoft Uighur", 24F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWelcome.Location = new System.Drawing.Point(72, 34);
+            this.lblWelcome.Font = new System.Drawing.Font("Nirmala UI", 29.25F);
+            this.lblWelcome.Location = new System.Drawing.Point(12, 22);
             this.lblWelcome.Name = "lblWelcome";
-            this.lblWelcome.Size = new System.Drawing.Size(268, 48);
+            this.lblWelcome.Size = new System.Drawing.Size(373, 52);
             this.lblWelcome.TabIndex = 1;
             this.lblWelcome.Text = "Welcome UserName";
+            this.lblWelcome.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lstPlaylists
             // 
             this.lstPlaylists.FormattingEnabled = true;
             this.lstPlaylists.ItemHeight = 16;
-            this.lstPlaylists.Location = new System.Drawing.Point(59, 102);
+            this.lstPlaylists.Location = new System.Drawing.Point(52, 95);
             this.lstPlaylists.Name = "lstPlaylists";
             this.lstPlaylists.Size = new System.Drawing.Size(296, 116);
             this.lstPlaylists.TabIndex = 2;
+            this.lstPlaylists.DoubleClick += new System.EventHandler(this.lstPlaylists_DoubleClick);
+            // 
+            // pnlHome
+            // 
+            this.pnlHome.Controls.Add(this.btnGoToPlaylist);
+            this.pnlHome.Controls.Add(this.lblWelcome);
+            this.pnlHome.Controls.Add(this.lstPlaylists);
+            this.pnlHome.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlHome.Location = new System.Drawing.Point(0, 0);
+            this.pnlHome.Name = "pnlHome";
+            this.pnlHome.Size = new System.Drawing.Size(399, 450);
+            this.pnlHome.TabIndex = 3;
             // 
             // frmHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(245)))), ((int)(((byte)(239)))));
             this.ClientSize = new System.Drawing.Size(399, 450);
-            this.Controls.Add(this.lstPlaylists);
-            this.Controls.Add(this.lblWelcome);
-            this.Controls.Add(this.btnGoToPlaylist);
+            this.Controls.Add(this.pnlHome);
+            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(7)))), ((int)(((byte)(5)))));
             this.Name = "frmHome";
             this.Text = "Home";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmHome_FormClosed);
+            this.pnlHome.ResumeLayout(false);
+            this.pnlHome.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -84,5 +100,6 @@
         private System.Windows.Forms.Button btnGoToPlaylist;
         private System.Windows.Forms.Label lblWelcome;
         private System.Windows.Forms.ListBox lstPlaylists;
+        private System.Windows.Forms.Panel pnlHome;
     }
 }

@@ -18,16 +18,16 @@ namespace GroupProject
         {
             string[] greetmessages = { "Welcome", "Howzit", "What's the vibe today", "Awe" };
             Random numbergenerator = new Random();
-            int index = numbergenerator.Next(0, greetmessages.Length + 1);
+            int index = numbergenerator.Next(0, greetmessages.Length);
             lblWelcome.Text = greetmessages[index] + ", " + Global.CurrentUser.GetUsername();
 
-        } 
+        }
         private void frmHome_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
         }
 
-        private void btnGoToPlaylist_Click(object sender, EventArgs e)
+        private void GoToPlaylist()
         {
             //Go to PlayList Page
 
@@ -70,6 +70,11 @@ namespace GroupProject
 
             }
 
+        }
+
+        private void btnGoToPlaylist_Click(object sender, EventArgs e)
+        {
+            GoToPlaylist();
             //Check if this does not close everything
             Application.Exit();
         }
@@ -84,6 +89,11 @@ namespace GroupProject
             {
                 lstPlaylists.Items.Add(p.GetTitle() + " - Created: " + p.GetDateOfCreation());
             }
+        }
+
+        private void lstPlaylists_DoubleClick(object sender, EventArgs e)
+        {
+            GoToPlaylist();
         }
     }
 }
