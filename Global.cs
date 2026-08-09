@@ -18,6 +18,12 @@ namespace GroupProject
         {
             //Returns true if found; false if not
 
+            //If the file does not exist create it and then close it as it opens it on create leading to problems
+            if (!File.Exists(FileName))
+            {
+                File.Create(FileName).Close();
+            }
+
             StreamReader inputFile = null;
             //Open file
             try
@@ -65,8 +71,6 @@ namespace GroupProject
             }
             catch (FileNotFoundException)
             {
-                //Maybe we can create a file if none exists
-                MessageBox.Show("Could not find a user's File");
                 Output = "";
                 return false;
             }
@@ -166,13 +170,20 @@ namespace GroupProject
             //Return Playlists
             public List<Playlist> GetPlaylists()
             {
+                string playlistPath = "Playlists.txt";
+
                 //Return all playlist names date of creation 
                 mPlaylists.Clear();
+
+                if (!File.Exists(playlistPath))
+                {
+                    File.Create(playlistPath).Close();
+                }
 
                 StreamReader inputFile = null;
                 try
                 {
-                    inputFile = new StreamReader("Playlists.txt");
+                    inputFile = new StreamReader(playlistPath);
 
                     string line = inputFile.ReadLine();
 
@@ -203,7 +214,7 @@ namespace GroupProject
                 catch (FileNotFoundException)
                 {
                     MessageBox.Show("Could not find file");
-                    //CAn return as it's empty
+                    //Can return as it's empty
                     return mPlaylists;
                 }
                 catch (Exception)
