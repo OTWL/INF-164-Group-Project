@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using static GroupProject.Global;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace GroupProject
 {
@@ -83,6 +84,25 @@ namespace GroupProject
 
         private void label1_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void cbxPassword_CheckedChanged(object sender, EventArgs e)
+        {
+
+            //Show password
+            if (cbxPassword.Checked)
+            {
+                cbxPassword.Text = "Show Password";
+                txtPassword.UseSystemPasswordChar = true;
+
+            }
+            else
+            {
+                cbxPassword.Text = "Hide Password";
+                txtPassword.UseSystemPasswordChar = false;
+            }
+
 
         }
     }
