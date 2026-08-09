@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.AccessControl;
 using System.Windows.Forms;
 
 namespace GroupProject
@@ -11,8 +12,16 @@ namespace GroupProject
             InitializeComponent();
             //Populate list box on load
             LoadUserPlaylists();
+            greetings();
         }
+        private void greetings()
+        {
+            string[] greetmessages = { "Welcome", "Howzit", "What's the vibe today", "Awe" };
+            Random numbergenerator = new Random();
+            int index = numbergenerator.Next(0, greetmessages.Length + 1);
+            lblWelcome.Text = greetmessages[index] + ", " + Global.CurrentUser.GetUsername();
 
+        } 
         private void frmHome_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
