@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
-using System.Runtime.Remoting.Messaging;
 using System.Windows.Forms;
-using System.Drawing.Text;
 
 namespace GroupProject
 {
@@ -143,6 +138,11 @@ namespace GroupProject
             //Create List that stores all the playlists
             private List<Playlist> mPlaylists = new List<Playlist>();
 
+            public Playlist GetPlaylistByIndex(int index)
+            {
+                return mPlaylists[index];
+            }
+
             //Constructor
             public User(string Username, string FilePath)
             {
@@ -233,7 +233,9 @@ namespace GroupProject
                 //  mPlaylists.Add(Playlist);
             }
 
-            //Return List of Song object
+
+
+            // *Return List of Song object
             /*
              * 
              * This is for the 2nd Deliverable
@@ -277,6 +279,41 @@ namespace GroupProject
                         songs.Add(SongObject);
                     }
             */
+
+            //Value is Null
+            private string mSelectedPlaylistId;
+
+            //setter to store selected id
+            public void setSelectedPlaylistId(string id)
+            {
+                mSelectedPlaylistId = id;
+            }
+
+
+            //getter to get the selected id 
+            public string GetSelectedPlaylistId()
+            {
+                return mSelectedPlaylistId;
+            }
+
+            //method to get playlist object by its id
+            public Playlist GetPlaylistID(string id)
+            {
+                //making sure list is populated
+                List<Playlist> list = GetPlaylists();
+
+                //Loop through the list and return the playlist if it's titke matches the one given
+                foreach (Playlist p in list)
+                {
+                    if (p.GetTitle() == id)
+                    {
+                        return p;
+                    }
+                }
+
+                //Found nothing return null
+                return null;
+            }
         }
 
 
