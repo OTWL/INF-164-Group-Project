@@ -11,10 +11,21 @@ using System.Windows.Forms;
 namespace GroupProject
 {
     public partial class frmPlaylist : Form
+
     {
-        public frmPlaylist()
+        private string activePlaylistName;
+
+        
+        public frmPlaylist(string playlistName)
         {
             InitializeComponent();
+            activePlaylistName = playlistName;
+            LoadPlaylistView();
+        }
+
+        private void LoadPlaylistView()
+        {
+            this.Text = "Playlist:" + activePlaylistName;
         }
     }
 }
