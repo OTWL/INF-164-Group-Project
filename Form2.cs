@@ -56,9 +56,13 @@ namespace GroupProject
 
                    if(playlistDetails.Length > 0 )
                     {
-                        string playlistName= playlistDetails[0].Trim();
+                        string playlistId= playlistDetails[0].Trim();
 
-                        frmPlaylist playlistForm= new frmPlaylist(playlistName);
+                        //setter 
+                        Global.CurrentUser.setSelectedPlaylistId(playlistId);
+
+                        //open playlist form
+                        frmPlaylist playlistForm= new frmPlaylist();
 
                         this.Hide();
                         playlistForm.ShowDialog();

@@ -19,13 +19,31 @@ namespace GroupProject
         public frmPlaylist(string playlistName)
         {
             InitializeComponent();
-            activePlaylistName = playlistName;
-            LoadPlaylistView();
+            LoadSelectedPlaylist();
         }
 
-        private void LoadPlaylistView()
+        private void LoadSelectedPlaylist()
         {
-            this.Text = "Playlist:" + activePlaylistName;
+            try
+            {
+                //call user object to get id
+                string playlistId = Global.CurrentUser.GetSelectedPlaylistId();
+
+                if(!string.IsNullOrEmpty(playlistId))
+                {
+                    //calling method to get playlist id 
+                    var currentPlaylist = Global.CurrentUser.GetPlaylistID(playlistId);
+
+                    if(currentPlaylist!=null)
+                    {
+                        this.Text = "Playlist -" + currentPlaylist.GetTitle();
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Error loading playlist data:"+ ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
