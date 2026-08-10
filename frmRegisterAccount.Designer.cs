@@ -77,7 +77,7 @@
             // 
             // btnToLogin
             // 
-            this.btnToLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(179)))), ((int)(((byte)(116)))));
+            this.btnToLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(215)))), ((int)(((byte)(182)))));
             this.btnToLogin.Location = new System.Drawing.Point(154, 446);
             this.btnToLogin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnToLogin.Name = "btnToLogin";
@@ -89,7 +89,7 @@
             // 
             // btnCreateAccount
             // 
-            this.btnCreateAccount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(154)))), ((int)(((byte)(54)))));
+            this.btnCreateAccount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(215)))), ((int)(((byte)(182)))));
             this.btnCreateAccount.Location = new System.Drawing.Point(153, 370);
             this.btnCreateAccount.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCreateAccount.Name = "btnCreateAccount";
@@ -111,9 +111,9 @@
             // 
             // btnImage
             // 
-            this.btnImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(157)))), ((int)(((byte)(64)))));
+            this.btnImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(156)))), ((int)(((byte)(230)))));
             this.btnImage.Location = new System.Drawing.Point(258, 308);
-            this.btnImage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnImage.Margin = new System.Windows.Forms.Padding(4);
             this.btnImage.Name = "btnImage";
             this.btnImage.Size = new System.Drawing.Size(139, 34);
             this.btnImage.TabIndex = 14;
@@ -135,7 +135,7 @@
             // 
             this.picProfile.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.picProfile.Location = new System.Drawing.Point(117, 261);
-            this.picProfile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.picProfile.Margin = new System.Windows.Forms.Padding(4);
             this.picProfile.Name = "picProfile";
             this.picProfile.Size = new System.Drawing.Size(133, 81);
             this.picProfile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -146,7 +146,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(245)))), ((int)(((byte)(239)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(255)))), ((int)(((byte)(252)))));
             this.ClientSize = new System.Drawing.Size(501, 530);
             this.Controls.Add(this.picProfile);
             this.Controls.Add(this.lblProfilePicture);
