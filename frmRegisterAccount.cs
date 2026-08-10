@@ -26,9 +26,10 @@ namespace GroupProject
                 //Gets username and password entered by user
                 string Username = txtUsername.Text.Trim();
                 string Password = txtPassword.Text.Trim();
+                string ConfirmPassword = txtConfirmPassword.Text.Trim();
 
                 //Checks if the username is not empty
-                if (Username.Length <= 0)
+                if (string.IsNullOrEmpty(Username))
                 {
                     MessageBox.Show("Please enter a username.");
                     txtUsername.Focus();
@@ -36,10 +37,24 @@ namespace GroupProject
                 }
 
                 //Checks if password is not empty
-                if (Password.Length <= 0)
+                if (string.IsNullOrEmpty(Password))
                 {
                     MessageBox.Show("Please enter a password.");
                     txtPassword.Focus();
+                    return;
+                }
+
+                if (string.IsNullOrEmpty(ConfirmPassword))
+                {
+                    MessageBox.Show("Please confirm youre password");
+                    txtConfirmPassword.Focus();
+                    return;
+                }
+
+                if (ConfirmPassword != Password)
+                {
+                    MessageBox.Show("Passwords do not match!", "Passwords do not match", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtConfirmPassword.Clear();
                     return;
                 }
 
@@ -64,6 +79,8 @@ namespace GroupProject
                 File.AppendAllText("Users.txt", userInfo + Environment.NewLine);
 
                 MessageBox.Show("Account created successfully!");
+
+                GoToLogin();
             }
             catch (Exception ex)
             {
@@ -73,10 +90,14 @@ namespace GroupProject
         }
         private void btnToLogin_Click(object sender, EventArgs e)
         {
+            GoToLogin();
+        }
+
+        private void GoToLogin()
+        {
             frmLogin frmLogin = new frmLogin();
             this.Hide();
             frmLogin.ShowDialog();
-
         }
 
         private void frmRegisterAccount_FormClosed(object sender, FormClosedEventArgs e)

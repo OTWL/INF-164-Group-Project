@@ -38,13 +38,15 @@
             this.btnImage = new System.Windows.Forms.Button();
             this.lblProfilePicture = new System.Windows.Forms.Label();
             this.picProfile = new System.Windows.Forms.PictureBox();
+            this.lblConfirmPassword = new System.Windows.Forms.Label();
+            this.txtConfirmPassword = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.picProfile)).BeginInit();
             this.SuspendLayout();
             // 
             // lblPassword
             // 
             this.lblPassword.AutoSize = true;
-            this.lblPassword.Location = new System.Drawing.Point(155, 162);
+            this.lblPassword.Location = new System.Drawing.Point(155, 154);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(67, 16);
             this.lblPassword.TabIndex = 13;
@@ -53,7 +55,7 @@
             // lblUsername
             // 
             this.lblUsername.AutoSize = true;
-            this.lblUsername.Location = new System.Drawing.Point(155, 92);
+            this.lblUsername.Location = new System.Drawing.Point(155, 94);
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(70, 16);
             this.lblUsername.TabIndex = 12;
@@ -62,7 +64,7 @@
             // txtPassword
             // 
             this.txtPassword.BackColor = System.Drawing.Color.White;
-            this.txtPassword.Location = new System.Drawing.Point(153, 190);
+            this.txtPassword.Location = new System.Drawing.Point(153, 172);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(180, 22);
@@ -81,7 +83,7 @@
             this.btnToLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
             this.btnToLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnToLogin.ForeColor = System.Drawing.Color.White;
-            this.btnToLogin.Location = new System.Drawing.Point(154, 446);
+            this.btnToLogin.Location = new System.Drawing.Point(153, 481);
             this.btnToLogin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnToLogin.Name = "btnToLogin";
             this.btnToLogin.Size = new System.Drawing.Size(180, 58);
@@ -95,7 +97,7 @@
             this.btnCreateAccount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
             this.btnCreateAccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCreateAccount.ForeColor = System.Drawing.Color.White;
-            this.btnCreateAccount.Location = new System.Drawing.Point(153, 370);
+            this.btnCreateAccount.Location = new System.Drawing.Point(153, 409);
             this.btnCreateAccount.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCreateAccount.Name = "btnCreateAccount";
             this.btnCreateAccount.Size = new System.Drawing.Size(180, 57);
@@ -118,7 +120,7 @@
             // 
             this.btnImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
             this.btnImage.ForeColor = System.Drawing.Color.White;
-            this.btnImage.Location = new System.Drawing.Point(267, 302);
+            this.btnImage.Location = new System.Drawing.Point(272, 336);
             this.btnImage.Margin = new System.Windows.Forms.Padding(4);
             this.btnImage.Name = "btnImage";
             this.btnImage.Size = new System.Drawing.Size(143, 40);
@@ -131,7 +133,7 @@
             // 
             this.lblProfilePicture.AutoSize = true;
             this.lblProfilePicture.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(153)))), ((int)(((byte)(174)))));
-            this.lblProfilePicture.Location = new System.Drawing.Point(114, 241);
+            this.lblProfilePicture.Location = new System.Drawing.Point(114, 275);
             this.lblProfilePicture.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblProfilePicture.Name = "lblProfilePicture";
             this.lblProfilePicture.Size = new System.Drawing.Size(89, 16);
@@ -141,7 +143,7 @@
             // picProfile
             // 
             this.picProfile.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picProfile.Location = new System.Drawing.Point(117, 261);
+            this.picProfile.Location = new System.Drawing.Point(117, 295);
             this.picProfile.Margin = new System.Windows.Forms.Padding(4);
             this.picProfile.Name = "picProfile";
             this.picProfile.Size = new System.Drawing.Size(133, 81);
@@ -149,12 +151,32 @@
             this.picProfile.TabIndex = 16;
             this.picProfile.TabStop = false;
             // 
+            // lblConfirmPassword
+            // 
+            this.lblConfirmPassword.AutoSize = true;
+            this.lblConfirmPassword.Location = new System.Drawing.Point(155, 215);
+            this.lblConfirmPassword.Name = "lblConfirmPassword";
+            this.lblConfirmPassword.Size = new System.Drawing.Size(115, 16);
+            this.lblConfirmPassword.TabIndex = 18;
+            this.lblConfirmPassword.Text = "Confirm Password";
+            // 
+            // txtConfirmPassword
+            // 
+            this.txtConfirmPassword.BackColor = System.Drawing.Color.White;
+            this.txtConfirmPassword.Location = new System.Drawing.Point(153, 233);
+            this.txtConfirmPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtConfirmPassword.Name = "txtConfirmPassword";
+            this.txtConfirmPassword.Size = new System.Drawing.Size(180, 22);
+            this.txtConfirmPassword.TabIndex = 17;
+            // 
             // frmRegisterAccount
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(244)))));
-            this.ClientSize = new System.Drawing.Size(501, 530);
+            this.ClientSize = new System.Drawing.Size(501, 550);
+            this.Controls.Add(this.lblConfirmPassword);
+            this.Controls.Add(this.txtConfirmPassword);
             this.Controls.Add(this.picProfile);
             this.Controls.Add(this.lblProfilePicture);
             this.Controls.Add(this.btnImage);
@@ -191,5 +213,7 @@
         private System.Windows.Forms.Button btnImage;
         private System.Windows.Forms.Label lblProfilePicture;
         private System.Windows.Forms.PictureBox picProfile;
+        private System.Windows.Forms.Label lblConfirmPassword;
+        private System.Windows.Forms.TextBox txtConfirmPassword;
     }
 }

@@ -42,10 +42,10 @@
             // lblTuneWorld
             // 
             this.lblTuneWorld.AutoSize = true;
-            this.lblTuneWorld.Font = new System.Drawing.Font("Book Antiqua", 29.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTuneWorld.Location = new System.Drawing.Point(69, 28);
+            this.lblTuneWorld.Font = new System.Drawing.Font("Mistral", 29.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTuneWorld.Location = new System.Drawing.Point(127, 24);
             this.lblTuneWorld.Name = "lblTuneWorld";
-            this.lblTuneWorld.Size = new System.Drawing.Size(290, 46);
+            this.lblTuneWorld.Size = new System.Drawing.Size(191, 47);
             this.lblTuneWorld.TabIndex = 0;
             this.lblTuneWorld.Text = "TUNE WORLD";
             // 
