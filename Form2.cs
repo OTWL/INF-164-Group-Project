@@ -76,7 +76,7 @@ namespace GroupProject
         {
             GoToPlaylist();
             //Check if this does not close everything
-            Application.Exit();
+           // Application.Exit();
         }
 
         private void LoadUserPlaylists()

@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO;
+using System.Linq;
 using System.Windows.Forms;
+using static GroupProject.Global;
 
 namespace GroupProject
 {
@@ -90,6 +93,63 @@ namespace GroupProject
             }
         }
 
+        public static bool TrySaveCoverImage(string songTitle, string coverPath)
+        {
+            const int USERNAME = 0;
+            const int PLAYLIST = 1;
+            const int DOC = 2;
+            const int COVERPATH = 3;
+            const string FILEPATH = "Playlists.txt";
+
+            try
+            {
+                if (!File.Exists(FILEPATH))
+                {
+                    File.Create(FILEPATH).Close();
+                    MessageBox.Show("Could not find playlist");
+                    return false;
+                }
+
+                string[] lines = File.ReadAllLines(FILEPATH);
+                int TargetLine = -1;
+
+
+                //Loop through the lines
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    string[] parts = lines[i].Split('|');
+                    if (parts[USERNAME] == CurrentUser.GetUsername() && parts[PLAYLIST] == songTitle)
+                    {
+                        TargetLine = i;
+                        break;
+                    }
+                }
+                if (TargetLine == -1)
+                {
+                    MessageBox.Show("Playlist could not be found");
+                    return false;
+                }
+
+                //Read all lines
+
+                //Split target string
+                string[] targetString = lines[TargetLine].Split('|');
+                //Rewrite path
+                targetString[COVERPATH] = coverPath;
+                //Join string of dissesabled one
+                lines[TargetLine] = string.Join("|", targetString);
+                //Rewrite entire file
+                File.WriteAllLines(FILEPATH, lines);
+
+                return true;
+            }
+            catch
+            {
+                MessageBox.Show("An error occured, please try again later");
+                return false;
+            }
+        }
+
         // Global var to access the current user object everywhere
         public static User CurrentUser;
 
@@ -131,6 +191,11 @@ namespace GroupProject
             public string getCoverPath()
             {
                 return mCoverArtPath;
+            }
+
+            public void SetCoverpath(string CoverPath)
+            {
+                mCoverArtPath = CoverPath;
             }
         }
 
@@ -229,13 +294,6 @@ namespace GroupProject
                         inputFile.Close();
                     }
                 }
-                /*
-                 * 
-                  Playlist look like this:
-                  UserName|PlaylistName|Create Date|Music Title - Artist|Songs->
-                
-                use GetUserInfo we get |PlaylistName|Create Date|Music Title - Artist|Songs ->|  
-                 */
             }
 
             public void AddPlaylists(string Playlist)
@@ -245,7 +303,7 @@ namespace GroupProject
             }
 
 
-
+            #region Future Code
             // *Return List of Song object
             /*
              * 
@@ -290,6 +348,7 @@ namespace GroupProject
                         songs.Add(SongObject);
                     }
             */
+            #endregion
 
             //Value is Null
             private string mSelectedPlaylistId;
