@@ -61,6 +61,7 @@
             // 
             // txtPassword
             // 
+            this.txtPassword.BackColor = System.Drawing.Color.White;
             this.txtPassword.Location = new System.Drawing.Point(153, 190);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtPassword.Name = "txtPassword";
@@ -77,7 +78,9 @@
             // 
             // btnToLogin
             // 
-            this.btnToLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(215)))), ((int)(((byte)(182)))));
+            this.btnToLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
+            this.btnToLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnToLogin.ForeColor = System.Drawing.Color.White;
             this.btnToLogin.Location = new System.Drawing.Point(154, 446);
             this.btnToLogin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnToLogin.Name = "btnToLogin";
@@ -89,7 +92,9 @@
             // 
             // btnCreateAccount
             // 
-            this.btnCreateAccount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(215)))), ((int)(((byte)(182)))));
+            this.btnCreateAccount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
+            this.btnCreateAccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCreateAccount.ForeColor = System.Drawing.Color.White;
             this.btnCreateAccount.Location = new System.Drawing.Point(153, 370);
             this.btnCreateAccount.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCreateAccount.Name = "btnCreateAccount";
@@ -111,11 +116,12 @@
             // 
             // btnImage
             // 
-            this.btnImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(156)))), ((int)(((byte)(230)))));
-            this.btnImage.Location = new System.Drawing.Point(258, 308);
+            this.btnImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
+            this.btnImage.ForeColor = System.Drawing.Color.White;
+            this.btnImage.Location = new System.Drawing.Point(267, 302);
             this.btnImage.Margin = new System.Windows.Forms.Padding(4);
             this.btnImage.Name = "btnImage";
-            this.btnImage.Size = new System.Drawing.Size(139, 34);
+            this.btnImage.Size = new System.Drawing.Size(143, 40);
             this.btnImage.TabIndex = 14;
             this.btnImage.Text = "Choose Image";
             this.btnImage.UseVisualStyleBackColor = false;
@@ -124,7 +130,8 @@
             // lblProfilePicture
             // 
             this.lblProfilePicture.AutoSize = true;
-            this.lblProfilePicture.Location = new System.Drawing.Point(113, 229);
+            this.lblProfilePicture.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(153)))), ((int)(((byte)(174)))));
+            this.lblProfilePicture.Location = new System.Drawing.Point(114, 241);
             this.lblProfilePicture.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblProfilePicture.Name = "lblProfilePicture";
             this.lblProfilePicture.Size = new System.Drawing.Size(89, 16);
@@ -146,7 +153,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(255)))), ((int)(((byte)(252)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(244)))));
             this.ClientSize = new System.Drawing.Size(501, 530);
             this.Controls.Add(this.picProfile);
             this.Controls.Add(this.lblProfilePicture);
@@ -159,8 +166,11 @@
             this.Controls.Add(this.btnCreateAccount);
             this.Controls.Add(this.lblRegister);
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(7)))), ((int)(((byte)(5)))));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MaximizeBox = false;
             this.Name = "frmRegisterAccount";
+            this.Opacity = 0.99D;
             this.Text = "Register";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmRegisterAccount_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.picProfile)).EndInit();
