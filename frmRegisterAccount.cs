@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using System.Drawing;
 
 namespace GroupProject
 {
@@ -14,7 +14,7 @@ namespace GroupProject
         {
             InitializeComponent();
 
-            // Displays the default profile picture
+            // Displays the default profile picture which is fetched from resources
             picProfile.Image = Properties.Resources.Default_Image;
             picProfile.SizeMode = PictureBoxSizeMode.StretchImage;
         }
@@ -26,9 +26,10 @@ namespace GroupProject
                 //Gets username and password entered by user
                 string Username = txtUsername.Text.Trim();
                 string Password = txtPassword.Text.Trim();
+                string ConfirmPassword = txtConfirmPassword.Text.Trim();
 
                 //Checks if the username is not empty
-                if (Username.Length <= 0)
+                if (string.IsNullOrEmpty(Username))
                 {
                     MessageBox.Show("Please enter a username.");
                     txtUsername.Focus();
@@ -36,10 +37,24 @@ namespace GroupProject
                 }
 
                 //Checks if password is not empty
-                if (Password.Length <= 0)
+                if (string.IsNullOrEmpty(Password))
                 {
                     MessageBox.Show("Please enter a password.");
                     txtPassword.Focus();
+                    return;
+                }
+
+                if (string.IsNullOrEmpty(ConfirmPassword))
+                {
+                    MessageBox.Show("Please confirm youre password");
+                    txtConfirmPassword.Focus();
+                    return;
+                }
+
+                if (ConfirmPassword != Password)
+                {
+                    MessageBox.Show("Passwords do not match!", "Passwords do not match", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtConfirmPassword.Clear();
                     return;
                 }
 
@@ -63,20 +78,26 @@ namespace GroupProject
                 //Append to file if not exist create it and create new line
                 File.AppendAllText("Users.txt", userInfo + Environment.NewLine);
 
-                MessageBox.Show("Account created successfully!");
+                MessageBox.Show("Succsesfuly created an account", "Account Created", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                GoToLogin();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("An error occurred while creating the account.\n\n" + ex.Message);
             }
-            
+
         }
         private void btnToLogin_Click(object sender, EventArgs e)
+        {
+            GoToLogin();
+        }
+
+        private void GoToLogin()
         {
             frmLogin frmLogin = new frmLogin();
             this.Hide();
             frmLogin.ShowDialog();
-
         }
 
         private void frmRegisterAccount_FormClosed(object sender, FormClosedEventArgs e)
@@ -103,6 +124,36 @@ namespace GroupProject
             {
                 MessageBox.Show("Unable to load profile picture.\n\n" + ex.Message);
             }
+        }
+
+        private void cbxPassword_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbxPassword.Checked)
+            {
+                cbxPassword.Text = "Hide Password";
+                txtPassword.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                cbxPassword.Text = "Show Password";
+                txtPassword.UseSystemPasswordChar = true;
+            }
+        }
+
+        private void cbxHidePassConfirm_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbxHidePassConfirm.Checked)
+            {
+                cbxHidePassConfirm.Text = "Hide Password";
+                txtConfirmPassword.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                cbxHidePassConfirm.Text = "Show Password";
+                txtConfirmPassword.UseSystemPasswordChar = true;
+            }
+
+
         }
     }
 }

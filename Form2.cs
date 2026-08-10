@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security.AccessControl;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace GroupProject
@@ -13,6 +13,9 @@ namespace GroupProject
             //Populate list box on load
             LoadUserPlaylists();
             greetings();
+            //Load as defualt
+            picAlbum.Image = Properties.Resources.Default_Cover;
+            LoadProfilePic();
         }
         private void greetings()
         {
@@ -21,13 +24,13 @@ namespace GroupProject
             int index = numbergenerator.Next(0, greetmessages.Length);
             lblWelcome.Text = greetmessages[index] + ", " + Global.CurrentUser.GetUsername();
 
-        } 
+        }
         private void frmHome_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
         }
 
-        private void btnGoToPlaylist_Click(object sender, EventArgs e)
+        private void GoToPlaylist()
         {
             //Go to PlayList Page
 
@@ -70,8 +73,13 @@ namespace GroupProject
 
             }
 
+        }
+
+        private void btnGoToPlaylist_Click(object sender, EventArgs e)
+        {
+            GoToPlaylist();
             //Check if this does not close everything
-           // Application.Exit();
+            // Application.Exit();
         }
 
         private void LoadUserPlaylists()
@@ -83,6 +91,42 @@ namespace GroupProject
             foreach (Global.Playlist p in PlayLists)
             {
                 lstPlaylists.Items.Add(p.GetTitle() + " - Created: " + p.GetDateOfCreation());
+            }
+        }
+
+        private void LoadProfilePic()
+        {
+            string path = Global.CurrentUser.GetProfileFilePath();
+
+            //If path is default set to defualt image
+            if (string.IsNullOrEmpty(path) || path == "Default Image")
+            {
+                picProfile.Image = Properties.Resources.Default_Image;
+                return;
+            }
+            picProfile.Image = Image.FromFile(path);
+
+
+
+        }
+
+        private void lstPlaylists_DoubleClick(object sender, EventArgs e)
+        {
+            GoToPlaylist();
+        }
+
+        private void lstPlaylists_MouseDown(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                int index = lstPlaylists.SelectedIndex;
+                string path = Global.CurrentUser.GetCoverPathByIndex(index);
+
+                picAlbum.Image = Image.FromFile(path);
+            }
+            catch (Exception)
+            {
+                picAlbum.Image = Properties.Resources.Default_Cover;
             }
         }
     }

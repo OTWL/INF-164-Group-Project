@@ -85,5 +85,23 @@ namespace GroupProject
         {
 
         }
+
+        private void cbxPassword_CheckedChanged(object sender, EventArgs e)
+        {
+
+            //Show password
+            if (cbxPassword.Checked)
+            {
+                cbxPassword.Text = "Hide Password";
+                txtPassword.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                cbxPassword.Text = "Show Password";
+                txtPassword.UseSystemPasswordChar = true;
+            }
+
+
+        }
     }
 }
