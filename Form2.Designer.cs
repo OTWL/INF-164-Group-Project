@@ -41,7 +41,7 @@
             // 
             this.btnGoToPlaylist.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
             this.btnGoToPlaylist.ForeColor = System.Drawing.Color.White;
-            this.btnGoToPlaylist.Location = new System.Drawing.Point(145, 377);
+            this.btnGoToPlaylist.Location = new System.Drawing.Point(121, 377);
             this.btnGoToPlaylist.Name = "btnGoToPlaylist";
             this.btnGoToPlaylist.Size = new System.Drawing.Size(106, 42);
             this.btnGoToPlaylist.TabIndex = 0;
@@ -73,7 +73,7 @@
             // 
             // picProfile
             // 
-            this.picProfile.Location = new System.Drawing.Point(654, -1);
+            this.picProfile.Location = new System.Drawing.Point(655, 4);
             this.picProfile.Name = "picProfile";
             this.picProfile.Size = new System.Drawing.Size(104, 92);
             this.picProfile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
