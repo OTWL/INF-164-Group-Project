@@ -14,7 +14,7 @@ namespace GroupProject
         {
             InitializeComponent();
 
-            // Displays the default profile picture
+            // Displays the default profile picture which is fetched from resources
             picProfile.Image = Properties.Resources.Default_Image;
             picProfile.SizeMode = PictureBoxSizeMode.StretchImage;
         }

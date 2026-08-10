@@ -49,10 +49,10 @@
             // lblWelcome
             // 
             this.lblWelcome.AutoSize = true;
-            this.lblWelcome.Font = new System.Drawing.Font("Nirmala UI", 29.25F);
+            this.lblWelcome.Font = new System.Drawing.Font("Book Antiqua", 29.25F);
             this.lblWelcome.Location = new System.Drawing.Point(12, 22);
             this.lblWelcome.Name = "lblWelcome";
-            this.lblWelcome.Size = new System.Drawing.Size(373, 52);
+            this.lblWelcome.Size = new System.Drawing.Size(376, 46);
             this.lblWelcome.TabIndex = 1;
             this.lblWelcome.Text = "Welcome UserName";
             this.lblWelcome.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -69,10 +69,12 @@
             // 
             // pnlHome
             // 
+            this.pnlHome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(255)))), ((int)(((byte)(253)))));
             this.pnlHome.Controls.Add(this.btnGoToPlaylist);
             this.pnlHome.Controls.Add(this.lblWelcome);
             this.pnlHome.Controls.Add(this.lstPlaylists);
             this.pnlHome.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlHome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(24)))), ((int)(((byte)(20)))));
             this.pnlHome.Location = new System.Drawing.Point(0, 0);
             this.pnlHome.Name = "pnlHome";
             this.pnlHome.Size = new System.Drawing.Size(399, 450);

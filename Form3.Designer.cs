@@ -33,6 +33,7 @@
             this.picCoverArt = new System.Windows.Forms.PictureBox();
             this.btnSelectCoverImage = new System.Windows.Forms.Button();
             this.BtnSaveCover = new System.Windows.Forms.Button();
+            this.btnBack = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picCoverArt)).BeginInit();
             this.SuspendLayout();
             // 
@@ -85,11 +86,22 @@
             this.BtnSaveCover.UseVisualStyleBackColor = true;
             this.BtnSaveCover.Click += new System.EventHandler(this.BtnSaveCover_Click);
             // 
+            // btnBack
+            // 
+            this.btnBack.Location = new System.Drawing.Point(367, 389);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(114, 49);
+            this.btnBack.TabIndex = 5;
+            this.btnBack.Text = "Back";
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
             // frmPlaylist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(493, 450);
+            this.Controls.Add(this.btnBack);
             this.Controls.Add(this.BtnSaveCover);
             this.Controls.Add(this.btnSelectCoverImage);
             this.Controls.Add(this.picCoverArt);
@@ -112,5 +124,6 @@
         private System.Windows.Forms.PictureBox picCoverArt;
         private System.Windows.Forms.Button btnSelectCoverImage;
         private System.Windows.Forms.Button BtnSaveCover;
+        private System.Windows.Forms.Button btnBack;
     }
 }

@@ -44,16 +44,16 @@
             // lblTuneWorld
             // 
             this.lblTuneWorld.AutoSize = true;
-            this.lblTuneWorld.Font = new System.Drawing.Font("Nirmala UI", 29.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTuneWorld.Location = new System.Drawing.Point(94, 33);
+            this.lblTuneWorld.Font = new System.Drawing.Font("Book Antiqua", 29.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTuneWorld.Location = new System.Drawing.Point(107, 29);
             this.lblTuneWorld.Name = "lblTuneWorld";
-            this.lblTuneWorld.Size = new System.Drawing.Size(262, 52);
+            this.lblTuneWorld.Size = new System.Drawing.Size(290, 46);
             this.lblTuneWorld.TabIndex = 0;
             this.lblTuneWorld.Text = "TUNE WORLD";
             // 
             // btnLogin
             // 
-            this.btnLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(154)))), ((int)(((byte)(54)))));
+            this.btnLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(215)))), ((int)(((byte)(182)))));
             this.btnLogin.Cursor = System.Windows.Forms.Cursors.Cross;
             this.btnLogin.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnLogin.Location = new System.Drawing.Point(159, 294);
@@ -66,7 +66,8 @@
             // 
             // btnCreateAccount
             // 
-            this.btnCreateAccount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(179)))), ((int)(((byte)(116)))));
+            this.btnCreateAccount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(215)))), ((int)(((byte)(182)))));
+            this.btnCreateAccount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(24)))), ((int)(((byte)(20)))));
             this.btnCreateAccount.Location = new System.Drawing.Point(159, 453);
             this.btnCreateAccount.Name = "btnCreateAccount";
             this.btnCreateAccount.Size = new System.Drawing.Size(180, 65);
@@ -124,6 +125,7 @@
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(255)))), ((int)(((byte)(252)))));
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.cbxPassword);
@@ -134,6 +136,7 @@
             this.panel1.Controls.Add(this.btnLogin);
             this.panel1.Controls.Add(this.lblTuneWorld);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(24)))), ((int)(((byte)(20)))));
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(501, 530);
