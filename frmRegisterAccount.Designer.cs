@@ -40,6 +40,8 @@
             this.picProfile = new System.Windows.Forms.PictureBox();
             this.lblConfirmPassword = new System.Windows.Forms.Label();
             this.txtConfirmPassword = new System.Windows.Forms.TextBox();
+            this.cbxPassword = new System.Windows.Forms.CheckBox();
+            this.cbxHidePassConfirm = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.picProfile)).BeginInit();
             this.SuspendLayout();
             // 
@@ -69,6 +71,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(180, 22);
             this.txtPassword.TabIndex = 11;
+            this.txtPassword.UseSystemPasswordChar = true;
             // 
             // txtUsername
             // 
@@ -168,6 +171,31 @@
             this.txtConfirmPassword.Name = "txtConfirmPassword";
             this.txtConfirmPassword.Size = new System.Drawing.Size(180, 22);
             this.txtConfirmPassword.TabIndex = 17;
+            this.txtConfirmPassword.UseSystemPasswordChar = true;
+            // 
+            // cbxPassword
+            // 
+            this.cbxPassword.AutoSize = true;
+            this.cbxPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(153)))), ((int)(((byte)(174)))));
+            this.cbxPassword.Location = new System.Drawing.Point(348, 174);
+            this.cbxPassword.Name = "cbxPassword";
+            this.cbxPassword.Size = new System.Drawing.Size(121, 20);
+            this.cbxPassword.TabIndex = 19;
+            this.cbxPassword.Text = "Show password";
+            this.cbxPassword.UseVisualStyleBackColor = true;
+            this.cbxPassword.CheckedChanged += new System.EventHandler(this.cbxPassword_CheckedChanged);
+            // 
+            // cbxHidePassConfirm
+            // 
+            this.cbxHidePassConfirm.AutoSize = true;
+            this.cbxHidePassConfirm.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(153)))), ((int)(((byte)(174)))));
+            this.cbxHidePassConfirm.Location = new System.Drawing.Point(348, 233);
+            this.cbxHidePassConfirm.Name = "cbxHidePassConfirm";
+            this.cbxHidePassConfirm.Size = new System.Drawing.Size(121, 20);
+            this.cbxHidePassConfirm.TabIndex = 20;
+            this.cbxHidePassConfirm.Text = "Show password";
+            this.cbxHidePassConfirm.UseVisualStyleBackColor = true;
+            this.cbxHidePassConfirm.CheckedChanged += new System.EventHandler(this.cbxHidePassConfirm_CheckedChanged);
             // 
             // frmRegisterAccount
             // 
@@ -175,6 +203,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(244)))));
             this.ClientSize = new System.Drawing.Size(501, 550);
+            this.Controls.Add(this.cbxHidePassConfirm);
+            this.Controls.Add(this.cbxPassword);
             this.Controls.Add(this.lblConfirmPassword);
             this.Controls.Add(this.txtConfirmPassword);
             this.Controls.Add(this.picProfile);
@@ -215,5 +245,7 @@
         private System.Windows.Forms.PictureBox picProfile;
         private System.Windows.Forms.Label lblConfirmPassword;
         private System.Windows.Forms.TextBox txtConfirmPassword;
+        private System.Windows.Forms.CheckBox cbxPassword;
+        private System.Windows.Forms.CheckBox cbxHidePassConfirm;
     }
 }

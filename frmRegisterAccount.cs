@@ -78,7 +78,7 @@ namespace GroupProject
                 //Append to file if not exist create it and create new line
                 File.AppendAllText("Users.txt", userInfo + Environment.NewLine);
 
-                MessageBox.Show("Account created successfully!");
+                MessageBox.Show("Succsesfuly created an account", "Account Created", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 GoToLogin();
             }
@@ -124,6 +124,36 @@ namespace GroupProject
             {
                 MessageBox.Show("Unable to load profile picture.\n\n" + ex.Message);
             }
+        }
+
+        private void cbxPassword_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbxPassword.Checked)
+            {
+                cbxPassword.Text = "Hide Password";
+                txtPassword.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                cbxPassword.Text = "Show Password";
+                txtPassword.UseSystemPasswordChar = true;
+            }
+        }
+
+        private void cbxHidePassConfirm_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbxHidePassConfirm.Checked)
+            {
+                cbxHidePassConfirm.Text = "Hide Password";
+                txtConfirmPassword.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                cbxHidePassConfirm.Text = "Show Password";
+                txtConfirmPassword.UseSystemPasswordChar = true;
+            }
+
+
         }
     }
 }
