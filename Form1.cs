@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
 using static GroupProject.Global;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace GroupProject
 {

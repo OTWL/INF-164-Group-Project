@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.IO;
-using System.Security.AccessControl;
 using System.Windows.Forms;
 
 namespace GroupProject
@@ -16,7 +14,8 @@ namespace GroupProject
             LoadUserPlaylists();
             greetings();
             //Load as defualt
-            picAlbum.Image = Image.FromFile("Default Cover.png");
+            picAlbum.Image = Properties.Resources.Default_Cover;
+            LoadProfilePic();
         }
         private void greetings()
         {
@@ -95,6 +94,22 @@ namespace GroupProject
             }
         }
 
+        private void LoadProfilePic()
+        {
+            string path = Global.CurrentUser.GetProfileFilePath();
+
+            //If path is default set to defualt image
+            if (string.IsNullOrEmpty(path) || path == "Default Image")
+            {
+                picProfile.Image = Properties.Resources.Default_Image;
+                return;
+            }
+            picProfile.Image = Image.FromFile(path);
+
+
+
+        }
+
         private void lstPlaylists_DoubleClick(object sender, EventArgs e)
         {
             GoToPlaylist();
@@ -111,7 +126,7 @@ namespace GroupProject
             }
             catch (Exception)
             {
-                picAlbum.Image = Image.FromFile("Default Cover.png");
+                picAlbum.Image = Properties.Resources.Default_Cover;
             }
         }
     }

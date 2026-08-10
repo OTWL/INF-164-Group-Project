@@ -31,7 +31,9 @@
             this.btnGoToPlaylist = new System.Windows.Forms.Button();
             this.lblWelcome = new System.Windows.Forms.Label();
             this.lstPlaylists = new System.Windows.Forms.ListBox();
+            this.picProfile = new System.Windows.Forms.PictureBox();
             this.picAlbum = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.picProfile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAlbum)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,7 +52,7 @@
             // lblWelcome
             // 
             this.lblWelcome.Font = new System.Drawing.Font("Book Antiqua", 20F);
-            this.lblWelcome.Location = new System.Drawing.Point(11, -1);
+            this.lblWelcome.Location = new System.Drawing.Point(11, 9);
             this.lblWelcome.Name = "lblWelcome";
             this.lblWelcome.Size = new System.Drawing.Size(376, 116);
             this.lblWelcome.TabIndex = 1;
@@ -69,9 +71,18 @@
             this.lstPlaylists.DoubleClick += new System.EventHandler(this.lstPlaylists_DoubleClick);
             this.lstPlaylists.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lstPlaylists_MouseDown);
             // 
+            // picProfile
+            // 
+            this.picProfile.Location = new System.Drawing.Point(654, -1);
+            this.picProfile.Name = "picProfile";
+            this.picProfile.Size = new System.Drawing.Size(104, 92);
+            this.picProfile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picProfile.TabIndex = 4;
+            this.picProfile.TabStop = false;
+            // 
             // picAlbum
             // 
-            this.picAlbum.Location = new System.Drawing.Point(425, 74);
+            this.picAlbum.Location = new System.Drawing.Point(429, 110);
             this.picAlbum.Name = "picAlbum";
             this.picAlbum.Size = new System.Drawing.Size(329, 309);
             this.picAlbum.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -84,6 +95,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(244)))));
             this.ClientSize = new System.Drawing.Size(801, 450);
+            this.Controls.Add(this.picProfile);
             this.Controls.Add(this.picAlbum);
             this.Controls.Add(this.lblWelcome);
             this.Controls.Add(this.lstPlaylists);
@@ -95,6 +107,7 @@
             this.Opacity = 0.99D;
             this.Text = "Home";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmHome_FormClosed);
+            ((System.ComponentModel.ISupportInitialize)(this.picProfile)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAlbum)).EndInit();
             this.ResumeLayout(false);
 
@@ -106,5 +119,6 @@
         private System.Windows.Forms.Label lblWelcome;
         private System.Windows.Forms.ListBox lstPlaylists;
         private System.Windows.Forms.PictureBox picAlbum;
+        private System.Windows.Forms.PictureBox picProfile;
     }
 }

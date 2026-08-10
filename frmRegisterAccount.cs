@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using System.Drawing;
 
 namespace GroupProject
 {
@@ -69,7 +69,7 @@ namespace GroupProject
             {
                 MessageBox.Show("An error occurred while creating the account.\n\n" + ex.Message);
             }
-            
+
         }
         private void btnToLogin_Click(object sender, EventArgs e)
         {
