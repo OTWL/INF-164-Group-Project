@@ -212,6 +212,11 @@ namespace GroupProject
                 return mPlaylists[index];
             }
 
+            public string GetCoverPathByIndex(int index)
+            {
+                return mPlaylists[index].getCoverPath();
+            }
+
             //Constructor
             public User(string Username, string FilePath)
             {
