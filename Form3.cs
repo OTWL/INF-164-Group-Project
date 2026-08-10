@@ -7,8 +7,6 @@ namespace GroupProject
     public partial class frmPlaylist : Form
 
     {
-        private string activePlaylistName;
-
 
         public frmPlaylist()
         {
@@ -16,19 +14,21 @@ namespace GroupProject
             LoadSelectedPlaylist();
         }
 
+        //call user object to get id
+        //ID is the tilte of the playlist
+        string playlistId = Global.CurrentUser.GetSelectedPlaylistId();
+        //Create the playlist in a global scope
+        Global.Playlist currentPlaylist;
+
         private void LoadSelectedPlaylist()
         {
             try
             {
-                //call user object to get id
-                //ID is the tilte of the playlist
-                string playlistId = Global.CurrentUser.GetSelectedPlaylistId();
-
                 //We can check if it is null as we return null if none found
                 if (!string.IsNullOrEmpty(playlistId))
                 {
-                    //calling method to get playlist id 
-                    var currentPlaylist = Global.CurrentUser.GetPlaylistID(playlistId);
+                    //Create the playlist object based of the object selected
+                    currentPlaylist = Global.CurrentUser.GetPlaylistID(playlistId);
 
                     //Set the labels of the name and the date of creation to the values from the playlist id
                     lblName.Text = currentPlaylist.GetTitle();
@@ -39,7 +39,6 @@ namespace GroupProject
                         //Set's the current form name to name of the playlist
                         this.Text = "Playlist - " + currentPlaylist.GetTitle();
 
-                        //Get the cover image file path from the playlist object
                         string imagePath = currentPlaylist.getCoverPath();
 
                         //Check if the image path exists - first checking if there is text in the string and
@@ -70,7 +69,56 @@ namespace GroupProject
 
         private void frmPlaylist_Load(object sender, EventArgs e)
         {
-            
+
+        }
+
+        private void btnSelectCoverImage_Click(object sender, EventArgs e)
+        {
+            //Select Cover Image
+
+            try
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+
+                openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string coverPath = openFileDialog.FileName;
+                    picCoverArt.Image = Image.FromFile(coverPath);
+                    //Set the image location aswell for the save function
+                    picCoverArt.ImageLocation = openFileDialog.FileName;
+                    //Enale button to save
+                    BtnSaveCover.Enabled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Unable to load profile picture.\n\n" + ex.Message);
+            }
+
+        }
+
+        private void BtnSaveCover_Click(object sender, EventArgs e)
+        {
+            //Button is disabled by defualt have to select an image to save on load
+
+
+            if (string.IsNullOrEmpty(picCoverArt.ImageLocation) && string.IsNullOrEmpty(picCoverArt.Image.ToString()))
+            {
+                MessageBox.Show("Please select an image before saving");
+                return;
+            }
+
+            //Save it to object
+            currentPlaylist.SetCoverpath(picCoverArt.ImageLocation);
+
+
+            //Call function from global
+            if (Global.TrySaveCoverImage(playlistId, currentPlaylist.getCoverPath()))
+            {
+                MessageBox.Show("Playlist Cover Saved", "The album cover has been saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }
