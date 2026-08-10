@@ -92,14 +92,13 @@ namespace GroupProject
             //Show password
             if (cbxPassword.Checked)
             {
-                cbxPassword.Text = "Show Password";
-                txtPassword.UseSystemPasswordChar = true;
-
+                cbxPassword.Text = "Hide Password";
+                txtPassword.UseSystemPasswordChar = false;
             }
             else
             {
-                cbxPassword.Text = "Hide Password";
-                txtPassword.UseSystemPasswordChar = false;
+                cbxPassword.Text = "Show Password";
+                txtPassword.UseSystemPasswordChar = true;
             }
 
 

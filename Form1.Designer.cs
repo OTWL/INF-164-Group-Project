@@ -90,6 +90,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(180, 22);
             this.txtPassword.TabIndex = 4;
+            this.txtPassword.UseSystemPasswordChar = true;
             // 
             // label2
             // 
@@ -107,9 +108,9 @@
             this.cbxPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(153)))), ((int)(((byte)(174)))));
             this.cbxPassword.Location = new System.Drawing.Point(345, 217);
             this.cbxPassword.Name = "cbxPassword";
-            this.cbxPassword.Size = new System.Drawing.Size(117, 20);
+            this.cbxPassword.Size = new System.Drawing.Size(121, 20);
             this.cbxPassword.TabIndex = 10;
-            this.cbxPassword.Text = "Hide password";
+            this.cbxPassword.Text = "Show password";
             this.cbxPassword.UseVisualStyleBackColor = true;
             this.cbxPassword.CheckedChanged += new System.EventHandler(this.cbxPassword_CheckedChanged);
             // 
