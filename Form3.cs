@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Windows.Forms;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace GroupProject
 {
@@ -119,6 +119,20 @@ namespace GroupProject
             {
                 MessageBox.Show("Playlist Cover Saved", "The album cover has been saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
+            if (BtnSaveCover.Enabled)
+            {
+                BtnSaveCover.Enabled = false;
+            }
+            else
+            {
+                BtnSaveCover.Enabled = true;
+            }
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

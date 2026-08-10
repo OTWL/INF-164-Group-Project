@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.IO;
-using System.Linq;
 using System.Windows.Forms;
-using static GroupProject.Global;
 
 namespace GroupProject
 {
@@ -210,6 +207,11 @@ namespace GroupProject
             public Playlist GetPlaylistByIndex(int index)
             {
                 return mPlaylists[index];
+            }
+
+            public string GetCoverPathByIndex(int index)
+            {
+                return mPlaylists[index].getCoverPath();
             }
 
             //Constructor
