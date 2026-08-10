@@ -63,6 +63,16 @@ namespace GroupProject.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Default_Cover {
+            get {
+                object obj = ResourceManager.GetObject("Default Cover", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Default_Image {
             get {
                 object obj = ResourceManager.GetObject("Default Image", resourceCulture);
