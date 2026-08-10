@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Security.AccessControl;
 using System.Windows.Forms;
 
@@ -13,6 +15,8 @@ namespace GroupProject
             //Populate list box on load
             LoadUserPlaylists();
             greetings();
+            //Load as defualt
+            picAlbum.Image = Image.FromFile("Default Cover.png");
         }
         private void greetings()
         {
@@ -76,7 +80,7 @@ namespace GroupProject
         {
             GoToPlaylist();
             //Check if this does not close everything
-           // Application.Exit();
+            // Application.Exit();
         }
 
         private void LoadUserPlaylists()
@@ -94,6 +98,21 @@ namespace GroupProject
         private void lstPlaylists_DoubleClick(object sender, EventArgs e)
         {
             GoToPlaylist();
+        }
+
+        private void lstPlaylists_MouseDown(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                int index = lstPlaylists.SelectedIndex;
+                string path = Global.CurrentUser.GetCoverPathByIndex(index);
+
+                picAlbum.Image = Image.FromFile(path);
+            }
+            catch (Exception)
+            {
+                picAlbum.Image = Image.FromFile("Default Cover.png");
+            }
         }
     }
 }
