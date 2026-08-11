@@ -9,10 +9,6 @@ namespace GroupProject
     public static class Global
     {
 
-        //Wth does this even do?
-        //Maybe this should return an index of where it is?
-        //Or just return the content of that file
-
         //Use static so that we do not create a new object. Belongs t Global
         public static bool TryGetUserInfo(string Username, string FileName, out string Output)
         {

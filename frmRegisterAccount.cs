@@ -78,7 +78,7 @@ namespace GroupProject
                 //Append to file if not exist create it and create new line
                 File.AppendAllText("Users.txt", userInfo + Environment.NewLine);
 
-                MessageBox.Show("Succsesfuly created an account", "Account Created", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Successfully created an account", "Account Created", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 GoToLogin();
             }
