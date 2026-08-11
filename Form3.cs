@@ -54,8 +54,11 @@ namespace GroupProject
                             //load the cover art image path into the PictureBox
                             picCoverArt.Image = Image.FromFile(currentPlaylist.getCoverPath());
 
-                            //No need for an else statement as we know that the image path is valid
-                            //so we can load it straight into the pictureBox
+                        //If the image could be found load the defualt one
+                        }
+                        else
+                        {
+                            picCoverArt.Image = Properties.Resources.Default_Cover;
                         }
 
                     }
