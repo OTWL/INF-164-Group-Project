@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPlaylist));
             this.lblName = new System.Windows.Forms.Label();
             this.lblDateCreated = new System.Windows.Forms.Label();
             this.picCoverArt = new System.Windows.Forms.PictureBox();
@@ -43,7 +44,7 @@
             this.lblName.Font = new System.Drawing.Font("Book Antiqua", 29.25F);
             this.lblName.Location = new System.Drawing.Point(151, 9);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(264, 46);
+            this.lblName.Size = new System.Drawing.Size(330, 59);
             this.lblName.TabIndex = 0;
             this.lblName.Text = "Playlist Name";
             // 
@@ -54,7 +55,7 @@
             this.lblDateCreated.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(153)))), ((int)(((byte)(174)))));
             this.lblDateCreated.Location = new System.Drawing.Point(229, 65);
             this.lblDateCreated.Name = "lblDateCreated";
-            this.lblDateCreated.Size = new System.Drawing.Size(102, 20);
+            this.lblDateCreated.Size = new System.Drawing.Size(128, 24);
             this.lblDateCreated.TabIndex = 1;
             this.lblDateCreated.Text = "Date Created";
             // 
@@ -121,6 +122,7 @@
             this.Controls.Add(this.lblName);
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.Name = "frmPlaylist";
