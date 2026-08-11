@@ -23,6 +23,7 @@ namespace GroupProject
             {
                 MessageBox.Show("Please Enter a Username");
                 txtUsername.Focus();
+                return;
             }
 
             //If password is invalid
@@ -30,6 +31,7 @@ namespace GroupProject
             {
                 MessageBox.Show("Please Enter a Password");
                 txtPassword.Focus();
+                return;
             }
 
             string value;
@@ -79,11 +81,6 @@ namespace GroupProject
         private void frmLogin_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void cbxPassword_CheckedChanged(object sender, EventArgs e)

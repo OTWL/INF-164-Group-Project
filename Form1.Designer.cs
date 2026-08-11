@@ -45,7 +45,7 @@
             this.lblTuneWorld.Font = new System.Drawing.Font("Mistral", 29.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTuneWorld.Location = new System.Drawing.Point(127, 24);
             this.lblTuneWorld.Name = "lblTuneWorld";
-            this.lblTuneWorld.Size = new System.Drawing.Size(191, 47);
+            this.lblTuneWorld.Size = new System.Drawing.Size(240, 58);
             this.lblTuneWorld.TabIndex = 0;
             this.lblTuneWorld.Text = "TUNE WORLD";
             // 
@@ -98,7 +98,7 @@
             this.label2.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(33, 135);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(95, 22);
+            this.label2.Size = new System.Drawing.Size(121, 27);
             this.label2.TabIndex = 5;
             this.label2.Text = "Username:";
             // 
@@ -108,7 +108,7 @@
             this.cbxPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(153)))), ((int)(((byte)(174)))));
             this.cbxPassword.Location = new System.Drawing.Point(345, 217);
             this.cbxPassword.Name = "cbxPassword";
-            this.cbxPassword.Size = new System.Drawing.Size(121, 20);
+            this.cbxPassword.Size = new System.Drawing.Size(124, 20);
             this.cbxPassword.TabIndex = 10;
             this.cbxPassword.Text = "Show password";
             this.cbxPassword.UseVisualStyleBackColor = true;
@@ -121,7 +121,7 @@
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(153)))), ((int)(((byte)(174)))));
             this.label4.Location = new System.Drawing.Point(125, 421);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(193, 16);
+            this.label4.Size = new System.Drawing.Size(238, 20);
             this.label4.TabIndex = 8;
             this.label4.Text = "Don\'t have an account yet?";
             // 
@@ -131,10 +131,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(33, 214);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(94, 22);
+            this.label1.Size = new System.Drawing.Size(114, 27);
             this.label1.TabIndex = 7;
             this.label1.Text = "Password:";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // frmLogin
             // 
