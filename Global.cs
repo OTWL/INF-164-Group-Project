@@ -131,10 +131,15 @@ namespace GroupProject
 
                 //Split target string
                 string[] targetString = lines[TargetLine].Split('|');
-                //Rewrite path
-                targetString[COVERPATH] = coverPath;
-                //Join string of dissesabled one
-                lines[TargetLine] = string.Join("|", targetString);
+                //keep the date field only if the line has one, otherwise leaves it empty
+                string dateCreated = "";
+                if (targetString.Length > DOC)
+                {
+                    dateCreated = targetString[DOC];
+                }
+                //rebuild the line with the new cover path
+                lines[TargetLine] = targetString[USERNAME] + "|" + targetString[PLAYLIST] + "|" + coverPath;
+                
                 //Rewrite entire file
                 File.WriteAllLines(FILEPATH, lines);
 
