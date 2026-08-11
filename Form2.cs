@@ -78,8 +78,6 @@ namespace GroupProject
         private void btnGoToPlaylist_Click(object sender, EventArgs e)
         {
             GoToPlaylist();
-            //Check if this does not close everything
-            // Application.Exit();
         }
 
         private void LoadUserPlaylists()

@@ -59,13 +59,14 @@ namespace GroupProject
                 else
                 {
                     MessageBox.Show("Username or password is incorect");
-
+                    return;
                 }
             }
             //If no user found
             else
             {
                 MessageBox.Show("Username or password is incorect");
+                return;
             }
         }
 
