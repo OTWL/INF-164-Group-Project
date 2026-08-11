@@ -133,12 +133,13 @@ namespace GroupProject
                 string[] targetString = lines[TargetLine].Split('|');
                 //keep the date field only if the line has one, otherwise leaves it empty
                 string dateCreated = "";
+                //Check if the string contains the Date of Creation
                 if (targetString.Length > DOC)
                 {
                     dateCreated = targetString[DOC];
                 }
                 //rebuild the line with the new cover path
-                lines[TargetLine] = targetString[USERNAME] + "|" + targetString[PLAYLIST] + "|" + coverPath;
+                lines[TargetLine] = targetString[USERNAME] + "|" + targetString[PLAYLIST] + "|" + dateCreated +"|" + coverPath;
                 
                 //Rewrite entire file
                 File.WriteAllLines(FILEPATH, lines);
