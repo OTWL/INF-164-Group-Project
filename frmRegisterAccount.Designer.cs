@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRegisterAccount));
             this.lblPassword = new System.Windows.Forms.Label();
             this.lblUsername = new System.Windows.Forms.Label();
             this.txtPassword = new System.Windows.Forms.TextBox();
@@ -115,7 +116,7 @@
             this.lblRegister.Font = new System.Drawing.Font("Nirmala UI", 29.25F);
             this.lblRegister.Location = new System.Drawing.Point(89, 9);
             this.lblRegister.Name = "lblRegister";
-            this.lblRegister.Size = new System.Drawing.Size(312, 52);
+            this.lblRegister.Size = new System.Drawing.Size(397, 66);
             this.lblRegister.TabIndex = 7;
             this.lblRegister.Text = "Register Account";
             // 
@@ -179,7 +180,7 @@
             this.cbxPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(153)))), ((int)(((byte)(174)))));
             this.cbxPassword.Location = new System.Drawing.Point(348, 174);
             this.cbxPassword.Name = "cbxPassword";
-            this.cbxPassword.Size = new System.Drawing.Size(121, 20);
+            this.cbxPassword.Size = new System.Drawing.Size(124, 20);
             this.cbxPassword.TabIndex = 19;
             this.cbxPassword.Text = "Show password";
             this.cbxPassword.UseVisualStyleBackColor = true;
@@ -191,7 +192,7 @@
             this.cbxHidePassConfirm.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(153)))), ((int)(((byte)(174)))));
             this.cbxHidePassConfirm.Location = new System.Drawing.Point(348, 233);
             this.cbxHidePassConfirm.Name = "cbxHidePassConfirm";
-            this.cbxHidePassConfirm.Size = new System.Drawing.Size(121, 20);
+            this.cbxHidePassConfirm.Size = new System.Drawing.Size(124, 20);
             this.cbxHidePassConfirm.TabIndex = 20;
             this.cbxHidePassConfirm.Text = "Show password";
             this.cbxHidePassConfirm.UseVisualStyleBackColor = true;
@@ -219,6 +220,7 @@
             this.Controls.Add(this.lblRegister);
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(7)))), ((int)(((byte)(5)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.Name = "frmRegisterAccount";
