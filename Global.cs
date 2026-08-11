@@ -262,11 +262,12 @@ namespace GroupProject
                     {
                         //Username|Title|yyyy-MM-dddd|File Path
 
+                        //For deliverable two we have to check if all the playlist data 
                         string[] parts = line.Split('|');
                         if (parts[Username] == CurrentUser.GetUsername())
                         {
-                            Playlist p = new Playlist(parts[Title], parts[Path], parts[DateOfCreation]);
-                            mPlaylists.Add(p);
+                                Playlist p = new Playlist(parts[Title], parts[Path], parts[DateOfCreation]);
+                                mPlaylists.Add(p);
                         }
 
 
