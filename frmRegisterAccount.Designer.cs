@@ -114,7 +114,7 @@
             // 
             this.lblRegister.AutoSize = true;
             this.lblRegister.Font = new System.Drawing.Font("Nirmala UI", 29.25F);
-            this.lblRegister.Location = new System.Drawing.Point(89, 9);
+            this.lblRegister.Location = new System.Drawing.Point(61, 9);
             this.lblRegister.Name = "lblRegister";
             this.lblRegister.Size = new System.Drawing.Size(397, 66);
             this.lblRegister.TabIndex = 7;
