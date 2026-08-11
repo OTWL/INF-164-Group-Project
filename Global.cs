@@ -304,54 +304,6 @@ namespace GroupProject
                 //  mPlaylists.Add(Playlist);
             }
 
-
-            #region Future Code
-            // *Return List of Song object
-            /*
-             * 
-             * This is for the 2nd Deliverable
-             * 
-            public List<Song> getSongs(string Playlist)
-            {
-                //Return all the songs of said playlist
-                //Get all the song titles of that playlist
-
-                if (TryGetUserInfo(mUsername, "AllPlaylist.txt", out string SongString))
-                {
-                    //Get info
-                    //Create list to store in
-                    List<Song> songs = new List<Song>();
-
-                    //Blue bean ice cream - Benson Joon|Idk - blah blah| ->
-                    //We also need to store date of creation and 
-
-                    string[] parts = SongString.Split('|');
-                    //Blue bean ice cream - Beson Joon
-
-                    int indexOfDash = -1;
-
-                    foreach (string s in parts)
-                    {
-
-                        indexOfDash = s.IndexOf('-');
-
-                        //-1 due to space infront of -
-                        string title = s.Substring(0, indexOfDash - 1);
-
-                        //This is then the Artist
-                        // - Benson Joon
-                        //But +1 so Benson Joon
-                        artist = s.Substring(indexOfDash + 1);
-
-                        //File path empty for now
-                        Song SongObject = new Song(title, artist)
-
-                        //Create a new object and add it to a list to return later
-                        songs.Add(SongObject);
-                    }
-            */
-            #endregion
-
             //Value is Null
             private string mSelectedPlaylistId;
 
