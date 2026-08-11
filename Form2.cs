@@ -94,15 +94,26 @@ namespace GroupProject
 
         private void LoadProfilePic()
         {
-            string path = Global.CurrentUser.GetProfileFilePath();
-
-            //If path is default set to defualt image
-            if (string.IsNullOrEmpty(path) || path == "Default Image")
+           
+            try
             {
-                picProfile.Image = Properties.Resources.Default_Image;
-                return;
+                string path = Global.CurrentUser.GetProfileFilePath();
+
+                //If path is default set to defualt image
+                if (string.IsNullOrEmpty(path) || path == "Default Image")
+                {
+                    picProfile.Image = Properties.Resources.Default_Image;
+                    return;
+                }
+                picProfile.Image = Image.FromFile(path);
             }
-            picProfile.Image = Image.FromFile(path);
+            catch (Exception)
+            {
+                //path exists but is not a valid image so we go back to default image
+                picProfile.Image = Properties.Resources.Default_Image;
+                
+            }
+            
 
 
 
