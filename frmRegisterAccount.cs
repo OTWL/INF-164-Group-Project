@@ -1,6 +1,9 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Drawing;
 using System.IO;
+using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 
 namespace GroupProject
@@ -58,9 +61,10 @@ namespace GroupProject
                     return;
                 }
 
-                string value;
+                //IDk why but we have to add Global here for c# to pickup we are talking about User
+                Global.User value;
 
-                if (Global.TryGetUserInfo(Username, "Users.txt", out value))
+                if (Global.TryGetUserInfo(Username, "User", out value))
                 {
                     MessageBox.Show("Username already exists. Please choose another username.");
                     txtUsername.Focus();
@@ -74,10 +78,15 @@ namespace GroupProject
                     profilePath = "Default Image";
                 }
 
-                string userInfo = Username + "|" + Password + "|" + profilePath;
-                //Append to file if not exist create it and create new line
-                File.AppendAllText("Users.txt", userInfo + Environment.NewLine);
+                Global.allUsers.Add(new Global.User(Username, profilePath, Password));
 
+                //New saving method
+                //NEED TO SAVE ALL USERS
+
+                FileStream outFile = new FileStream("User.ser", FileMode.Create, FileAccess.Write);
+                BinaryFormatter bFormatter = new BinaryFormatter();
+                bFormatter.Serialize(outFile, Global.allUsers);
+                outFile.Close();
                 MessageBox.Show("Successfully created an account", "Account Created", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 GoToLogin();
