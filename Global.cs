@@ -2,86 +2,87 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
-
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.ComponentModel;
 namespace GroupProject
 {
 
     public static class Global
     {
 
-        //Use static so that we do not create a new object. Belongs t Global
-        public static bool TryGetUserInfo(string Username, string FileName, out string Output)
+
+        //Create a global dictonary of all the users for faster look up times
+
+        public static List<User> allUsers = new List<User>();
+
+        //Use static so that we do not create a new object. Belongs to Global
+        //Updated to desirilaze the serialized file
+        public static bool TryGetUserInfo(string Username, string FileName, out User Output)
         {
             //Returns true if found; false if not
 
             //If the file does not exist create it and then close it as it opens it on create leading to problems
-            if (!File.Exists(FileName))
+            if (!File.Exists(FileName + ".ser"))
             {
-                File.Create(FileName).Close();
+                File.Create(FileName + ".ser").Close();
+            }
+            //Check if the file is empty to avoid errors
+            if (new FileInfo(FileName + ".ser").Length == 0)
+            {
+                Output = new User("", "", "");
+                return false;
             }
 
-            StreamReader inputFile = null;
-            //Open file
+            FileStream inFile = null;
+
             try
             {
-                inputFile = new StreamReader(FileName);
+                //Create a file stream to read from serilized file
+                inFile = new FileStream(FileName + ".ser", FileMode.Open, FileAccess.Read);
+                //Create a bin formatter
+                BinaryFormatter bFormatter = new BinaryFormatter();
+                //Clean all users to ensure a fresh list
+                allUsers.Clear();
+                //  Create a temp list of all the User objects saved in the Deserialized file
+                allUsers = (List<User>)bFormatter.Deserialize(inFile);
 
-
-                /*
-                    Get file line by line
-                    File will look like this:
-                    Username|Password
-                */
-
-                string inputLine = inputFile.ReadLine();
-
-                //While not EOF
-                while (inputLine != null)
+                foreach (User myUser in allUsers)
                 {
-                    //Get pos of | in string
-                    int index = inputLine.IndexOf('|');
-
-                    //Copy to that pos
-                    string searchUsername = inputLine.Substring(0, index);
-
-                    //User found
-                    if (searchUsername == Username)
+                    //Look for the user we want
+                    if (myUser.Username == Username)
                     {
-                        //Return everything except the username +1 cuz of the |
-                        Output = inputLine.Substring(index + 1);
+                        Output = myUser;
+                        //Found user
                         return true;
                     }
-                    else
-                    {
-                        //Read Next Line
-                        inputLine = inputFile.ReadLine();
-                    }
+
 
                 }
+                inFile.Close();
 
-                //If no username found
-                Output = "";
+                //If no username found give dummy data bool saves us
+                Output = new User("", "", "");
                 return false;
 
-
             }
-            catch (FileNotFoundException)
+            catch (FileNotFoundException ex)
             {
-                Output = "";
+                MessageBox.Show("An error occurred" + ex, "File Could not be found", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Output = new User("", "", "");
                 return false;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("An error occurred\nPlease try again");
-                Output = "";
+                MessageBox.Show("An error occurred\nPlease try again" + ex);
+                Output = new User("", "", "");
                 return false;
             }
             finally
             {
-                //If null then there was no file open
-                if (inputFile != null)
+                if (inFile != null)
                 {
-                    inputFile.Close();
+                    inFile.Close();
                 }
             }
         }
@@ -111,7 +112,7 @@ namespace GroupProject
                 for (int i = 0; i < lines.Length; i++)
                 {
                     string[] parts = lines[i].Split('|');
-                    if (parts[USERNAME] == CurrentUser.GetUsername() && parts[PLAYLIST] == songTitle)
+                    if (parts[USERNAME] == CurrentUser.Username && parts[PLAYLIST] == songTitle)
                     {
                         TargetLine = i;
                         break;
@@ -135,8 +136,8 @@ namespace GroupProject
                     dateCreated = targetString[DOC];
                 }
                 //rebuild the line with the new cover path
-                lines[TargetLine] = targetString[USERNAME] + "|" + targetString[PLAYLIST] + "|" + dateCreated +"|" + coverPath;
-                
+                lines[TargetLine] = targetString[USERNAME] + "|" + targetString[PLAYLIST] + "|" + dateCreated + "|" + coverPath;
+
                 //Rewrite entire file
                 File.WriteAllLines(FILEPATH, lines);
 
@@ -151,20 +152,33 @@ namespace GroupProject
 
         // Global var to access the current user object everywhere
         public static User CurrentUser;
-
+        [Serializable]
         public class Playlist
         {
             //One playlist name
             private string mTitle;
             private string mDateOfCreation;
             private string mCoverArtPath;
+            private bool mFavourite;
+            private string mUsername;
+
+            public string Username
+            {
+                get { return mUsername; }
+                set { mUsername = value; }
+
+            }
 
 
             //Constructor
-            public Playlist(string title, string CoverArtPath, string DateOfCreation = "")
+            public Playlist(string title, string CoverArtPath, string UserName, string DateOfCreation = "", bool isFavourite = false)
             {
                 mTitle = title;
                 mCoverArtPath = CoverArtPath;
+                mFavourite = isFavourite;
+
+                mUsername = UserName;
+
 
                 if (DateOfCreation == "")
                 {
@@ -196,12 +210,24 @@ namespace GroupProject
             {
                 mCoverArtPath = CoverPath;
             }
+
         }
 
+        //Make the user class be able to be Serializable need to do this for it to be able to save it to file in create account
+        [Serializable]
         public class User
         {
             private string mUsername;
             private string mProfilePath;
+
+            private string mPassword;
+
+            //New get set for password
+            public string Password
+            {
+                get { return mPassword; }
+                set { mPassword = value; }
+            }
 
             //Create List that stores all the playlists
             private List<Playlist> mPlaylists = new List<Playlist>();
@@ -217,20 +243,24 @@ namespace GroupProject
             }
 
             //Constructor
-            public User(string Username, string FilePath)
+            public User(string Username, string FilePath, string Password)
             {
                 mUsername = Username;
                 mProfilePath = FilePath;
+                mPassword = Password;
             }
 
-            public string GetUsername()
+            public string Username
             {
-                return mUsername;
+                get { return mUsername; }
+                set { mUsername = value; }
+
             }
 
-            public string GetProfileFilePath()
+            public string ProfilePath
             {
-                return mProfilePath;
+                get { return mProfilePath; }
+                set { mProfilePath = value; }
             }
             // Playlists will be stored in text file
             // Songs will be stored in a songs folder
@@ -239,73 +269,93 @@ namespace GroupProject
             //Return Playlists
             public List<Playlist> GetPlaylists()
             {
-                string playlistPath = "Playlists.txt";
+                string playlistPath = "Playlists.ser";
 
                 //Return all playlist names date of creation 
                 mPlaylists.Clear();
 
+                //Returns true if found; false if not
+
+                //If the file does not exist create it and then close it as it opens it on create leading to problems
                 if (!File.Exists(playlistPath))
                 {
                     File.Create(playlistPath).Close();
+                    return new List<Playlist>();
+                }
+                //Check if the file is empty to avoid errors
+                if (new FileInfo(playlistPath).Length == 0)
+                {
+                    //Return empty playlist
+                    return new List<Playlist>();
                 }
 
-                StreamReader inputFile = null;
+                FileStream inFile = null;
+
                 try
                 {
-                    inputFile = new StreamReader(playlistPath);
+                    //Create a file stream to read from serilized file
+                    inFile = new FileStream(playlistPath, FileMode.Open, FileAccess.Read);
+                    //Create a bin formatter
+                    BinaryFormatter bFormatter = new BinaryFormatter();
+                    mPlaylists.Clear();
+                    //  Create a temp list of all the User objects saved in the Deserialized file
+                    mPlaylists = (List<Playlist>)bFormatter.Deserialize(inFile);
 
-                    string line = inputFile.ReadLine();
+                    //WE NEED TO RETURN THE USER PLAYLISTs
 
-                    int Username = 0;
-                    int Title = 1;
-                    int DateOfCreation = 2;
-                    int Path = 3;
-                    while (line != null)
+                    //Create a new playlist
+                    List<Playlist> result = new List<Playlist>();
+
+                    foreach (Playlist newplaylist in mPlaylists)
                     {
-                        //Username|Title|yyyy-MM-dddd|File Path
-
-                        //For deliverable two we have to check if all the playlist data 
-                        string[] parts = line.Split('|');
-                        if (parts[Username] == CurrentUser.GetUsername())
+                        if (newplaylist.Username == CurrentUser.Username)
                         {
-                                Playlist p = new Playlist(parts[Title], parts[Path], parts[DateOfCreation]);
-                                mPlaylists.Add(p);
+                            result.Add(newplaylist);
                         }
-
-
-                        //Go to next line
-                        line = inputFile.ReadLine();
-
 
                     }
 
+                    inFile.Close();
+
+                    //Return all the playlist 
                     return mPlaylists;
+
                 }
-                catch (FileNotFoundException)
+                catch (FileNotFoundException ex)
                 {
-                    MessageBox.Show("Could not find file");
-                    //Can return as it's empty
-                    return mPlaylists;
+                    MessageBox.Show("An error occurred" + ex, "File Could not be found", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //Return empty playlist
+                    return new List<Playlist>();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Something went wrong, please try again later");
-                    return mPlaylists;
+                    MessageBox.Show("An error occurred\nPlease try again" + ex);
+                    //Return empty playlist
+                    return new List<Playlist>();
                 }
                 finally
                 {
-                    if (inputFile != null)
+                    if (inFile != null)
                     {
-                        inputFile.Close();
+                        inFile.Close();
                     }
                 }
             }
 
-            public void AddPlaylists(string Playlist)
+            public bool SavePlaylist(Playlist newPlaylist)
             {
-                //Add the playlist to the link
-                //  mPlaylists.Add(Playlist);
+                //Save the entire playlist
+
+                FileStream outFile = new FileStream("Playlists.ser", FileMode.Create, FileAccess.Write);
+                BinaryFormatter bFormatter = new BinaryFormatter();
+                //Save all of the playlists objects
+                bFormatter.Serialize(outFile, mPlaylists);
+                outFile.Close();
+
+                return true;
             }
+
+
 
             //Value is Null
             private string mSelectedPlaylistId;
