@@ -9,6 +9,7 @@ namespace GroupProject
         public frmLogin()
         {
             InitializeComponent();
+            TryGetUserInfo("", "User", out _);
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -22,6 +23,7 @@ namespace GroupProject
             if (Username.Length <= 0)
             {
                 MessageBox.Show("Please Enter a Username");
+                //Set focus to Username textbox
                 txtUsername.Focus();
                 return;
             }
@@ -30,26 +32,26 @@ namespace GroupProject
             if (Password.Length <= 0)
             {
                 MessageBox.Show("Please Enter a Password");
+                //Set focus to Password textbox
                 txtPassword.Focus();
                 return;
             }
 
-            string value;
+            //Create User var
+            User value;
 
             //Get rid of magic numbers
             const int UserPassword = 0;
             const int UserFilePath = 1;
 
             //User Found
-            if (Global.TryGetUserInfo(Username, "Users.txt", out value))
+            if (Global.TryGetUserInfo(Username, "User", out value))
             {
                 //We get this from the function Password|FilePath
-                string[] valueArray = value.Split('|');
-
-                if (valueArray[UserPassword] == Password)
+                if (value.Password == Password)
                 {
                     // Create the user object
-                    Global.CurrentUser = new User(Username, valueArray[UserFilePath]);
+                    Global.CurrentUser = new User(Username, value.ProfilePath, Password);
                     //Go to next form
                     frmHome frmHome = new frmHome();
                     this.Hide();

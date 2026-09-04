@@ -22,7 +22,7 @@ namespace GroupProject
             string[] greetmessages = { "Welcome", "Howzit", "What's the vibe today", "Awe" };
             Random numbergenerator = new Random();
             int index = numbergenerator.Next(0, greetmessages.Length);
-            lblWelcome.Text = greetmessages[index] + ", " + Global.CurrentUser.GetUsername();
+            lblWelcome.Text = greetmessages[index] + ", " + Global.CurrentUser.Username;
 
         }
         private void frmHome_FormClosed(object sender, FormClosedEventArgs e)
@@ -84,6 +84,7 @@ namespace GroupProject
         {
             //Forgot to push this to main
             List<Global.Playlist> PlayLists = Global.CurrentUser.GetPlaylists();
+            //MABE AN ERROR IF THERE IS NO PLAYLISTS
 
             //Loop over list
             foreach (Global.Playlist p in PlayLists)
@@ -94,10 +95,10 @@ namespace GroupProject
 
         private void LoadProfilePic()
         {
-           
+
             try
             {
-                string path = Global.CurrentUser.GetProfileFilePath();
+                string path = Global.CurrentUser.ProfilePath;
 
                 //If path is default set to defualt image
                 if (string.IsNullOrEmpty(path) || path == "Default Image")
@@ -111,9 +112,9 @@ namespace GroupProject
             {
                 //path exists but is not a valid image so we go back to default image
                 picProfile.Image = Properties.Resources.Default_Image;
-                
+
             }
-            
+
 
 
 
