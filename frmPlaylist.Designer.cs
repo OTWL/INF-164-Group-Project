@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPlaylist));
             this.lblName = new System.Windows.Forms.Label();
             this.lblDateCreated = new System.Windows.Forms.Label();
@@ -40,6 +42,7 @@
             this.colArtist = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColAlbum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColGenre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnAddSong = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picCoverArt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSongs)).BeginInit();
             this.SuspendLayout();
@@ -48,6 +51,7 @@
             // 
             this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("Book Antiqua", 29.25F);
+            this.lblName.ForeColor = System.Drawing.Color.Black;
             this.lblName.Location = new System.Drawing.Point(113, 7);
             this.lblName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblName.Name = "lblName";
@@ -82,7 +86,7 @@
             this.btnSelectCoverImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSelectCoverImage.ForeColor = System.Drawing.Color.White;
             this.btnSelectCoverImage.Location = new System.Drawing.Point(9, 316);
-            this.btnSelectCoverImage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSelectCoverImage.Margin = new System.Windows.Forms.Padding(2);
             this.btnSelectCoverImage.Name = "btnSelectCoverImage";
             this.btnSelectCoverImage.Size = new System.Drawing.Size(84, 40);
             this.btnSelectCoverImage.TabIndex = 3;
@@ -97,7 +101,7 @@
             this.BtnSaveCover.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnSaveCover.ForeColor = System.Drawing.Color.White;
             this.BtnSaveCover.Location = new System.Drawing.Point(119, 316);
-            this.BtnSaveCover.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BtnSaveCover.Margin = new System.Windows.Forms.Padding(2);
             this.BtnSaveCover.Name = "BtnSaveCover";
             this.BtnSaveCover.Size = new System.Drawing.Size(86, 40);
             this.BtnSaveCover.TabIndex = 4;
@@ -110,7 +114,7 @@
             this.btnBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
             this.btnBack.ForeColor = System.Drawing.Color.White;
             this.btnBack.Location = new System.Drawing.Point(835, 316);
-            this.btnBack.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(2);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(86, 40);
             this.btnBack.TabIndex = 5;
@@ -126,8 +130,18 @@
             this.colArtist,
             this.ColAlbum,
             this.ColGenre});
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvSongs.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgvSongs.Location = new System.Drawing.Point(296, 76);
             this.dgvSongs.Name = "dgvSongs";
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            this.dgvSongs.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvSongs.Size = new System.Drawing.Size(443, 212);
             this.dgvSongs.TabIndex = 6;
             // 
@@ -151,12 +165,24 @@
             this.ColGenre.HeaderText = "Genre";
             this.ColGenre.Name = "ColGenre";
             // 
+            // btnAddSong
+            // 
+            this.btnAddSong.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
+            this.btnAddSong.Location = new System.Drawing.Point(489, 317);
+            this.btnAddSong.Name = "btnAddSong";
+            this.btnAddSong.Size = new System.Drawing.Size(75, 39);
+            this.btnAddSong.TabIndex = 7;
+            this.btnAddSong.Text = "Add Song";
+            this.btnAddSong.UseVisualStyleBackColor = false;
+            this.btnAddSong.Click += new System.EventHandler(this.btnAddSong_Click);
+            // 
             // frmPlaylist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(244)))));
             this.ClientSize = new System.Drawing.Size(932, 393);
+            this.Controls.Add(this.btnAddSong);
             this.Controls.Add(this.dgvSongs);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.BtnSaveCover);
@@ -164,10 +190,10 @@
             this.Controls.Add(this.picCoverArt);
             this.Controls.Add(this.lblDateCreated);
             this.Controls.Add(this.lblName);
-            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
+            this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "frmPlaylist";
             this.Opacity = 0.99D;
@@ -193,5 +219,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colArtist;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColAlbum;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColGenre;
+        private System.Windows.Forms.Button btnAddSong;
     }
 }

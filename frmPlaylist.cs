@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using static GroupProject.Global;
 
 namespace GroupProject
 {
@@ -74,10 +75,14 @@ namespace GroupProject
 
         private void frmPlaylist_Load(object sender, EventArgs e)
         {
-            //Collect all the user playlists
-            List<Global.Playlist> userPlaylists = Global.CurrentUser.mUserPlaylist;
+            
+            //Collect all songs in the playlist
+            List<Song> songs = currentPlaylist.GetSongs();
 
-            dgvSongs.Rows.Add(userPlaylists);
+            foreach (Song song in songs)
+            {
+                dgvSongs.Rows.Add(song.GetTitle(), song.GetArtist(), song.GetAlbum(), song.GetGenre());
+            }
         }
 
         private void btnSelectCoverImage_Click(object sender, EventArgs e)
@@ -141,6 +146,33 @@ namespace GroupProject
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnAddSong_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Audio Files|*.mp3;*.wav";
+            openFileDialog.Multiselect = true;
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string[] selectedSongs = openFileDialog.FileNames;
+
+                foreach (string song in selectedSongs)
+                {
+                    // TEMPORARY: Replace with song details from the UI once the textboxes are added
+                    Global.Song mySong = new Global.Song("Temp Song", "Temp Artist", "Temp Album", "Temp Genre", song);
+
+                    //Add the song to the current playlist
+                    currentPlaylist.AddSong(mySong);
+
+                    //Display the newly added song in the DataGridView
+                    dgvSongs.Rows.Add(mySong.GetTitle(), mySong.GetArtist(), mySong.GetAlbum(), mySong.GetGenre());
+
+                }
+
+                Global.CurrentUser.SavePlaylistToDisk();
+            }
         }
     }
 }
