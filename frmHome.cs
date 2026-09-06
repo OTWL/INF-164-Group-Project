@@ -83,8 +83,11 @@ namespace GroupProject
 
         private void LoadUserPlaylists()
         {
+            //Loads and filters playlists for logged in user into mPlaylist
+            Global.CurrentUser.GetPlaylists();
             //Forgot to push this to main
-            List<Global.Playlist> PlayLists = Global.CurrentUser.GetPlaylists();
+            //Gets only playlists created by current user
+            List<Global.Playlist> PlayLists = Global.CurrentUser.mUserPlaylist;
             //MABE AN ERROR IF THERE IS NO PLAYLISTS
 
             //Loop over list
@@ -149,6 +152,63 @@ namespace GroupProject
             Global.Playlist newPlaylist = new Global.Playlist(title, "", Global.CurrentUser.Username);
             lstPlaylists.Items.Add(newPlaylist.GetTitle() + " - Created: " + newPlaylist.GetDateOfCreation());
             Global.CurrentUser.SaveNewPlaylist(newPlaylist);
+        }
+
+        private void btnAddSong_Click(object sender, EventArgs e)
+        {
+            // Make sure the user has selected at least one playlist
+            if (lstPlaylists.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Please select at least one playlist.");
+                return;
+            }
+
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Audio Files|*.mp3;*.wav";
+            openFileDialog.Multiselect = true;
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                //Store actual playlist objects selected by user
+                List<Global.Playlist> selectedPlaylists = new List<Global.Playlist>();
+                
+                //Gets all playlists currently stores
+                List<Global.Playlist> allPlaylists = Global.CurrentUser.GetPlaylists();
+
+                //Go through every playlist selected
+                foreach (var selectedItem in lstPlaylists.SelectedItems)
+                {
+                    string selectedLine = selectedItem.ToString();
+                    string[] playlistDetails = selectedLine.Split('-');
+                    string playlistId = playlistDetails[0].Trim();
+
+                    //Finds playlist object with this title
+                    Global.Playlist playlist = allPlaylists.FirstOrDefault(p => p.GetTitle() == playlistId);
+
+
+                    if (playlist != null)
+                    {
+                        selectedPlaylists.Add(playlist);
+                    }
+                }
+
+                string[] selectedSongs = openFileDialog.FileNames;
+
+                // Go through each selected audio file
+                foreach (string song in selectedSongs)
+                {
+                    // TEMPORARY: Replace with song details from the UI once the textboxes are added
+                    Global.Song mySong = new Global.Song("Test Song", "Test Artist", "Test Album", "Test Genre", song);
+
+                    // Add the same Song object to every selected playlist
+                    foreach (Global.Playlist playlist in selectedPlaylists)
+                    {
+                        playlist.AddSong(mySong);
+                    }
+                }
+
+                Global.CurrentUser.SavePlaylistToDisk();
+            }
         }
     }
 }
