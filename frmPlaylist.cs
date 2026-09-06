@@ -14,7 +14,6 @@ namespace GroupProject
         {
             InitializeComponent();
             LoadSelectedPlaylist();
-
         }
 
         //call user object to get id
@@ -22,6 +21,8 @@ namespace GroupProject
         string playlistId = Global.CurrentUser.GetSelectedPlaylistId();
         //Create the playlist in a global scope
         Global.Playlist currentPlaylist;
+
+        // int numberOfTracks = 0;
 
         private void LoadSelectedPlaylist()
         {
@@ -73,6 +74,7 @@ namespace GroupProject
             }
         }
 
+        //When the playlist loads
         private void frmPlaylist_Load(object sender, EventArgs e)
         {
 
@@ -90,6 +92,9 @@ namespace GroupProject
             {
                 dgvSongs.Rows.Add(song.Title, song.Artist, song.Album, song.Genre);
             }
+
+            //After the DGV is populated update the record count
+            updateNumberOfRecords();
         }
 
         private void btnSelectCoverImage_Click(object sender, EventArgs e)
@@ -172,12 +177,19 @@ namespace GroupProject
                     dgvSongs.Rows.Add(mySong.Title, mySong.Artist, mySong.Album, mySong.Genre);
 
                 }
-
+                //Upadate label
+                updateNumberOfRecords();
                 //Save the playlist 
                 Global.CurrentUser.SavePlaylistToDisk();
             }
         }
 
+        private void updateNumberOfRecords()
+        {
+            //Set text to current dgv count
+            // -1 to account for the headers
+            lblNumTracks.Text = "Number of tracks: " + Convert.ToString(dgvSongs.RowCount - 1);
+        }
 
         private string getCurrentSongFilePath()
         {
