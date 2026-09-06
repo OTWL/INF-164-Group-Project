@@ -160,6 +160,8 @@ namespace GroupProject
             private string mGenre;
             private string mUser;
 
+            
+
             //Constructor
             public Song(string title, string artist, string album, string genere)
             {
@@ -169,6 +171,8 @@ namespace GroupProject
                 mGenre = genere;
                 //Always assign the user as the current user to keep track of ownership
                 mUser = CurrentUser.Username;
+
+                
 
             }
             // USER|Title|Artist|Album|Genre
@@ -188,6 +192,17 @@ namespace GroupProject
                 mSongs.Add(newSong);
             }
 
+            //gets title of song 
+            public string GetTitle()
+            {
+                return mTitle;
+            }
+
+            //gets artist of the song for Top Artist 
+            public string getArtist()
+            {
+                return mArtist;
+            }
 
         };
 
