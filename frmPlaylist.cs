@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -12,6 +13,7 @@ namespace GroupProject
         {
             InitializeComponent();
             LoadSelectedPlaylist();
+
         }
 
         //call user object to get id
@@ -54,7 +56,7 @@ namespace GroupProject
                             //load the cover art image path into the PictureBox
                             picCoverArt.Image = Image.FromFile(currentPlaylist.getCoverPath());
 
-                        //If the image could be found load the defualt one
+                            //If the image could be found load the defualt one
                         }
                         else
                         {
@@ -72,7 +74,10 @@ namespace GroupProject
 
         private void frmPlaylist_Load(object sender, EventArgs e)
         {
+            //Collect all the user playlists
+            List<Global.Playlist> userPlaylists = Global.CurrentUser.mUserPlaylist;
 
+            dgvSongs.Rows.Add(userPlaylists);
         }
 
         private void btnSelectCoverImage_Click(object sender, EventArgs e)
