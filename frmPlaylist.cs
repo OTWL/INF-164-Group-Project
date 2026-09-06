@@ -75,13 +75,20 @@ namespace GroupProject
 
         private void frmPlaylist_Load(object sender, EventArgs e)
         {
-            
+
             //Collect all songs in the playlist
             List<Song> songs = currentPlaylist.GetSongs();
 
+            if (songs == null)
+            {
+
+                MessageBox.Show("No songs could be found!");
+                return;
+            }
+
             foreach (Song song in songs)
             {
-                dgvSongs.Rows.Add(song.GetTitle(), song.GetArtist(), song.GetAlbum(), song.GetGenre());
+                dgvSongs.Rows.Add(song.Title, song.Artist, song.Album, song.Genre);
             }
         }
 
@@ -125,14 +132,9 @@ namespace GroupProject
 
             //Save it to object
             currentPlaylist.SetCoverpath(picCoverArt.ImageLocation);
+            Global.CurrentUser.SavePlaylistToDisk();
 
-
-            //Call function from global
-            if (Global.TrySaveCoverImage(playlistId, currentPlaylist.getCoverPath()))
-            {
-                MessageBox.Show("Playlist Cover Saved", "The album cover has been saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-
+            MessageBox.Show("Playlist Cover Saved", "The album cover has been saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
             if (BtnSaveCover.Enabled)
             {
                 BtnSaveCover.Enabled = false;
@@ -167,12 +169,30 @@ namespace GroupProject
                     currentPlaylist.AddSong(mySong);
 
                     //Display the newly added song in the DataGridView
-                    dgvSongs.Rows.Add(mySong.GetTitle(), mySong.GetArtist(), mySong.GetAlbum(), mySong.GetGenre());
+                    dgvSongs.Rows.Add(mySong.Title, mySong.Artist, mySong.Album, mySong.Genre);
 
                 }
 
+                //Save the playlist 
                 Global.CurrentUser.SavePlaylistToDisk();
             }
         }
+
+
+        private string getCurrentSongFilePath()
+        {
+
+            //THER IS A HIDDEN COLUM WITH THE FILE PATH, USER CANNOT EDIT IT OR SEE.
+
+            //Get rid of magic/ambigous column number
+            const int FILEPATH = 4;
+
+            //Get the file path of the currently selected row in the data grid view
+            string filePath = dgvSongs.SelectedRows[0].Cells[FILEPATH].Value.ToString();
+
+
+            return filePath;
+        }
+
     }
 }

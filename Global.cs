@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Windows.Forms;
-using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.ComponentModel;
+using System.Windows.Forms;
 namespace GroupProject
 {
 
@@ -87,68 +85,68 @@ namespace GroupProject
             }
         }
 
-        public static bool TrySaveCoverImage(string songTitle, string coverPath)
-        {
-            const int USERNAME = 0;
-            const int PLAYLIST = 1;
-            const int DOC = 2;
-            const int COVERPATH = 3;
-            const string FILEPATH = "Playlists.txt";
+        //public static bool TrySaveCoverImage(string songTitle, string coverPath)
+        //{
+        //    const int USERNAME = 0;
+        //    const int PLAYLIST = 1;
+        //    const int DOC = 2;
+        //    const int COVERPATH = 3;
+        //    const string FILEPATH = "Playlists.txt";
 
-            try
-            {
-                if (!File.Exists(FILEPATH))
-                {
-                    File.Create(FILEPATH).Close();
-                    MessageBox.Show("Could not find playlist");
-                    return false;
-                }
+        //    try
+        //    {
+        //        if (!File.Exists(FILEPATH))
+        //        {
+        //            File.Create(FILEPATH).Close();
+        //            MessageBox.Show("Could not find playlist");
+        //            return false;
+        //        }
 
-                string[] lines = File.ReadAllLines(FILEPATH);
-                int TargetLine = -1;
+        //        string[] lines = File.ReadAllLines(FILEPATH);
+        //        int TargetLine = -1;
 
 
-                //Loop through the lines
-                for (int i = 0; i < lines.Length; i++)
-                {
-                    string[] parts = lines[i].Split('|');
-                    if (parts[USERNAME] == CurrentUser.Username && parts[PLAYLIST] == songTitle)
-                    {
-                        TargetLine = i;
-                        break;
-                    }
-                }
-                if (TargetLine == -1)
-                {
-                    MessageBox.Show("Playlist could not be found");
-                    return false;
-                }
+        //        //Loop through the lines
+        //        for (int i = 0; i < lines.Length; i++)
+        //        {
+        //            string[] parts = lines[i].Split('|');
+        //            if (parts[USERNAME] == CurrentUser.Username && parts[PLAYLIST] == songTitle)
+        //            {
+        //                TargetLine = i;
+        //                break;
+        //            }
+        //        }
+        //        if (TargetLine == -1)
+        //        {
+        //            MessageBox.Show("Playlist could not be found");
+        //            return false;
+        //        }
 
-                //Read all lines
+        //        //Read all lines
 
-                //Split target string
-                string[] targetString = lines[TargetLine].Split('|');
-                //keep the date field only if the line has one, otherwise leaves it empty
-                string dateCreated = "";
-                //Check if the string contains the Date of Creation
-                if (targetString.Length > DOC)
-                {
-                    dateCreated = targetString[DOC];
-                }
-                //rebuild the line with the new cover path
-                lines[TargetLine] = targetString[USERNAME] + "|" + targetString[PLAYLIST] + "|" + dateCreated + "|" + coverPath;
+        //        //Split target string
+        //        string[] targetString = lines[TargetLine].Split('|');
+        //        //keep the date field only if the line has one, otherwise leaves it empty
+        //        string dateCreated = "";
+        //        //Check if the string contains the Date of Creation
+        //        if (targetString.Length > DOC)
+        //        {
+        //            dateCreated = targetString[DOC];
+        //        }
+        //        //rebuild the line with the new cover path
+        //        lines[TargetLine] = targetString[USERNAME] + "|" + targetString[PLAYLIST] + "|" + dateCreated + "|" + coverPath;
 
-                //Rewrite entire file
-                File.WriteAllLines(FILEPATH, lines);
+        //        //Rewrite entire file
+        //        File.WriteAllLines(FILEPATH, lines);
 
-                return true;
-            }
-            catch
-            {
-                MessageBox.Show("An error occured, please try again later");
-                return false;
-            }
-        }
+        //        return true;
+        //    }
+        //    catch
+        //    {
+        //        MessageBox.Show("An error occured, please try again later");
+        //        return false;
+        //    }
+        //}
 
         //Add header to allow it to be saved as bin
         [Serializable]
@@ -161,29 +159,35 @@ namespace GroupProject
             private string mUser;
             private string mFilePath;
 
-            public string GetTitle()
+            public string Title
             {
-                return mTitle;
+                get { return mTitle; }
+                set { mTitle = value; }
             }
 
-            public string GetArtist()
+
+            public string Artist
             {
-                return mArtist;
+                get { return mArtist; }
+                set { mArtist = value; }
             }
 
-            public string GetAlbum()
+            public string Album
             {
-                return mAlbum;
+                get { return mAlbum; }
+                set { mAlbum = value; }
             }
 
-            public string GetGenre()
+            public string Genre
             {
-                return mGenre;
+                get { return mGenre; }
+                set { mGenre = value; }
             }
 
-            public string GetFilePath()
+            public string FilePath
             {
-                return mFilePath;
+                get { return mFilePath; }
+                set { mFilePath = value; }
             }
 
             //Constructor
@@ -224,7 +228,6 @@ namespace GroupProject
                 set { mUsername = value; }
 
             }
-
 
             //Constructor
             public Playlist(string title, string CoverArtPath, string UserName, string DateOfCreation = "", bool isFavourite = false)
@@ -417,7 +420,7 @@ namespace GroupProject
             public bool SavePlaylistToDisk()
             {
                 //Save the entire playlist
-
+                //Saves songs aswell as 
                 FileStream outFile = new FileStream("Playlists.ser", FileMode.Create, FileAccess.Write);
                 BinaryFormatter bFormatter = new BinaryFormatter();
                 //Save all of the playlists objects

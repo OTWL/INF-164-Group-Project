@@ -38,11 +38,12 @@
             this.BtnSaveCover = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
             this.dgvSongs = new System.Windows.Forms.DataGridView();
+            this.btnAddSong = new System.Windows.Forms.Button();
             this.ColTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colArtist = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColAlbum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColGenre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnAddSong = new System.Windows.Forms.Button();
+            this.colFilePath = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.picCoverArt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSongs)).BeginInit();
             this.SuspendLayout();
@@ -52,7 +53,7 @@
             this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("Book Antiqua", 29.25F);
             this.lblName.ForeColor = System.Drawing.Color.Black;
-            this.lblName.Location = new System.Drawing.Point(113, 7);
+            this.lblName.Location = new System.Drawing.Point(309, 9);
             this.lblName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(264, 46);
@@ -64,7 +65,7 @@
             this.lblDateCreated.AutoSize = true;
             this.lblDateCreated.Font = new System.Drawing.Font("Book Antiqua", 12F);
             this.lblDateCreated.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(153)))), ((int)(((byte)(174)))));
-            this.lblDateCreated.Location = new System.Drawing.Point(172, 53);
+            this.lblDateCreated.Location = new System.Drawing.Point(386, 55);
             this.lblDateCreated.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDateCreated.Name = "lblDateCreated";
             this.lblDateCreated.Size = new System.Drawing.Size(102, 20);
@@ -73,7 +74,7 @@
             // 
             // picCoverArt
             // 
-            this.picCoverArt.Location = new System.Drawing.Point(9, 76);
+            this.picCoverArt.Location = new System.Drawing.Point(12, 99);
             this.picCoverArt.Name = "picCoverArt";
             this.picCoverArt.Size = new System.Drawing.Size(208, 172);
             this.picCoverArt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -129,21 +130,33 @@
             this.ColTitle,
             this.colArtist,
             this.ColAlbum,
-            this.ColGenre});
+            this.ColGenre,
+            this.colFilePath});
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvSongs.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvSongs.Location = new System.Drawing.Point(296, 76);
+            this.dgvSongs.Location = new System.Drawing.Point(293, 99);
             this.dgvSongs.Name = "dgvSongs";
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
             this.dgvSongs.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvSongs.Size = new System.Drawing.Size(443, 212);
             this.dgvSongs.TabIndex = 6;
+            // 
+            // btnAddSong
+            // 
+            this.btnAddSong.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
+            this.btnAddSong.Location = new System.Drawing.Point(293, 316);
+            this.btnAddSong.Name = "btnAddSong";
+            this.btnAddSong.Size = new System.Drawing.Size(75, 39);
+            this.btnAddSong.TabIndex = 7;
+            this.btnAddSong.Text = "Add Song";
+            this.btnAddSong.UseVisualStyleBackColor = false;
+            this.btnAddSong.Click += new System.EventHandler(this.btnAddSong_Click);
             // 
             // ColTitle
             // 
@@ -165,16 +178,12 @@
             this.ColGenre.HeaderText = "Genre";
             this.ColGenre.Name = "ColGenre";
             // 
-            // btnAddSong
+            // colFilePath
             // 
-            this.btnAddSong.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
-            this.btnAddSong.Location = new System.Drawing.Point(489, 317);
-            this.btnAddSong.Name = "btnAddSong";
-            this.btnAddSong.Size = new System.Drawing.Size(75, 39);
-            this.btnAddSong.TabIndex = 7;
-            this.btnAddSong.Text = "Add Song";
-            this.btnAddSong.UseVisualStyleBackColor = false;
-            this.btnAddSong.Click += new System.EventHandler(this.btnAddSong_Click);
+            this.colFilePath.HeaderText = "File Path";
+            this.colFilePath.Name = "colFilePath";
+            this.colFilePath.ReadOnly = true;
+            this.colFilePath.Visible = false;
             // 
             // frmPlaylist
             // 
@@ -215,10 +224,11 @@
         private System.Windows.Forms.Button BtnSaveCover;
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.DataGridView dgvSongs;
+        private System.Windows.Forms.Button btnAddSong;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColTitle;
         private System.Windows.Forms.DataGridViewTextBoxColumn colArtist;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColAlbum;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColGenre;
-        private System.Windows.Forms.Button btnAddSong;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colFilePath;
     }
 }
