@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace GroupProject
@@ -138,6 +139,16 @@ namespace GroupProject
             {
                 picAlbum.Image = Properties.Resources.Default_Cover;
             }
+        }
+
+        private void btnCreatePlaylist_Click(object sender, EventArgs e)
+        {
+            string title = txtTitle.Text;
+            //LEAVE ART PATH EMPTY FOR NOW
+            //ADD VALIDATION
+            Global.Playlist newPlaylist = new Global.Playlist(title, "", Global.CurrentUser.Username);
+            lstPlaylists.Items.Add(newPlaylist.GetTitle() + " - Created: " + newPlaylist.GetDateOfCreation());
+            Global.CurrentUser.SaveNewPlaylist(newPlaylist);
         }
     }
 }
