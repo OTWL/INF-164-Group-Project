@@ -171,7 +171,7 @@ namespace GroupProject
             {
                 //Store actual playlist objects selected by user
                 List<Global.Playlist> selectedPlaylists = new List<Global.Playlist>();
-                
+
                 //Gets all playlists currently stores
                 List<Global.Playlist> allPlaylists = Global.CurrentUser.GetPlaylists();
 
