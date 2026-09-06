@@ -159,9 +159,35 @@ namespace GroupProject
             private string mAlbum;
             private string mGenre;
             private string mUser;
+            private string mFilePath;
+
+            public string GetTitle()
+            {
+                return mTitle;
+            }
+
+            public string GetArtist()
+            {
+                return mArtist;
+            }
+
+            public string GetAlbum()
+            {
+                return mAlbum;
+            }
+
+            public string GetGenre()
+            {
+                return mGenre;
+            }
+
+            public string GetFilePath()
+            {
+                return mFilePath;
+            }
 
             //Constructor
-            public Song(string title, string artist, string album, string genere)
+            public Song(string title, string artist, string album, string genere, string filePath)
             {
                 mTitle = title;
                 mArtist = artist;
@@ -169,25 +195,10 @@ namespace GroupProject
                 mGenre = genere;
                 //Always assign the user as the current user to keep track of ownership
                 mUser = CurrentUser.Username;
+                mFilePath = filePath;
 
             }
             // USER|Title|Artist|Album|Genre
-
-            //List of all songs used for saving
-            private List<Song> mSongs = new List<Song>();
-
-            // 2 functions get songs and add
-
-            public List<Song> getSongs()
-            {
-                return mSongs;
-            }
-
-            public void addSong(Song newSong)
-            {
-                mSongs.Add(newSong);
-            }
-
 
         };
 
@@ -205,6 +216,8 @@ namespace GroupProject
             private bool mFavourite;
             private string mUsername;
 
+            //Playlist song list
+            private List<Song> mSongs = new List<Song>();
             public string Username
             {
                 get { return mUsername; }
@@ -252,6 +265,16 @@ namespace GroupProject
             public void SetCoverpath(string CoverPath)
             {
                 mCoverArtPath = CoverPath;
+            }
+
+            public void AddSong(Song song)
+            {
+                mSongs.Add(song);
+            }
+
+            public List<Song> GetSongs()
+            {
+                return mSongs;
             }
 
         }
