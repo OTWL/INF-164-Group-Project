@@ -232,6 +232,9 @@ namespace GroupProject
             //Create List that stores all the playlists
             private List<Playlist> mPlaylists = new List<Playlist>();
 
+            //Create a user playlist
+            public List<Playlist> mUserPlaylist = new List<Playlist>();
+
             public Playlist GetPlaylistByIndex(int index)
             {
                 return mPlaylists[index];
@@ -303,14 +306,14 @@ namespace GroupProject
 
                     //WE NEED TO RETURN THE USER PLAYLISTs
 
-                    //Create a new playlist
-                    List<Playlist> result = new List<Playlist>();
+                    //Clear playlist to avoid acidental rubbbish
+                    mUserPlaylist.Clear();
 
                     foreach (Playlist newplaylist in mPlaylists)
                     {
                         if (newplaylist.Username == CurrentUser.Username)
                         {
-                            result.Add(newplaylist);
+                            mUserPlaylist.Add(newplaylist);
                         }
 
                     }
