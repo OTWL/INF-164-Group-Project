@@ -186,6 +186,7 @@ namespace GroupProject
 
         private void updateNumberOfRecords()
         {
+            //CAN ADD 2D array here
             //Set text to current dgv count
             // -1 to account for the headers
             lblNumTracks.Text = "Number of tracks: " + Convert.ToString(dgvSongs.RowCount - 1);

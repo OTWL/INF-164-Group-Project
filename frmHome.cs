@@ -183,11 +183,25 @@ namespace GroupProject
                     string playlistId = playlistDetails[0].Trim();
 
                     //Finds playlist object with this title
-                    Global.Playlist playlist = allPlaylists.FirstOrDefault(p => p.GetTitle() == playlistId);
 
+                    //Create empty playlist object
+                    Global.Playlist playlist = null;
 
+                    foreach (Global.Playlist p in allPlaylists)
+                    {
+                        //Look if current plalist == playlist id and belongs to the user
+                        if (p.GetTitle() == playlistId && p.Username == Global.CurrentUser.Username)
+                        {
+                            //Return it and stop searching
+                            playlist = p;
+                            break;
+                        }
+                    }
+
+                    //Found playlist add it to selected playlist list
                     if (playlist != null)
                     {
+                        //Add it to selected playlist
                         selectedPlaylists.Add(playlist);
                     }
                 }
@@ -197,8 +211,12 @@ namespace GroupProject
                 // Go through each selected audio file
                 foreach (string song in selectedSongs)
                 {
-                    // TEMPORARY: Replace with song details from the UI once the textboxes are added
-                    Global.Song mySong = new Global.Song("Test Song", "Test Artist", "Test Album", "Test Genre", song);
+                    //Create new form and save it
+                    frmSongInfo saveForm = new frmSongInfo();
+                    saveForm.ShowDialog();
+
+                    // Create new song object
+                    Global.Song mySong = new Global.Song(saveForm.SongName, saveForm.SongArtist, saveForm.SongAlbum, saveForm.SongGenre, song);
 
                     // Add the same Song object to every selected playlist
                     foreach (Global.Playlist playlist in selectedPlaylists)

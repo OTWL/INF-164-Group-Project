@@ -465,7 +465,8 @@ namespace GroupProject
                 //Loop through the list and return the playlist if it's titke matches the one given
                 foreach (Playlist p in list)
                 {
-                    if (p.GetTitle() == id)
+                    //Make sure playlist is owned by current user
+                    if (p.GetTitle() == id && p.Username == CurrentUser.Username)
                     {
                         return p;
                     }
