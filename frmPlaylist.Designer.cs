@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPlaylist));
             this.lblName = new System.Windows.Forms.Label();
             this.lblDateCreated = new System.Windows.Forms.Label();
@@ -37,7 +36,10 @@
             this.BtnSaveCover = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
             this.dgvSongs = new System.Windows.Forms.DataGridView();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ColTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colArtist = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColAlbum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColGenre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.picCoverArt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSongs)).BeginInit();
             this.SuspendLayout();
@@ -119,15 +121,35 @@
             // dgvSongs
             // 
             this.dgvSongs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSongs.Location = new System.Drawing.Point(270, 76);
+            this.dgvSongs.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColTitle,
+            this.colArtist,
+            this.ColAlbum,
+            this.ColGenre});
+            this.dgvSongs.Location = new System.Drawing.Point(296, 76);
             this.dgvSongs.Name = "dgvSongs";
-            this.dgvSongs.Size = new System.Drawing.Size(270, 212);
+            this.dgvSongs.Size = new System.Drawing.Size(443, 212);
             this.dgvSongs.TabIndex = 6;
             // 
-            // contextMenuStrip1
+            // ColTitle
             // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            this.ColTitle.HeaderText = "Title";
+            this.ColTitle.Name = "ColTitle";
+            // 
+            // colArtist
+            // 
+            this.colArtist.HeaderText = "Artist";
+            this.colArtist.Name = "colArtist";
+            // 
+            // ColAlbum
+            // 
+            this.ColAlbum.HeaderText = "Album";
+            this.ColAlbum.Name = "ColAlbum";
+            // 
+            // ColGenre
+            // 
+            this.ColGenre.HeaderText = "Genre";
+            this.ColGenre.Name = "ColGenre";
             // 
             // frmPlaylist
             // 
@@ -167,6 +189,9 @@
         private System.Windows.Forms.Button BtnSaveCover;
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.DataGridView dgvSongs;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColTitle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colArtist;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColAlbum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColGenre;
     }
 }
