@@ -77,7 +77,7 @@ namespace GroupProject
             //Collect all the user playlists
             List<Global.Playlist> userPlaylists = Global.CurrentUser.mUserPlaylist;
 
-            dgvSongs.DataSource = userPlaylists;
+            dgvSongs.Rows.Add(userPlaylists);
         }
 
         private void btnSelectCoverImage_Click(object sender, EventArgs e)

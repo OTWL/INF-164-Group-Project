@@ -150,6 +150,49 @@ namespace GroupProject
             }
         }
 
+        //Add header to allow it to be saved as bin
+        [Serializable]
+        public class Song
+        {
+            private string mTitle;
+            private string mArtist;
+            private string mAlbum;
+            private string mGenre;
+            private string mUser;
+
+            //Constructor
+            public Song(string title, string artist, string album, string genere)
+            {
+                mTitle = title;
+                mArtist = artist;
+                mAlbum = album;
+                mGenre = genere;
+                //Always assign the user as the current user to keep track of ownership
+                mUser = CurrentUser.Username;
+
+            }
+            // USER|Title|Artist|Album|Genre
+
+            //List of all songs used for saving
+            private List<Song> mSongs = new List<Song>();
+
+            // 2 functions get songs and add
+
+            public List<Song> getSongs()
+            {
+                return mSongs;
+            }
+
+            public void addSong(Song newSong)
+            {
+                mSongs.Add(newSong);
+            }
+
+
+        };
+
+
+
         // Global var to access the current user object everywhere
         public static User CurrentUser;
         [Serializable]
@@ -234,6 +277,9 @@ namespace GroupProject
 
             //Create a user playlist
             public List<Playlist> mUserPlaylist = new List<Playlist>();
+
+            //List of the users songs
+            public List<Song> mSongs = new List<Song>();
 
             public Playlist GetPlaylistByIndex(int index)
             {
@@ -345,7 +391,7 @@ namespace GroupProject
                 }
             }
 
-            public bool SavePlaylist(Playlist newPlaylist)
+            public bool SavePlaylistToDisk()
             {
                 //Save the entire playlist
 
@@ -358,6 +404,14 @@ namespace GroupProject
                 return true;
             }
 
+
+            public void SaveNewPlaylist(Playlist newPlaylist)
+            {
+                mPlaylists.Add(newPlaylist);
+                mUserPlaylist.Add(newPlaylist);
+                //Save to disk
+                SavePlaylistToDisk();
+            }
 
 
             //Value is Null
