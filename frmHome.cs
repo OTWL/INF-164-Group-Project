@@ -30,8 +30,8 @@ namespace GroupProject
         {
             //1. calculate total playlists 
             //count number of playlists currently loaded into the users list 
-            int totalPlaylists= Global.CurrentUser.mUserPlaylist.Count;
-            lblTotalPlaylists.Text="Total Playlists: " + totalPlaylists.ToString();
+            int totalPlaylists = Global.CurrentUser.mUserPlaylist.Count;
+            lblTotalPlaylists.Text = "Total Playlists: " + totalPlaylists.ToString();
 
             //to check if the user has any songs in their library before calculating
             if (Global.CurrentUser.mSongs.Count > 0)
@@ -41,28 +41,28 @@ namespace GroupProject
                 lblTotalSongs.Text = "Total Tracks: " + totalSongs.ToString();
 
                 //3. calculate top artist 
-                
+
                 string topArtist = "No songs yet!";
                 int highestCount = 0;
 
                 //outer loop will pick one song at a time to check its artist 
                 for (int i = 0; i < Global.CurrentUser.mSongs.Count; i++)
                 {
-                    string currentArtist = Global.CurrentUser.mSongs[i].getArtist();
+                    string currentArtist = Global.CurrentUser.mSongs[i].Artist();
                     int currentArtistCount = 0;
 
                     //inner loop will scan through the whole list and count how many times
                     //the artist appears 
-                     for(int j = 0; j < Global.CurrentUser.mSongs.Count;j++)
+                    for (int j = 0; j < Global.CurrentUser.mSongs.Count; j++)
                     {
-                        if (Global.CurrentUser.mSongs[j].getArtist()==currentArtist)
+                        if (Global.CurrentUser.mSongs[j].getArtist() == currentArtist)
                         {
                             currentArtistCount++;
                         }
                     }
 
-                     //if this artist has more tracks than our previous highest , they take the top spot
-                     if(currentArtistCount > highestCount)
+                    //if this artist has more tracks than our previous highest , they take the top spot
+                    if (currentArtistCount > highestCount)
                     {
                         highestCount = currentArtistCount;
                         topArtist = currentArtist;
@@ -71,7 +71,7 @@ namespace GroupProject
                 }
                 lblTopArtist.Text = "Top Artist: " + topArtist;
             }
-
+        }
         private void frmHome_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
