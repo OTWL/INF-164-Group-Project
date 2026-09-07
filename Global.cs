@@ -9,9 +9,6 @@ namespace GroupProject
     public static class Global
     {
 
-
-        //Create a global dictonary of all the users for faster look up times
-
         public static List<User> allUsers = new List<User>();
 
         //Use static so that we do not create a new object. Belongs to Global
@@ -84,69 +81,6 @@ namespace GroupProject
                 }
             }
         }
-
-        //public static bool TrySaveCoverImage(string songTitle, string coverPath)
-        //{
-        //    const int USERNAME = 0;
-        //    const int PLAYLIST = 1;
-        //    const int DOC = 2;
-        //    const int COVERPATH = 3;
-        //    const string FILEPATH = "Playlists.txt";
-
-        //    try
-        //    {
-        //        if (!File.Exists(FILEPATH))
-        //        {
-        //            File.Create(FILEPATH).Close();
-        //            MessageBox.Show("Could not find playlist");
-        //            return false;
-        //        }
-
-        //        string[] lines = File.ReadAllLines(FILEPATH);
-        //        int TargetLine = -1;
-
-
-        //        //Loop through the lines
-        //        for (int i = 0; i < lines.Length; i++)
-        //        {
-        //            string[] parts = lines[i].Split('|');
-        //            if (parts[USERNAME] == CurrentUser.Username && parts[PLAYLIST] == songTitle)
-        //            {
-        //                TargetLine = i;
-        //                break;
-        //            }
-        //        }
-        //        if (TargetLine == -1)
-        //        {
-        //            MessageBox.Show("Playlist could not be found");
-        //            return false;
-        //        }
-
-        //        //Read all lines
-
-        //        //Split target string
-        //        string[] targetString = lines[TargetLine].Split('|');
-        //        //keep the date field only if the line has one, otherwise leaves it empty
-        //        string dateCreated = "";
-        //        //Check if the string contains the Date of Creation
-        //        if (targetString.Length > DOC)
-        //        {
-        //            dateCreated = targetString[DOC];
-        //        }
-        //        //rebuild the line with the new cover path
-        //        lines[TargetLine] = targetString[USERNAME] + "|" + targetString[PLAYLIST] + "|" + dateCreated + "|" + coverPath;
-
-        //        //Rewrite entire file
-        //        File.WriteAllLines(FILEPATH, lines);
-
-        //        return true;
-        //    }
-        //    catch
-        //    {
-        //        MessageBox.Show("An error occured, please try again later");
-        //        return false;
-        //    }
-        //}
 
         //Add header to allow it to be saved as bin
         [Serializable]
@@ -250,6 +184,10 @@ namespace GroupProject
                 //USE THIS DATE FORMAT OR Problems will occur
             }
 
+            public void Remove(Song song)
+            {
+                mSongs.Remove(song);
+            }
             public string GetTitle()
             {
                 return mTitle;
@@ -420,14 +358,31 @@ namespace GroupProject
             public bool SavePlaylistToDisk()
             {
                 //Save the entire playlist
-                //Saves songs aswell as 
-                FileStream outFile = new FileStream("Playlists.ser", FileMode.Create, FileAccess.Write);
-                BinaryFormatter bFormatter = new BinaryFormatter();
-                //Save all of the playlists objects
-                bFormatter.Serialize(outFile, mPlaylists);
-                outFile.Close();
+                //Saves songs aswell
+                FileStream outFile = null;
+                try
+                {
+                    outFile = new FileStream("Playlists.ser", FileMode.Create, FileAccess.Write);
+                    BinaryFormatter bFormatter = new BinaryFormatter();
+                    //Save all of the playlists objects
+                    bFormatter.Serialize(outFile, mPlaylists);
+                    return true;
+                }
+                catch
+                {
+                    MessageBox.Show("Failed to save playlist");
+                    return false;
+                }
+                finally
+                {
+                    //Check if file is open
+                    // Can cause an error if it is closed and we try to close it
+                    if (outFile != null)
+                    {
+                        outFile.Close();
+                    }
+                }
 
-                return true;
             }
 
 

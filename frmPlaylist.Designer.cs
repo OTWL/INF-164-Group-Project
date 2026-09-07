@@ -38,13 +38,14 @@
             this.BtnSaveCover = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
             this.dgvSongs = new System.Windows.Forms.DataGridView();
+            this.btnAddSong = new System.Windows.Forms.Button();
+            this.lblNumTracks = new System.Windows.Forms.Label();
+            this.btnDeleteSong = new System.Windows.Forms.Button();
             this.ColTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colArtist = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColAlbum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColGenre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colFilePath = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnAddSong = new System.Windows.Forms.Button();
-            this.lblNumTracks = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picCoverArt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSongs)).BeginInit();
             this.SuspendLayout();
@@ -57,7 +58,7 @@
             this.lblName.Location = new System.Drawing.Point(309, 9);
             this.lblName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(264, 46);
+            this.lblName.Size = new System.Drawing.Size(330, 59);
             this.lblName.TabIndex = 0;
             this.lblName.Text = "Playlist Name";
             // 
@@ -69,7 +70,7 @@
             this.lblDateCreated.Location = new System.Drawing.Point(386, 55);
             this.lblDateCreated.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDateCreated.Name = "lblDateCreated";
-            this.lblDateCreated.Size = new System.Drawing.Size(102, 20);
+            this.lblDateCreated.Size = new System.Drawing.Size(128, 24);
             this.lblDateCreated.TabIndex = 1;
             this.lblDateCreated.Text = "Date Created";
             // 
@@ -88,7 +89,7 @@
             this.btnSelectCoverImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSelectCoverImage.ForeColor = System.Drawing.Color.White;
             this.btnSelectCoverImage.Location = new System.Drawing.Point(9, 316);
-            this.btnSelectCoverImage.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSelectCoverImage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnSelectCoverImage.Name = "btnSelectCoverImage";
             this.btnSelectCoverImage.Size = new System.Drawing.Size(84, 40);
             this.btnSelectCoverImage.TabIndex = 3;
@@ -103,7 +104,7 @@
             this.BtnSaveCover.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnSaveCover.ForeColor = System.Drawing.Color.White;
             this.BtnSaveCover.Location = new System.Drawing.Point(119, 316);
-            this.BtnSaveCover.Margin = new System.Windows.Forms.Padding(2);
+            this.BtnSaveCover.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BtnSaveCover.Name = "BtnSaveCover";
             this.BtnSaveCover.Size = new System.Drawing.Size(86, 40);
             this.BtnSaveCover.TabIndex = 4;
@@ -116,7 +117,7 @@
             this.btnBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
             this.btnBack.ForeColor = System.Drawing.Color.White;
             this.btnBack.Location = new System.Drawing.Point(835, 316);
-            this.btnBack.Margin = new System.Windows.Forms.Padding(2);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(86, 40);
             this.btnBack.TabIndex = 5;
@@ -142,38 +143,14 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvSongs.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgvSongs.Location = new System.Drawing.Point(293, 99);
+            this.dgvSongs.MultiSelect = false;
             this.dgvSongs.Name = "dgvSongs";
+            this.dgvSongs.ReadOnly = true;
+            this.dgvSongs.RowHeadersWidth = 51;
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
             this.dgvSongs.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvSongs.Size = new System.Drawing.Size(443, 212);
             this.dgvSongs.TabIndex = 6;
-            // 
-            // ColTitle
-            // 
-            this.ColTitle.HeaderText = "Title";
-            this.ColTitle.Name = "ColTitle";
-            // 
-            // colArtist
-            // 
-            this.colArtist.HeaderText = "Artist";
-            this.colArtist.Name = "colArtist";
-            // 
-            // ColAlbum
-            // 
-            this.ColAlbum.HeaderText = "Album";
-            this.ColAlbum.Name = "ColAlbum";
-            // 
-            // ColGenre
-            // 
-            this.ColGenre.HeaderText = "Genre";
-            this.ColGenre.Name = "ColGenre";
-            // 
-            // colFilePath
-            // 
-            this.colFilePath.HeaderText = "File Path";
-            this.colFilePath.Name = "colFilePath";
-            this.colFilePath.ReadOnly = true;
-            this.colFilePath.Visible = false;
             // 
             // btnAddSong
             // 
@@ -192,9 +169,61 @@
             this.lblNumTracks.ForeColor = System.Drawing.Color.Black;
             this.lblNumTracks.Location = new System.Drawing.Point(635, 314);
             this.lblNumTracks.Name = "lblNumTracks";
-            this.lblNumTracks.Size = new System.Drawing.Size(98, 13);
+            this.lblNumTracks.Size = new System.Drawing.Size(110, 15);
             this.lblNumTracks.TabIndex = 8;
             this.lblNumTracks.Text = "Number of Tracks: ";
+            // 
+            // btnDeleteSong
+            // 
+            this.btnDeleteSong.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
+            this.btnDeleteSong.Location = new System.Drawing.Point(374, 318);
+            this.btnDeleteSong.Name = "btnDeleteSong";
+            this.btnDeleteSong.Size = new System.Drawing.Size(75, 39);
+            this.btnDeleteSong.TabIndex = 9;
+            this.btnDeleteSong.Text = "Delete Song";
+            this.btnDeleteSong.UseVisualStyleBackColor = false;
+            this.btnDeleteSong.Click += new System.EventHandler(this.btnDeleteSong_Click);
+            // 
+            // ColTitle
+            // 
+            this.ColTitle.HeaderText = "Title";
+            this.ColTitle.MinimumWidth = 6;
+            this.ColTitle.Name = "ColTitle";
+            this.ColTitle.ReadOnly = true;
+            this.ColTitle.Width = 125;
+            // 
+            // colArtist
+            // 
+            this.colArtist.HeaderText = "Artist";
+            this.colArtist.MinimumWidth = 6;
+            this.colArtist.Name = "colArtist";
+            this.colArtist.ReadOnly = true;
+            this.colArtist.Width = 125;
+            // 
+            // ColAlbum
+            // 
+            this.ColAlbum.HeaderText = "Album";
+            this.ColAlbum.MinimumWidth = 6;
+            this.ColAlbum.Name = "ColAlbum";
+            this.ColAlbum.ReadOnly = true;
+            this.ColAlbum.Width = 125;
+            // 
+            // ColGenre
+            // 
+            this.ColGenre.HeaderText = "Genre";
+            this.ColGenre.MinimumWidth = 6;
+            this.ColGenre.Name = "ColGenre";
+            this.ColGenre.ReadOnly = true;
+            this.ColGenre.Width = 125;
+            // 
+            // colFilePath
+            // 
+            this.colFilePath.HeaderText = "File Path";
+            this.colFilePath.MinimumWidth = 6;
+            this.colFilePath.Name = "colFilePath";
+            this.colFilePath.ReadOnly = true;
+            this.colFilePath.Visible = false;
+            this.colFilePath.Width = 125;
             // 
             // frmPlaylist
             // 
@@ -202,6 +231,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(244)))));
             this.ClientSize = new System.Drawing.Size(932, 393);
+            this.Controls.Add(this.btnDeleteSong);
             this.Controls.Add(this.lblNumTracks);
             this.Controls.Add(this.btnAddSong);
             this.Controls.Add(this.dgvSongs);
@@ -214,7 +244,7 @@
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.Name = "frmPlaylist";
             this.Opacity = 0.99D;
@@ -237,11 +267,12 @@
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.DataGridView dgvSongs;
         private System.Windows.Forms.Button btnAddSong;
+        private System.Windows.Forms.Label lblNumTracks;
+        private System.Windows.Forms.Button btnDeleteSong;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColTitle;
         private System.Windows.Forms.DataGridViewTextBoxColumn colArtist;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColAlbum;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColGenre;
         private System.Windows.Forms.DataGridViewTextBoxColumn colFilePath;
-        private System.Windows.Forms.Label lblNumTracks;
     }
 }

@@ -23,6 +23,13 @@ namespace GroupProject
             SongGenre = txtGenre.Text.Trim();
 
             MessageBox.Show("Song created succesfully");
+
+            //Clear data to keep the form clean
+            txtTitle.Clear();
+            txtArtist.Clear();
+            txtAlbum.Clear();
+            txtGenre.Clear();
+
             this.Close();
         }
     }

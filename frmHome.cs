@@ -118,10 +118,6 @@ namespace GroupProject
                 picProfile.Image = Properties.Resources.Default_Image;
 
             }
-
-
-
-
         }
 
         private void lstPlaylists_DoubleClick(object sender, EventArgs e)
@@ -156,6 +152,8 @@ namespace GroupProject
 
         private void btnAddSong_Click(object sender, EventArgs e)
         {
+
+            //CHECK IF THE FILE PATH IS ALREADY IN THIS USRERS PlAYLIST
             // Make sure the user has selected at least one playlist
             if (lstPlaylists.SelectedItems.Count == 0)
             {
