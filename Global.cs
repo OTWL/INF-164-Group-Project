@@ -1,18 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Windows.Forms;
-using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.ComponentModel;
+using System.Windows.Forms;
 namespace GroupProject
 {
 
     public static class Global
     {
-
-
-        //Create a global dictonary of all the users for faster look up times
 
         public static List<User> allUsers = new List<User>();
 
@@ -87,68 +82,47 @@ namespace GroupProject
             }
         }
 
-        public static bool TrySaveCoverImage(string songTitle, string coverPath)
+        //Add header to allow it to be saved as bin
+        [Serializable]
+        public class Song
         {
-            const int USERNAME = 0;
-            const int PLAYLIST = 1;
-            const int DOC = 2;
-            const int COVERPATH = 3;
-            const string FILEPATH = "Playlists.txt";
+            private string mTitle;
+            private string mArtist;
+            private string mAlbum;
+            private string mGenre;
+            private string mUser;
+            private string mFilePath;
 
-            try
+            public string Title
             {
-                if (!File.Exists(FILEPATH))
-                {
-                    File.Create(FILEPATH).Close();
-                    MessageBox.Show("Could not find playlist");
-                    return false;
-                }
-
-                string[] lines = File.ReadAllLines(FILEPATH);
-                int TargetLine = -1;
-
-
-                //Loop through the lines
-                for (int i = 0; i < lines.Length; i++)
-                {
-                    string[] parts = lines[i].Split('|');
-                    if (parts[USERNAME] == CurrentUser.Username && parts[PLAYLIST] == songTitle)
-                    {
-                        TargetLine = i;
-                        break;
-                    }
-                }
-                if (TargetLine == -1)
-                {
-                    MessageBox.Show("Playlist could not be found");
-                    return false;
-                }
-
-                //Read all lines
-
-                //Split target string
-                string[] targetString = lines[TargetLine].Split('|');
-                //keep the date field only if the line has one, otherwise leaves it empty
-                string dateCreated = "";
-                //Check if the string contains the Date of Creation
-                if (targetString.Length > DOC)
-                {
-                    dateCreated = targetString[DOC];
-                }
-                //rebuild the line with the new cover path
-                lines[TargetLine] = targetString[USERNAME] + "|" + targetString[PLAYLIST] + "|" + dateCreated + "|" + coverPath;
-
-                //Rewrite entire file
-                File.WriteAllLines(FILEPATH, lines);
-
-                return true;
+                get { return mTitle; }
+                set { mTitle = value; }
             }
-            catch
+
+
+            public string Artist
             {
-                MessageBox.Show("An error occured, please try again later");
-                return false;
+                get { return mArtist; }
+                set { mArtist = value; }
             }
-        }
+
+            public string Album
+            {
+                get { return mAlbum; }
+                set { mAlbum = value; }
+            }
+
+            public string Genre
+            {
+                get { return mGenre; }
+                set { mGenre = value; }
+            }
+
+            public string FilePath
+            {
+                get { return mFilePath; }
+                set { mFilePath = value; }
+            }
 
         //Add header to allow it to be saved as bin
         [Serializable]
@@ -163,7 +137,7 @@ namespace GroupProject
             
 
             //Constructor
-            public Song(string title, string artist, string album, string genere)
+            public Song(string title, string artist, string album, string genere, string filePath)
             {
                 mTitle = title;
                 mArtist = artist;
@@ -171,6 +145,7 @@ namespace GroupProject
                 mGenre = genere;
                 //Always assign the user as the current user to keep track of ownership
                 mUser = CurrentUser.Username;
+                mFilePath = filePath;
 
                 
 
@@ -220,13 +195,14 @@ namespace GroupProject
             private bool mFavourite;
             private string mUsername;
 
+            //Playlist song list
+            private List<Song> mSongs = new List<Song>();
             public string Username
             {
                 get { return mUsername; }
                 set { mUsername = value; }
 
             }
-
 
             //Constructor
             public Playlist(string title, string CoverArtPath, string UserName, string DateOfCreation = "", bool isFavourite = false)
@@ -249,6 +225,10 @@ namespace GroupProject
                 //USE THIS DATE FORMAT OR Problems will occur
             }
 
+            public void Remove(Song song)
+            {
+                mSongs.Remove(song);
+            }
             public string GetTitle()
             {
                 return mTitle;
@@ -267,6 +247,16 @@ namespace GroupProject
             public void SetCoverpath(string CoverPath)
             {
                 mCoverArtPath = CoverPath;
+            }
+
+            public void AddSong(Song song)
+            {
+                mSongs.Add(song);
+            }
+
+            public List<Song> GetSongs()
+            {
+                return mSongs;
             }
 
         }
@@ -409,14 +399,31 @@ namespace GroupProject
             public bool SavePlaylistToDisk()
             {
                 //Save the entire playlist
+                //Saves songs aswell
+                FileStream outFile = null;
+                try
+                {
+                    outFile = new FileStream("Playlists.ser", FileMode.Create, FileAccess.Write);
+                    BinaryFormatter bFormatter = new BinaryFormatter();
+                    //Save all of the playlists objects
+                    bFormatter.Serialize(outFile, mPlaylists);
+                    return true;
+                }
+                catch
+                {
+                    MessageBox.Show("Failed to save playlist");
+                    return false;
+                }
+                finally
+                {
+                    //Check if file is open
+                    // Can cause an error if it is closed and we try to close it
+                    if (outFile != null)
+                    {
+                        outFile.Close();
+                    }
+                }
 
-                FileStream outFile = new FileStream("Playlists.ser", FileMode.Create, FileAccess.Write);
-                BinaryFormatter bFormatter = new BinaryFormatter();
-                //Save all of the playlists objects
-                bFormatter.Serialize(outFile, mPlaylists);
-                outFile.Close();
-
-                return true;
             }
 
 
@@ -454,7 +461,8 @@ namespace GroupProject
                 //Loop through the list and return the playlist if it's titke matches the one given
                 foreach (Playlist p in list)
                 {
-                    if (p.GetTitle() == id)
+                    //Make sure playlist is owned by current user
+                    if (p.GetTitle() == id && p.Username == CurrentUser.Username)
                     {
                         return p;
                     }

@@ -39,6 +39,7 @@
             this.txtTitle = new System.Windows.Forms.TextBox();
             this.lblPlaylistTitle = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.btnAddSong = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picProfile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAlbum)).BeginInit();
             this.SuspendLayout();
@@ -74,6 +75,7 @@
             this.lstPlaylists.Location = new System.Drawing.Point(13, 132);
             this.lstPlaylists.Margin = new System.Windows.Forms.Padding(2);
             this.lstPlaylists.Name = "lstPlaylists";
+            this.lstPlaylists.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.lstPlaylists.Size = new System.Drawing.Size(251, 134);
             this.lstPlaylists.TabIndex = 2;
             this.lstPlaylists.DoubleClick += new System.EventHandler(this.lstPlaylists_DoubleClick);
@@ -103,7 +105,7 @@
             // 
             this.btnCreatePlaylist.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
             this.btnCreatePlaylist.ForeColor = System.Drawing.Color.White;
-            this.btnCreatePlaylist.Location = new System.Drawing.Point(417, 175);
+            this.btnCreatePlaylist.Location = new System.Drawing.Point(366, 176);
             this.btnCreatePlaylist.Margin = new System.Windows.Forms.Padding(2);
             this.btnCreatePlaylist.Name = "btnCreatePlaylist";
             this.btnCreatePlaylist.Size = new System.Drawing.Size(80, 34);
@@ -147,12 +149,25 @@
             this.checkBox1.Text = "Is favourite";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
+            // btnAddSong
+            // 
+            this.btnAddSong.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
+            this.btnAddSong.ForeColor = System.Drawing.Color.White;
+            this.btnAddSong.Location = new System.Drawing.Point(451, 176);
+            this.btnAddSong.Name = "btnAddSong";
+            this.btnAddSong.Size = new System.Drawing.Size(75, 34);
+            this.btnAddSong.TabIndex = 12;
+            this.btnAddSong.Text = "Add Song";
+            this.btnAddSong.UseVisualStyleBackColor = false;
+            this.btnAddSong.Click += new System.EventHandler(this.btnAddSong_Click);
+            // 
             // frmHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(244)))));
             this.ClientSize = new System.Drawing.Size(1044, 495);
+            this.Controls.Add(this.btnAddSong);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.lblPlaylistTitle);
             this.Controls.Add(this.txtTitle);
@@ -191,5 +206,6 @@
         private System.Windows.Forms.TextBox txtTitle;
         private System.Windows.Forms.Label lblPlaylistTitle;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Button btnAddSong;
     }
 }
