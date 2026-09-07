@@ -19,7 +19,7 @@ namespace GroupProject
         //call user object to get id
         //ID is the tilte of the playlist
         string playlistId = Global.CurrentUser.GetSelectedPlaylistId();
-        //Create the playlist in a global scope
+        //Create the current playlistt playlist 
         Global.Playlist currentPlaylist;
 
         // int numberOfTracks = 0;
@@ -75,11 +75,11 @@ namespace GroupProject
         }
 
         //When the playlist loads
-        private void frmPlaylist_Load(object sender, EventArgs e)
+        private void UpdatePlaylist()
         {
-
             //Collect all songs in the playlist
             List<Song> songs = currentPlaylist.GetSongs();
+            dgvSongs.Rows.Clear();
 
             if (songs == null)
             {
@@ -88,13 +88,19 @@ namespace GroupProject
                 return;
             }
 
+            //Add all the songs into the data grid view
             foreach (Song song in songs)
             {
-                dgvSongs.Rows.Add(song.Title, song.Artist, song.Album, song.Genre);
+                dgvSongs.Rows.Add(song.Title, song.Artist, song.Album, song.Genre, song.FilePath);
             }
 
             //After the DGV is populated update the record count
             updateNumberOfRecords();
+        }
+
+        private void frmPlaylist_Load(object sender, EventArgs e)
+        {
+            UpdatePlaylist();
         }
 
         private void btnSelectCoverImage_Click(object sender, EventArgs e)
@@ -168,13 +174,19 @@ namespace GroupProject
                 foreach (string song in selectedSongs)
                 {
                     // TEMPORARY: Replace with song details from the UI once the textboxes are added
-                    Global.Song mySong = new Global.Song("Temp Song", "Temp Artist", "Temp Album", "Temp Genre", song);
+                    //Create new form and save it
+                    frmSongInfo saveForm = new frmSongInfo();
+                    saveForm.ShowDialog();
+
+                    // Create new song object
+                    Global.Song mySong = new Global.Song(saveForm.SongName, saveForm.SongArtist, saveForm.SongAlbum, saveForm.SongGenre, song);
+
 
                     //Add the song to the current playlist
                     currentPlaylist.AddSong(mySong);
 
                     //Display the newly added song in the DataGridView
-                    dgvSongs.Rows.Add(mySong.Title, mySong.Artist, mySong.Album, mySong.Genre);
+                    dgvSongs.Rows.Add(mySong.Title, mySong.Artist, mySong.Album, mySong.Genre, mySong.FilePath);
 
                 }
                 //Upadate label
@@ -192,7 +204,7 @@ namespace GroupProject
             lblNumTracks.Text = "Number of tracks: " + Convert.ToString(dgvSongs.RowCount - 1);
         }
 
-        private string getCurrentSongFilePath()
+        private bool getCurrentSongFilePath(out string outfilepath)
         {
 
             //THER IS A HIDDEN COLUM WITH THE FILE PATH, USER CANNOT EDIT IT OR SEE.
@@ -201,11 +213,57 @@ namespace GroupProject
             const int FILEPATH = 4;
 
             //Get the file path of the currently selected row in the data grid view
-            string filePath = dgvSongs.SelectedRows[0].Cells[FILEPATH].Value.ToString();
 
+            try
+            {
+                string filePath = dgvSongs.Rows[dgvSongs.CurrentRow.Index].Cells[FILEPATH].Value.ToString();
+                outfilepath = filePath;
+                return true;
+            }
+            catch
+            {
+                MessageBox.Show("Could not delete song");
+            }
 
-            return filePath;
+            outfilepath = "";
+            return false;
         }
+
+        private void btnDeleteSong_Click(object sender, EventArgs e)
+        {
+            //Find the song to be deleted pop it from the list save to disk
+
+            //Can make it that it allows mutli song deletion
+
+            string filePath = "";
+
+            if (dgvSongs.SelectedRows.Count <= 0)
+            {
+                MessageBox.Show("Please select a song to delete.");
+                return;
+            }
+
+
+            //If we can get the current file continue else do not continue
+            if (getCurrentSongFilePath(out filePath))
+
+                foreach (Global.Song song in currentPlaylist.GetSongs())
+                {
+                    //Loop thourg the users songs
+                    //If given song == a songs file path give back that object
+                    if (song.FilePath == filePath)
+                    {
+                        MessageBox.Show(song.Title + " " + song.FilePath);
+                        //We have the song object now
+                        currentPlaylist.Remove(song);
+                        break;
+                    }
+
+                }
+            UpdatePlaylist();
+            Global.CurrentUser.SavePlaylistToDisk();
+        }
+
 
     }
 }
