@@ -46,8 +46,12 @@
             this.ColAlbum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColGenre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colFilePath = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mediaPlayer = new AxWMPLib.AxWindowsMediaPlayer();
+            this.btnPlaySong = new System.Windows.Forms.Button();
+            this.btnStop = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picCoverArt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSongs)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mediaPlayer)).BeginInit();
             this.SuspendLayout();
             // 
             // lblName
@@ -225,12 +229,45 @@
             this.colFilePath.Visible = false;
             this.colFilePath.Width = 125;
             // 
+            // mediaPlayer
+            // 
+            this.mediaPlayer.Enabled = true;
+            this.mediaPlayer.Location = new System.Drawing.Point(792, 84);
+            this.mediaPlayer.Name = "mediaPlayer";
+            this.mediaPlayer.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("mediaPlayer.OcxState")));
+            this.mediaPlayer.Size = new System.Drawing.Size(128, 136);
+            this.mediaPlayer.TabIndex = 10;
+            // 
+            // btnPlaySong
+            // 
+            this.btnPlaySong.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
+            this.btnPlaySong.Location = new System.Drawing.Point(455, 318);
+            this.btnPlaySong.Name = "btnPlaySong";
+            this.btnPlaySong.Size = new System.Drawing.Size(75, 39);
+            this.btnPlaySong.TabIndex = 11;
+            this.btnPlaySong.Text = "Play Song";
+            this.btnPlaySong.UseVisualStyleBackColor = false;
+            this.btnPlaySong.Click += new System.EventHandler(this.btnPlaySong_Click);
+            // 
+            // btnStop
+            // 
+            this.btnStop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
+            this.btnStop.Location = new System.Drawing.Point(536, 318);
+            this.btnStop.Name = "btnStop";
+            this.btnStop.Size = new System.Drawing.Size(75, 39);
+            this.btnStop.TabIndex = 12;
+            this.btnStop.Text = "Stop Song";
+            this.btnStop.UseVisualStyleBackColor = false;
+            // 
             // frmPlaylist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(244)))));
             this.ClientSize = new System.Drawing.Size(932, 393);
+            this.Controls.Add(this.btnStop);
+            this.Controls.Add(this.btnPlaySong);
+            this.Controls.Add(this.mediaPlayer);
             this.Controls.Add(this.btnDeleteSong);
             this.Controls.Add(this.lblNumTracks);
             this.Controls.Add(this.btnAddSong);
@@ -252,6 +289,7 @@
             this.Load += new System.EventHandler(this.frmPlaylist_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picCoverArt)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSongs)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mediaPlayer)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -274,5 +312,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColAlbum;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColGenre;
         private System.Windows.Forms.DataGridViewTextBoxColumn colFilePath;
+        private AxWMPLib.AxWindowsMediaPlayer mediaPlayer;
+        private System.Windows.Forms.Button btnPlaySong;
+        private System.Windows.Forms.Button btnStop;
     }
 }
