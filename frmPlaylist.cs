@@ -22,6 +22,8 @@ namespace GroupProject
         //Create the current playlistt playlist 
         Global.Playlist currentPlaylist;
 
+        private string currentSongPath = "";
+
         // int numberOfTracks = 0;
 
         private void LoadSelectedPlaylist()
@@ -269,18 +271,33 @@ namespace GroupProject
 
             string outfilepath = "";
 
-            //If we could find the song
+            // If we could find the song
             if (getCurrentSongFilePath(out outfilepath))
             {
+                // Only load the song if it is a different song
+                if (currentSongPath != outfilepath)
+                {
+                    currentSongPath = outfilepath;
+                    mediaPlayer.URL = outfilepath;
+                }
 
-                mediaPlayer.URL = outfilepath;
-                //Lecture 1 pdf
+                mediaPlayer.Ctlcontrols.play();
             }
             else
             {
                 MessageBox.Show("Could not find selected song to play");
                 return;
             }
+
+        }
+
+        private void btnStop_Click(object sender, EventArgs e)
+        {
+            mediaPlayer.Ctlcontrols.pause();
+        }
+
+        private void mediaPlayer_Enter(object sender, EventArgs e)
+        {
 
         }
     }
