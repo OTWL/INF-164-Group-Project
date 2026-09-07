@@ -124,6 +124,18 @@ namespace GroupProject
                 set { mFilePath = value; }
             }
 
+        //Add header to allow it to be saved as bin
+        [Serializable]
+        public class Song
+        {
+            private string mTitle;
+            private string mArtist;
+            private string mAlbum;
+            private string mGenre;
+            private string mUser;
+
+            
+
             //Constructor
             public Song(string title, string artist, string album, string genere, string filePath)
             {
@@ -135,8 +147,37 @@ namespace GroupProject
                 mUser = CurrentUser.Username;
                 mFilePath = filePath;
 
+                
+
             }
             // USER|Title|Artist|Album|Genre
+
+            //List of all songs used for saving
+            private List<Song> mSongs = new List<Song>();
+
+            // 2 functions get songs and add
+
+            public List<Song> getSongs()
+            {
+                return mSongs;
+            }
+
+            public void addSong(Song newSong)
+            {
+                mSongs.Add(newSong);
+            }
+
+            //gets title of song 
+            public string GetTitle()
+            {
+                return mTitle;
+            }
+
+            //gets artist of the song for Top Artist 
+            public string getArtist()
+            {
+                return mArtist;
+            }
 
         };
 
