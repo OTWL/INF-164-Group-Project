@@ -40,6 +40,9 @@
             this.lblPlaylistTitle = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.btnAddSong = new System.Windows.Forms.Button();
+            this.lblTotalPlaylists = new System.Windows.Forms.Label();
+            this.lblTotalSongs = new System.Windows.Forms.Label();
+            this.lblTopArtist = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picProfile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAlbum)).BeginInit();
             this.SuspendLayout();
@@ -119,7 +122,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(414, 52);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(64, 13);
+            this.label1.Size = new System.Drawing.Size(73, 15);
             this.label1.TabIndex = 6;
             this.label1.Text = "New Playlist";
             // 
@@ -135,7 +138,7 @@
             this.lblPlaylistTitle.AutoSize = true;
             this.lblPlaylistTitle.Location = new System.Drawing.Point(396, 84);
             this.lblPlaylistTitle.Name = "lblPlaylistTitle";
-            this.lblPlaylistTitle.Size = new System.Drawing.Size(27, 13);
+            this.lblPlaylistTitle.Size = new System.Drawing.Size(30, 15);
             this.lblPlaylistTitle.TabIndex = 9;
             this.lblPlaylistTitle.Text = "Title";
             // 
@@ -144,7 +147,7 @@
             this.checkBox1.AutoSize = true;
             this.checkBox1.Location = new System.Drawing.Point(400, 132);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(78, 17);
+            this.checkBox1.Size = new System.Drawing.Size(87, 19);
             this.checkBox1.TabIndex = 11;
             this.checkBox1.Text = "Is favourite";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -161,12 +164,42 @@
             this.btnAddSong.UseVisualStyleBackColor = false;
             this.btnAddSong.Click += new System.EventHandler(this.btnAddSong_Click);
             // 
+            // lblTotalPlaylists
+            // 
+            this.lblTotalPlaylists.AutoSize = true;
+            this.lblTotalPlaylists.Location = new System.Drawing.Point(347, 243);
+            this.lblTotalPlaylists.Name = "lblTotalPlaylists";
+            this.lblTotalPlaylists.Size = new System.Drawing.Size(91, 15);
+            this.lblTotalPlaylists.TabIndex = 13;
+            this.lblTotalPlaylists.Text = "lblTotalPlaylists";
+            // 
+            // lblTotalSongs
+            // 
+            this.lblTotalSongs.AutoSize = true;
+            this.lblTotalSongs.Location = new System.Drawing.Point(458, 243);
+            this.lblTotalSongs.Name = "lblTotalSongs";
+            this.lblTotalSongs.Size = new System.Drawing.Size(82, 15);
+            this.lblTotalSongs.TabIndex = 14;
+            this.lblTotalSongs.Text = "lblTotalSongs";
+            // 
+            // lblTopArtist
+            // 
+            this.lblTopArtist.AutoSize = true;
+            this.lblTopArtist.Location = new System.Drawing.Point(363, 275);
+            this.lblTopArtist.Name = "lblTopArtist";
+            this.lblTopArtist.Size = new System.Drawing.Size(67, 15);
+            this.lblTopArtist.TabIndex = 15;
+            this.lblTopArtist.Text = "lblTopArtist";
+            // 
             // frmHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(244)))));
             this.ClientSize = new System.Drawing.Size(1044, 495);
+            this.Controls.Add(this.lblTopArtist);
+            this.Controls.Add(this.lblTotalSongs);
+            this.Controls.Add(this.lblTotalPlaylists);
             this.Controls.Add(this.btnAddSong);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.lblPlaylistTitle);
@@ -207,5 +240,8 @@
         private System.Windows.Forms.Label lblPlaylistTitle;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button btnAddSong;
+        private System.Windows.Forms.Label lblTotalPlaylists;
+        private System.Windows.Forms.Label lblTotalSongs;
+        private System.Windows.Forms.Label lblTopArtist;
     }
 }
