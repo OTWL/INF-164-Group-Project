@@ -264,6 +264,24 @@ namespace GroupProject
             Global.CurrentUser.SavePlaylistToDisk();
         }
 
+        private void btnPlaySong_Click(object sender, EventArgs e)
+        {
 
+            string outfilepath = "";
+
+            //If we could find the song
+            if (getCurrentSongFilePath(out outfilepath))
+            {
+
+                mediaPlayer.URL = outfilepath;
+                //Lecture 1 pdf
+            }
+            else
+            {
+                MessageBox.Show("Could not find selected song to play");
+                return;
+            }
+
+        }
     }
 }
