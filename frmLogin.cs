@@ -40,10 +40,6 @@ namespace GroupProject
             //Create User var
             User value;
 
-            //Get rid of magic numbers
-            const int UserPassword = 0;
-            const int UserFilePath = 1;
-
             //User Found
             if (Global.TryGetUserInfo(Username, "User", out value))
             {
