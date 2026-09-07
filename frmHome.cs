@@ -16,6 +16,7 @@ namespace GroupProject
             //Load as defualt
             picAlbum.Image = Properties.Resources.Default_Cover;
             LoadProfilePic();
+            CalculateStats();
         }
         private void greetings()
         {
@@ -48,14 +49,14 @@ namespace GroupProject
                 //outer loop will pick one song at a time to check its artist 
                 for (int i = 0; i < Global.CurrentUser.mSongs.Count; i++)
                 {
-                    string currentArtist = Global.CurrentUser.mSongs[i].Artist();
+                    string currentArtist = Global.CurrentUser.mSongs[i].Artist;
                     int currentArtistCount = 0;
 
                     //inner loop will scan through the whole list and count how many times
                     //the artist appears 
                     for (int j = 0; j < Global.CurrentUser.mSongs.Count; j++)
                     {
-                        if (Global.CurrentUser.mSongs[j].getArtist() == currentArtist)
+                        if (Global.CurrentUser.mSongs[j].Artist == currentArtist)
                         {
                             currentArtistCount++;
                         }
