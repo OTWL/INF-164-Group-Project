@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPlaylist));
             this.lblName = new System.Windows.Forms.Label();
             this.lblDateCreated = new System.Windows.Forms.Label();
@@ -137,22 +137,22 @@
             this.ColAlbum,
             this.ColGenre,
             this.colFilePath});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvSongs.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvSongs.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvSongs.Location = new System.Drawing.Point(391, 122);
             this.dgvSongs.Margin = new System.Windows.Forms.Padding(4);
             this.dgvSongs.MultiSelect = false;
             this.dgvSongs.Name = "dgvSongs";
             this.dgvSongs.ReadOnly = true;
             this.dgvSongs.RowHeadersWidth = 51;
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            this.dgvSongs.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            this.dgvSongs.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvSongs.Size = new System.Drawing.Size(591, 261);
             this.dgvSongs.TabIndex = 6;
             // 
@@ -259,11 +259,11 @@
             // mediaPlayer
             // 
             this.mediaPlayer.Enabled = true;
-            this.mediaPlayer.Location = new System.Drawing.Point(792, 84);
+            this.mediaPlayer.Location = new System.Drawing.Point(16, 122);
             this.mediaPlayer.Margin = new System.Windows.Forms.Padding(4);
             this.mediaPlayer.Name = "mediaPlayer";
             this.mediaPlayer.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("mediaPlayer.OcxState")));
-            this.mediaPlayer.Size = new System.Drawing.Size(128, 136);
+            this.mediaPlayer.Size = new System.Drawing.Size(277, 212);
             this.mediaPlayer.TabIndex = 10;
             this.mediaPlayer.Enter += new System.EventHandler(this.mediaPlayer_Enter);
             // 
@@ -271,7 +271,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(244)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1243, 484);
             this.Controls.Add(this.btnStop);
             this.Controls.Add(this.btnPlaySong);
