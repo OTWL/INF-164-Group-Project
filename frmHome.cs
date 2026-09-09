@@ -19,10 +19,50 @@ namespace GroupProject
         }
         private void greetings()
         {
-            string[] greetmessages = { "Welcome", "Howzit", "What's the vibe today", "Awe" };
+
+            //Create a 2d array which houses both messages adn weights of those messages
+            string[,] greetMessagesAndWeight = new string[,] {
+           //Col: 0         1
+/*Row: 0*/      { "Welcome", "0.4"},
+                { "Howzit","0.2" },
+                { "What's the vibe today", "0.1"},
+                { "Awe", "0.3" }
+            };
+
             Random numbergenerator = new Random();
-            int index = numbergenerator.Next(0, greetmessages.Length);
-            lblWelcome.Text = greetmessages[index] + ", " + Global.CurrentUser.Username;
+
+            //Get number between 0 and 1
+            double generatedNumber = numbergenerator.NextDouble();
+
+            int index = 0;
+
+            //Running total to calcuate where it lies
+            double runningTotal = 0;
+
+            //Loop thougth the total sum of the ranges
+            //0.6 < 0.4 X
+            //0.6 < 0.6 X
+            //0.6 < 0.7 ✓
+            //message == What's the vibe today 
+            for (int i = 0; i < greetMessagesAndWeight.GetLength(0); i++)
+            {
+                //Increase running total to account for new weight section
+                //0.4 -> 0.6
+                runningTotal += Convert.ToDouble(greetMessagesAndWeight[i, 1]);
+
+                //If it fits into a section
+                if (generatedNumber < runningTotal)
+                {
+                    index = i;
+                    //Stop looking
+                    break;
+                }
+
+            }
+
+            //NOT [1,Index] as that display the weight
+            //Selected row and col 0 which is the messages
+            lblWelcome.Text = greetMessagesAndWeight[index, 0] + ", " + Global.CurrentUser.Username;
 
         }
 
