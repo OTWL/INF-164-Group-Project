@@ -25,6 +25,9 @@ namespace GroupProject
         //Keep track if the back button is hit or the form is being closed to kill the hidden form
         //False at the start sa back button has not yet been pressed
         bool backButton = false;
+        private string currentSongPath = "";
+
+        // int numberOfTracks = 0;
 
         private void LoadSelectedPlaylist()
         {
@@ -274,10 +277,17 @@ namespace GroupProject
 
             string outfilepath = "";
 
-            //If we could find the song
+            // If we could find the song
             if (getCurrentSongFilePath(out outfilepath))
             {
-                mediaPlayer.URL = outfilepath;
+                // Only load the song if it is a different song
+                if (currentSongPath != outfilepath)
+                {
+                    currentSongPath = outfilepath;
+                    mediaPlayer.URL = outfilepath;
+                }
+
+                mediaPlayer.Ctlcontrols.play();
             }
             else
             {
@@ -289,12 +299,19 @@ namespace GroupProject
 
         private void frmPlaylist_FormClosed(object sender, FormClosedEventArgs e)
         {
-            //
-
             if (!backButton)
             {
                 Application.Exit();
             }
+        }
+
+        private void btnStop_Click(object sender, EventArgs e)
+        {
+            mediaPlayer.Ctlcontrols.pause();
+        }
+
+        private void mediaPlayer_Enter(object sender, EventArgs e)
+        {
         }
     }
 }
