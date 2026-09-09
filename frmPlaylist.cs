@@ -237,7 +237,7 @@ namespace GroupProject
 
             string filePath = "";
 
-            if (dgvSongs.SelectedRows.Count <= 0)
+            if (dgvSongs.SelectedRows.Count > 0)
             {
                 MessageBox.Show("Please select a song to delete.");
                 return;
