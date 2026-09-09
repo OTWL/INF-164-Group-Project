@@ -38,14 +38,14 @@
             this.BtnSaveCover = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
             this.dgvSongs = new System.Windows.Forms.DataGridView();
-            this.btnAddSong = new System.Windows.Forms.Button();
-            this.lblNumTracks = new System.Windows.Forms.Label();
-            this.btnDeleteSong = new System.Windows.Forms.Button();
             this.ColTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colArtist = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColAlbum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColGenre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colFilePath = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnAddSong = new System.Windows.Forms.Button();
+            this.lblNumTracks = new System.Windows.Forms.Label();
+            this.btnDeleteSong = new System.Windows.Forms.Button();
             this.mediaPlayer = new AxWMPLib.AxWindowsMediaPlayer();
             this.btnPlaySong = new System.Windows.Forms.Button();
             this.btnStop = new System.Windows.Forms.Button();
@@ -93,7 +93,7 @@
             this.btnSelectCoverImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSelectCoverImage.ForeColor = System.Drawing.Color.White;
             this.btnSelectCoverImage.Location = new System.Drawing.Point(9, 316);
-            this.btnSelectCoverImage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSelectCoverImage.Margin = new System.Windows.Forms.Padding(2);
             this.btnSelectCoverImage.Name = "btnSelectCoverImage";
             this.btnSelectCoverImage.Size = new System.Drawing.Size(84, 40);
             this.btnSelectCoverImage.TabIndex = 3;
@@ -108,7 +108,7 @@
             this.BtnSaveCover.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnSaveCover.ForeColor = System.Drawing.Color.White;
             this.BtnSaveCover.Location = new System.Drawing.Point(119, 316);
-            this.BtnSaveCover.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BtnSaveCover.Margin = new System.Windows.Forms.Padding(2);
             this.BtnSaveCover.Name = "BtnSaveCover";
             this.BtnSaveCover.Size = new System.Drawing.Size(86, 40);
             this.BtnSaveCover.TabIndex = 4;
@@ -121,7 +121,7 @@
             this.btnBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
             this.btnBack.ForeColor = System.Drawing.Color.White;
             this.btnBack.Location = new System.Drawing.Point(835, 316);
-            this.btnBack.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(2);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(86, 40);
             this.btnBack.TabIndex = 5;
@@ -155,38 +155,6 @@
             this.dgvSongs.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvSongs.Size = new System.Drawing.Size(443, 212);
             this.dgvSongs.TabIndex = 6;
-            // 
-            // btnAddSong
-            // 
-            this.btnAddSong.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
-            this.btnAddSong.Location = new System.Drawing.Point(293, 316);
-            this.btnAddSong.Name = "btnAddSong";
-            this.btnAddSong.Size = new System.Drawing.Size(75, 39);
-            this.btnAddSong.TabIndex = 7;
-            this.btnAddSong.Text = "Add Song";
-            this.btnAddSong.UseVisualStyleBackColor = false;
-            this.btnAddSong.Click += new System.EventHandler(this.btnAddSong_Click);
-            // 
-            // lblNumTracks
-            // 
-            this.lblNumTracks.AutoSize = true;
-            this.lblNumTracks.ForeColor = System.Drawing.Color.Black;
-            this.lblNumTracks.Location = new System.Drawing.Point(635, 314);
-            this.lblNumTracks.Name = "lblNumTracks";
-            this.lblNumTracks.Size = new System.Drawing.Size(110, 15);
-            this.lblNumTracks.TabIndex = 8;
-            this.lblNumTracks.Text = "Number of Tracks: ";
-            // 
-            // btnDeleteSong
-            // 
-            this.btnDeleteSong.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
-            this.btnDeleteSong.Location = new System.Drawing.Point(374, 318);
-            this.btnDeleteSong.Name = "btnDeleteSong";
-            this.btnDeleteSong.Size = new System.Drawing.Size(75, 39);
-            this.btnDeleteSong.TabIndex = 9;
-            this.btnDeleteSong.Text = "Delete Song";
-            this.btnDeleteSong.UseVisualStyleBackColor = false;
-            this.btnDeleteSong.Click += new System.EventHandler(this.btnDeleteSong_Click);
             // 
             // ColTitle
             // 
@@ -228,6 +196,38 @@
             this.colFilePath.ReadOnly = true;
             this.colFilePath.Visible = false;
             this.colFilePath.Width = 125;
+            // 
+            // btnAddSong
+            // 
+            this.btnAddSong.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
+            this.btnAddSong.Location = new System.Drawing.Point(293, 316);
+            this.btnAddSong.Name = "btnAddSong";
+            this.btnAddSong.Size = new System.Drawing.Size(75, 39);
+            this.btnAddSong.TabIndex = 7;
+            this.btnAddSong.Text = "Add Song";
+            this.btnAddSong.UseVisualStyleBackColor = false;
+            this.btnAddSong.Click += new System.EventHandler(this.btnAddSong_Click);
+            // 
+            // lblNumTracks
+            // 
+            this.lblNumTracks.AutoSize = true;
+            this.lblNumTracks.ForeColor = System.Drawing.Color.Black;
+            this.lblNumTracks.Location = new System.Drawing.Point(635, 314);
+            this.lblNumTracks.Name = "lblNumTracks";
+            this.lblNumTracks.Size = new System.Drawing.Size(110, 15);
+            this.lblNumTracks.TabIndex = 8;
+            this.lblNumTracks.Text = "Number of Tracks: ";
+            // 
+            // btnDeleteSong
+            // 
+            this.btnDeleteSong.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
+            this.btnDeleteSong.Location = new System.Drawing.Point(374, 318);
+            this.btnDeleteSong.Name = "btnDeleteSong";
+            this.btnDeleteSong.Size = new System.Drawing.Size(75, 39);
+            this.btnDeleteSong.TabIndex = 9;
+            this.btnDeleteSong.Text = "Delete Song";
+            this.btnDeleteSong.UseVisualStyleBackColor = false;
+            this.btnDeleteSong.Click += new System.EventHandler(this.btnDeleteSong_Click);
             // 
             // mediaPlayer
             // 
@@ -281,11 +281,12 @@
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "frmPlaylist";
             this.Opacity = 0.99D;
             this.Text = "View Playlist";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmPlaylist_FormClosed);
             this.Load += new System.EventHandler(this.frmPlaylist_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picCoverArt)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSongs)).EndInit();
