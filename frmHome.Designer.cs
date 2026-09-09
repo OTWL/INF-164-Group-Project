@@ -186,7 +186,7 @@
             // lblTopArtist
             // 
             this.lblTopArtist.AutoSize = true;
-            this.lblTopArtist.Location = new System.Drawing.Point(363, 275);
+            this.lblTopArtist.Location = new System.Drawing.Point(347, 277);
             this.lblTopArtist.Name = "lblTopArtist";
             this.lblTopArtist.Size = new System.Drawing.Size(67, 15);
             this.lblTopArtist.TabIndex = 15;
@@ -235,6 +235,8 @@
             this.Opacity = 0.99D;
             this.Text = "Home";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmHome_FormClosed);
+            this.Load += new System.EventHandler(this.frmHome_Load);
+            this.Shown += new System.EventHandler(this.frmHome_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.picProfile)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAlbum)).EndInit();
             this.ResumeLayout(false);
