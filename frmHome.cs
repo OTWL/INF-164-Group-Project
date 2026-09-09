@@ -16,7 +16,6 @@ namespace GroupProject
             //Load as defualt
             picAlbum.Image = Properties.Resources.Default_Cover;
             LoadProfilePic();
-            CalculateStats();
         }
         private void greetings()
         {
@@ -27,18 +26,20 @@ namespace GroupProject
 
         }
 
-        private void CalculateStats()
+        public void CalculateStats()
         {
             //1. calculate total playlists 
             //count number of playlists currently loaded into the users list 
             int totalPlaylists = Global.CurrentUser.mUserPlaylist.Count;
             lblTotalPlaylists.Text = "Total Playlists: " + totalPlaylists.ToString();
 
+            Global.CurrentUser.populateUserSongs();
+
             //to check if the user has any songs in their library before calculating
             if (Global.CurrentUser.mSongs.Count > 0)
             {
                 //2. calculate total songs 
-                int totalSongs = Global.CurrentUser.mUserPlaylist.Count;
+                int totalSongs = Global.CurrentUser.mSongs.Count;
                 lblTotalSongs.Text = "Total Tracks: " + totalSongs.ToString();
 
                 //3. calculate top artist 
@@ -272,6 +273,16 @@ namespace GroupProject
 
                 Global.CurrentUser.SavePlaylistToDisk();
             }
+        }
+
+        private void frmHome_Load(object sender, EventArgs e)
+        {
+            CalculateStats();
+        }
+
+        private void frmHome_Shown(object sender, EventArgs e)
+        {
+            CalculateStats();
         }
     }
 }
