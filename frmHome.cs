@@ -275,6 +275,39 @@ namespace GroupProject
             }
         }
 
+        private void btnDeletePlaylists_Click(object sender, EventArgs e)
+        {
+            //Only delete one playlist at a time
+            if (lstPlaylists.SelectedItems.Count != 1)
+            {
+                MessageBox.Show("Please select one playlist to delete.");
+                return;
+            }
+
+            //Get the selected playlist
+            int selectedIndex = lstPlaylists.SelectedIndex;
+            Global.Playlist playlistToDelete = Global.CurrentUser.mUserPlaylist[selectedIndex];
+
+            //Ask the user for confirmation
+            DialogResult answer = MessageBox.Show($"Are you sure you want to delete the playlist '{playlistToDelete.GetTitle()}'?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (answer == DialogResult.Yes)
+            {
+                //Delete and save the playlist
+                Global.CurrentUser.DeletePlaylist(playlistToDelete);
+
+                //Remove the playlist from the ListBox
+                lstPlaylists.Items.RemoveAt(selectedIndex);
+
+                //Reset the cover picture and update stats
+                picAlbum.Image = Properties.Resources.Default_Cover;
+                CalculateStats();
+
+                MessageBox.Show("Playlist deleted successfully.");
+            }
+        }
+
+
         private void frmHome_Load(object sender, EventArgs e)
         {
             CalculateStats();

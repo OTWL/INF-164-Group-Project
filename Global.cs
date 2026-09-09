@@ -407,6 +407,18 @@ namespace GroupProject
                 //Save to disk
                 SavePlaylistToDisk();
             }
+            public void DeletePlaylist(Playlist playlist)
+            {
+                //remove it from the playlist list
+                mPlaylists.Remove(playlist);
+
+                //remove it from the logged-in user's list
+                mUserPlaylist.Remove(playlist);
+
+                //Save the updated playlists
+                SavePlaylistToDisk();
+
+            }
 
 
             //Value is Null
