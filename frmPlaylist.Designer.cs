@@ -91,8 +91,8 @@
             this.btnSelectCoverImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
             this.btnSelectCoverImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSelectCoverImage.ForeColor = System.Drawing.Color.White;
-            this.btnSelectCoverImage.Location = new System.Drawing.Point(12, 389);
-            this.btnSelectCoverImage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnSelectCoverImage.Location = new System.Drawing.Point(9, 316);
+            this.btnSelectCoverImage.Margin = new System.Windows.Forms.Padding(2);
             this.btnSelectCoverImage.Name = "btnSelectCoverImage";
             this.btnSelectCoverImage.Size = new System.Drawing.Size(112, 49);
             this.btnSelectCoverImage.TabIndex = 3;
@@ -106,8 +106,8 @@
             this.BtnSaveCover.Enabled = false;
             this.BtnSaveCover.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnSaveCover.ForeColor = System.Drawing.Color.White;
-            this.BtnSaveCover.Location = new System.Drawing.Point(159, 389);
-            this.BtnSaveCover.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.BtnSaveCover.Location = new System.Drawing.Point(119, 316);
+            this.BtnSaveCover.Margin = new System.Windows.Forms.Padding(2);
             this.BtnSaveCover.Name = "BtnSaveCover";
             this.BtnSaveCover.Size = new System.Drawing.Size(115, 49);
             this.BtnSaveCover.TabIndex = 4;
@@ -119,8 +119,8 @@
             // 
             this.btnBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
             this.btnBack.ForeColor = System.Drawing.Color.White;
-            this.btnBack.Location = new System.Drawing.Point(1113, 389);
-            this.btnBack.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnBack.Location = new System.Drawing.Point(835, 316);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(2);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(115, 49);
             this.btnBack.TabIndex = 5;
@@ -200,10 +200,9 @@
             // btnAddSong
             // 
             this.btnAddSong.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
-            this.btnAddSong.Location = new System.Drawing.Point(391, 389);
-            this.btnAddSong.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAddSong.Location = new System.Drawing.Point(293, 316);
             this.btnAddSong.Name = "btnAddSong";
-            this.btnAddSong.Size = new System.Drawing.Size(100, 48);
+            this.btnAddSong.Size = new System.Drawing.Size(75, 39);
             this.btnAddSong.TabIndex = 7;
             this.btnAddSong.Text = "Add Song";
             this.btnAddSong.UseVisualStyleBackColor = false;
@@ -213,24 +212,23 @@
             // 
             this.lblNumTracks.AutoSize = true;
             this.lblNumTracks.ForeColor = System.Drawing.Color.Black;
-            this.lblNumTracks.Location = new System.Drawing.Point(847, 386);
-            this.lblNumTracks.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNumTracks.Location = new System.Drawing.Point(635, 314);
             this.lblNumTracks.Name = "lblNumTracks";
-            this.lblNumTracks.Size = new System.Drawing.Size(120, 16);
+            this.lblNumTracks.Size = new System.Drawing.Size(110, 15);
             this.lblNumTracks.TabIndex = 8;
             this.lblNumTracks.Text = "Number of Tracks: ";
             // 
             // btnDeleteSong
             // 
             this.btnDeleteSong.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
-            this.btnDeleteSong.Location = new System.Drawing.Point(715, 391);
-            this.btnDeleteSong.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDeleteSong.Location = new System.Drawing.Point(374, 318);
             this.btnDeleteSong.Name = "btnDeleteSong";
-            this.btnDeleteSong.Size = new System.Drawing.Size(100, 48);
+            this.btnDeleteSong.Size = new System.Drawing.Size(75, 39);
             this.btnDeleteSong.TabIndex = 9;
             this.btnDeleteSong.Text = "Delete Song";
             this.btnDeleteSong.UseVisualStyleBackColor = false;
             this.btnDeleteSong.Click += new System.EventHandler(this.btnDeleteSong_Click);
+            // 
             // 
             // btnPlaySong
             // 
@@ -289,11 +287,12 @@
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "frmPlaylist";
             this.Opacity = 0.99D;
             this.Text = "View Playlist";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmPlaylist_FormClosed);
             this.Load += new System.EventHandler(this.frmPlaylist_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picCoverArt)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSongs)).EndInit();

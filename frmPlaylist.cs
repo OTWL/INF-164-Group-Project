@@ -22,6 +22,9 @@ namespace GroupProject
         //Create the current playlistt playlist 
         Global.Playlist currentPlaylist;
 
+        //Keep track if the back button is hit or the form is being closed to kill the hidden form
+        //False at the start sa back button has not yet been pressed
+        bool backButton = false;
         private string currentSongPath = "";
 
         // int numberOfTracks = 0;
@@ -79,25 +82,28 @@ namespace GroupProject
         //When the playlist loads
         private void UpdatePlaylist()
         {
-            //Collect all songs in the playlist
-            List<Song> songs = currentPlaylist.GetSongs();
-            dgvSongs.Rows.Clear();
 
-            if (songs == null)
+            List<Song> songs = null;
+
+            try
             {
+                //Collect all songs in the playlist
+                songs = currentPlaylist.GetSongs();
+                dgvSongs.Rows.Clear();
 
-                MessageBox.Show("No songs could be found!");
-                return;
+                //Add all the songs into the data grid view
+                foreach (Song song in songs)
+                {
+                    dgvSongs.Rows.Add(song.Title, song.Artist, song.Album, song.Genre, song.FilePath);
+                }
+
+                //After the DGV is populated update the record count
+                updateNumberOfRecords();
             }
-
-            //Add all the songs into the data grid view
-            foreach (Song song in songs)
+            catch (NullReferenceException)
             {
-                dgvSongs.Rows.Add(song.Title, song.Artist, song.Album, song.Genre, song.FilePath);
+                MessageBox.Show("No songs are added to the playlist yet");
             }
-
-            //After the DGV is populated update the record count
-            updateNumberOfRecords();
         }
 
         private void frmPlaylist_Load(object sender, EventArgs e)
@@ -160,6 +166,7 @@ namespace GroupProject
 
         private void btnBack_Click(object sender, EventArgs e)
         {
+            backButton = true;
             this.Close();
         }
 
@@ -200,7 +207,6 @@ namespace GroupProject
 
         private void updateNumberOfRecords()
         {
-            //CAN ADD 2D array here
             //Set text to current dgv count
             // -1 to account for the headers
             lblNumTracks.Text = "Number of tracks: " + Convert.ToString(dgvSongs.RowCount - 1);
@@ -291,6 +297,14 @@ namespace GroupProject
 
         }
 
+        private void frmPlaylist_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (!backButton)
+            {
+                Application.Exit();
+            }
+        }
+
         private void btnStop_Click(object sender, EventArgs e)
         {
             mediaPlayer.Ctlcontrols.pause();
@@ -298,7 +312,6 @@ namespace GroupProject
 
         private void mediaPlayer_Enter(object sender, EventArgs e)
         {
-
         }
     }
 }
