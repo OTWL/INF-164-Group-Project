@@ -244,6 +244,22 @@ namespace GroupProject
             //List of the users songs
             public List<Song> mSongs = new List<Song>();
 
+            public void populateUserSongs()
+            {
+                //Clear songs
+                mSongs.Clear();
+
+                //Populate it with all of the users songs
+
+                foreach (Playlist playlist in mUserPlaylist)
+                {
+                    foreach (Song song in playlist.GetSongs())
+                    {
+                        mSongs.Add(song);
+                    }
+                }
+            }
+
             public Playlist GetPlaylistByIndex(int index)
             {
                 return mPlaylists[index];
@@ -261,19 +277,18 @@ namespace GroupProject
                 mProfilePath = FilePath;
                 mPassword = Password;
             }
-
             public string Username
             {
                 get { return mUsername; }
                 set { mUsername = value; }
 
             }
-
             public string ProfilePath
             {
                 get { return mProfilePath; }
                 set { mProfilePath = value; }
             }
+
             // Playlists will be stored in text file
             // Songs will be stored in a songs folder
             // Save Playlists Names in a LIST cuz we then fetch the names of the song selected
@@ -391,6 +406,18 @@ namespace GroupProject
                 mUserPlaylist.Add(newPlaylist);
                 //Save to disk
                 SavePlaylistToDisk();
+            }
+            public void DeletePlaylist(Playlist playlist)
+            {
+                //remove it from the playlist list
+                mPlaylists.Remove(playlist);
+
+                //remove it from the logged-in user's list
+                mUserPlaylist.Remove(playlist);
+
+                //Save the updated playlists
+                SavePlaylistToDisk();
+
             }
 
 

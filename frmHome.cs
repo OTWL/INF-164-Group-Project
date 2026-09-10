@@ -16,29 +16,70 @@ namespace GroupProject
             //Load as defualt
             picAlbum.Image = Properties.Resources.Default_Cover;
             LoadProfilePic();
-            CalculateStats();
         }
         private void greetings()
         {
-            string[] greetmessages = { "Welcome", "Howzit", "What's the vibe today", "Awe" };
+
+            //Create a 2d array which houses both messages adn weights of those messages
+            string[,] greetMessagesAndWeight = new string[,] {
+           //Col: 0         1
+/*Row: 0*/      { "Welcome", "0.4"},
+                { "Howzit","0.2" },
+                { "What's the vibe today", "0.1"},
+                { "Awe", "0.3" }
+            };
+
             Random numbergenerator = new Random();
-            int index = numbergenerator.Next(0, greetmessages.Length);
-            lblWelcome.Text = greetmessages[index] + ", " + Global.CurrentUser.Username;
+
+            //Get number between 0 and 1
+            double generatedNumber = numbergenerator.NextDouble();
+
+            int index = 0;
+
+            //Running total to calcuate where it lies
+            double runningTotal = 0;
+
+            //Loop thougth the total sum of the ranges
+            //0.6 < 0.4 X
+            //0.6 < 0.6 X
+            //0.6 < 0.7 ✓
+            //message == What's the vibe today 
+            for (int i = 0; i < greetMessagesAndWeight.GetLength(0); i++)
+            {
+                //Increase running total to account for new weight section
+                //0.4 -> 0.6
+                runningTotal += Convert.ToDouble(greetMessagesAndWeight[i, 1]);
+
+                //If it fits into a section
+                if (generatedNumber < runningTotal)
+                {
+                    index = i;
+                    //Stop looking
+                    break;
+                }
+
+            }
+
+            //NOT [1,Index] as that display the weight
+            //Selected row and col 0 which is the messages
+            lblWelcome.Text = greetMessagesAndWeight[index, 0] + ", " + Global.CurrentUser.Username;
 
         }
 
-        private void CalculateStats()
+        public void CalculateStats()
         {
             //1. calculate total playlists 
             //count number of playlists currently loaded into the users list 
             int totalPlaylists = Global.CurrentUser.mUserPlaylist.Count;
             lblTotalPlaylists.Text = "Total Playlists: " + totalPlaylists.ToString();
 
+            Global.CurrentUser.populateUserSongs();
+
             //to check if the user has any songs in their library before calculating
             if (Global.CurrentUser.mSongs.Count > 0)
             {
                 //2. calculate total songs 
-                int totalSongs = Global.CurrentUser.mUserPlaylist.Count;
+                int totalSongs = Global.CurrentUser.mSongs.Count;
                 lblTotalSongs.Text = "Total Tracks: " + totalSongs.ToString();
 
                 //3. calculate top artist 
@@ -272,6 +313,49 @@ namespace GroupProject
 
                 Global.CurrentUser.SavePlaylistToDisk();
             }
+        }
+
+        private void btnDeletePlaylists_Click(object sender, EventArgs e)
+        {
+            //Only delete one playlist at a time
+            if (lstPlaylists.SelectedItems.Count != 1)
+            {
+                MessageBox.Show("Please select one playlist to delete.");
+                return;
+            }
+
+            //Get the selected playlist
+            int selectedIndex = lstPlaylists.SelectedIndex;
+            Global.Playlist playlistToDelete = Global.CurrentUser.mUserPlaylist[selectedIndex];
+
+            //Ask the user for confirmation
+            DialogResult answer = MessageBox.Show($"Are you sure you want to delete the playlist '{playlistToDelete.GetTitle()}'?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (answer == DialogResult.Yes)
+            {
+                //Delete and save the playlist
+                Global.CurrentUser.DeletePlaylist(playlistToDelete);
+
+                //Remove the playlist from the ListBox
+                lstPlaylists.Items.RemoveAt(selectedIndex);
+
+                //Reset the cover picture and update stats
+                picAlbum.Image = Properties.Resources.Default_Cover;
+                CalculateStats();
+
+                MessageBox.Show("Playlist deleted successfully.");
+            }
+        }
+
+
+        private void frmHome_Load(object sender, EventArgs e)
+        {
+            CalculateStats();
+        }
+
+        private void frmHome_Shown(object sender, EventArgs e)
+        {
+            CalculateStats();
         }
     }
 }

@@ -44,6 +44,7 @@
             this.lblTotalSongs = new System.Windows.Forms.Label();
             this.lblTopArtist = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnDeletePlaylists = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picProfile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAlbum)).BeginInit();
             this.SuspendLayout();
@@ -214,6 +215,19 @@
             this.label2.TabIndex = 16;
             this.label2.Text = "Please Enter The Playlist Name";
             // 
+            // btnDeletePlaylists
+            //
+            this.btnDeletePlaylists.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
+            this.btnDeletePlaylists.ForeColor = System.Drawing.Color.White;
+            this.btnDeletePlaylists.Location = new System.Drawing.Point(152, 306);
+            this.btnDeletePlaylists.Margin = new System.Windows.Forms.Padding(2);
+            this.btnDeletePlaylists.Name = "btnDeletePlaylists";
+            this.btnDeletePlaylists.Size = new System.Drawing.Size(80, 34);
+            this.btnDeletePlaylists.TabIndex = 16;
+            this.btnDeletePlaylists.Text = "Delete Playlist";
+            this.btnDeletePlaylists.UseVisualStyleBackColor = false;
+            this.btnDeletePlaylists.Click += new System.EventHandler(this.btnDeletePlaylists_Click);
+            //
             // frmHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -221,6 +235,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1392, 609);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.btnDeletePlaylists);
             this.Controls.Add(this.lblTopArtist);
             this.Controls.Add(this.lblTotalSongs);
             this.Controls.Add(this.lblTotalPlaylists);
@@ -244,6 +259,8 @@
             this.Opacity = 0.99D;
             this.Text = "Home";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmHome_FormClosed);
+            this.Load += new System.EventHandler(this.frmHome_Load);
+            this.Shown += new System.EventHandler(this.frmHome_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.picProfile)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAlbum)).EndInit();
             this.ResumeLayout(false);
@@ -267,6 +284,7 @@
         private System.Windows.Forms.Label lblTotalPlaylists;
         private System.Windows.Forms.Label lblTotalSongs;
         private System.Windows.Forms.Label lblTopArtist;
+        private System.Windows.Forms.Button btnDeletePlaylists;
         private System.Windows.Forms.Label label2;
     }
 }
