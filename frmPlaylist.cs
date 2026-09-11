@@ -22,6 +22,9 @@ namespace GroupProject
         //Create the current playlistt playlist 
         Global.Playlist currentPlaylist;
 
+        //Keep track if the back button is hit or the form is being closed to kill the hidden form
+        //False at the start sa back button has not yet been pressed
+        bool backButton = false;
         private string currentSongPath = "";
 
         // int numberOfTracks = 0;
@@ -79,25 +82,28 @@ namespace GroupProject
         //When the playlist loads
         private void UpdatePlaylist()
         {
-            //Collect all songs in the playlist
-            List<Song> songs = currentPlaylist.GetSongs();
-            dgvSongs.Rows.Clear();
 
-            if (songs == null)
+            List<Song> songs = null;
+
+            try
             {
+                //Collect all songs in the playlist
+                songs = currentPlaylist.GetSongs();
+                dgvSongs.Rows.Clear();
 
-                MessageBox.Show("No songs could be found!");
-                return;
+                //Add all the songs into the data grid view
+                foreach (Song song in songs)
+                {
+                    dgvSongs.Rows.Add(song.Title, song.Artist, song.Album, song.Genre, song.FilePath);
+                }
+
+                //After the DGV is populated update the record count
+                updateNumberOfRecords();
             }
-
-            //Add all the songs into the data grid view
-            foreach (Song song in songs)
+            catch (NullReferenceException)
             {
-                dgvSongs.Rows.Add(song.Title, song.Artist, song.Album, song.Genre, song.FilePath);
+                MessageBox.Show("No songs are added to the playlist yet");
             }
-
-            //After the DGV is populated update the record count
-            updateNumberOfRecords();
         }
 
         private void frmPlaylist_Load(object sender, EventArgs e)
@@ -160,6 +166,7 @@ namespace GroupProject
 
         private void btnBack_Click(object sender, EventArgs e)
         {
+            backButton = true;
             this.Close();
         }
 
@@ -175,12 +182,11 @@ namespace GroupProject
 
                 foreach (string song in selectedSongs)
                 {
-                    // TEMPORARY: Replace with song details from the UI once the textboxes are added
-                    //Create new form and save it
+                    //Create new form and show it
                     frmSongInfo saveForm = new frmSongInfo();
                     saveForm.ShowDialog();
 
-                    // Create new song object
+                    // Create new song object with values from the save form
                     Global.Song mySong = new Global.Song(saveForm.SongName, saveForm.SongArtist, saveForm.SongAlbum, saveForm.SongGenre, song);
 
 
@@ -195,12 +201,13 @@ namespace GroupProject
                 updateNumberOfRecords();
                 //Save the playlist 
                 Global.CurrentUser.SavePlaylistToDisk();
+
+                //dgvSongs.Refresh();
             }
         }
 
         private void updateNumberOfRecords()
         {
-            //CAN ADD 2D array here
             //Set text to current dgv count
             // -1 to account for the headers
             lblNumTracks.Text = "Number of tracks: " + Convert.ToString(dgvSongs.RowCount - 1);
@@ -209,9 +216,9 @@ namespace GroupProject
         private bool getCurrentSongFilePath(out string outfilepath)
         {
 
-            //THER IS A HIDDEN COLUM WITH THE FILE PATH, USER CANNOT EDIT IT OR SEE.
+            //THERE IS A HIDDEN COLUM WITH THE FILE PATH, USER CANNOT EDIT IT OR SEE.
 
-            //Get rid of magic/ambigous column number
+            //Get rid of magic/ambigous column number for readability
             const int FILEPATH = 4;
 
             //Get the file path of the currently selected row in the data grid view
@@ -227,7 +234,7 @@ namespace GroupProject
                 MessageBox.Show("Could not delete song");
             }
 
-            outfilepath = "";
+            outfilepath = null;
             return false;
         }
 
@@ -248,11 +255,12 @@ namespace GroupProject
 
             //If we can get the current file continue else do not continue
             if (getCurrentSongFilePath(out filePath))
-
+            {
                 foreach (Global.Song song in currentPlaylist.GetSongs())
                 {
                     //Loop thourg the users songs
                     //If given song == a songs file path give back that object
+                    // File Paths are identifiers and are unique
                     if (song.FilePath == filePath)
                     {
                         MessageBox.Show(song.Title + " " + song.FilePath);
@@ -262,8 +270,9 @@ namespace GroupProject
                     }
 
                 }
-            UpdatePlaylist();
-            Global.CurrentUser.SavePlaylistToDisk();
+                UpdatePlaylist();
+                Global.CurrentUser.SavePlaylistToDisk();
+            }
         }
 
         private void btnPlaySong_Click(object sender, EventArgs e)
@@ -291,14 +300,18 @@ namespace GroupProject
 
         }
 
+        private void frmPlaylist_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            //If back button was clicked do NOT run this code
+            if (!backButton)
+            {
+                Application.Exit();
+            }
+        }
+
         private void btnStop_Click(object sender, EventArgs e)
         {
             mediaPlayer.Ctlcontrols.pause();
-        }
-
-        private void mediaPlayer_Enter(object sender, EventArgs e)
-        {
-
         }
     }
 }
