@@ -9,6 +9,7 @@ namespace GroupProject
         public frmLogin()
         {
             InitializeComponent();
+            // Use _ to indicate not using out variable
             TryGetUserInfo("", "User", out _);
         }
 

@@ -182,12 +182,11 @@ namespace GroupProject
 
                 foreach (string song in selectedSongs)
                 {
-                    // TEMPORARY: Replace with song details from the UI once the textboxes are added
-                    //Create new form and save it
+                    //Create new form and show it
                     frmSongInfo saveForm = new frmSongInfo();
                     saveForm.ShowDialog();
 
-                    // Create new song object
+                    // Create new song object with values from the save form
                     Global.Song mySong = new Global.Song(saveForm.SongName, saveForm.SongArtist, saveForm.SongAlbum, saveForm.SongGenre, song);
 
 
@@ -202,6 +201,8 @@ namespace GroupProject
                 updateNumberOfRecords();
                 //Save the playlist 
                 Global.CurrentUser.SavePlaylistToDisk();
+
+                //dgvSongs.Refresh();
             }
         }
 
@@ -215,9 +216,9 @@ namespace GroupProject
         private bool getCurrentSongFilePath(out string outfilepath)
         {
 
-            //THER IS A HIDDEN COLUM WITH THE FILE PATH, USER CANNOT EDIT IT OR SEE.
+            //THERE IS A HIDDEN COLUM WITH THE FILE PATH, USER CANNOT EDIT IT OR SEE.
 
-            //Get rid of magic/ambigous column number
+            //Get rid of magic/ambigous column number for readability
             const int FILEPATH = 4;
 
             //Get the file path of the currently selected row in the data grid view
@@ -233,7 +234,7 @@ namespace GroupProject
                 MessageBox.Show("Could not delete song");
             }
 
-            outfilepath = "";
+            outfilepath = null;
             return false;
         }
 
@@ -254,11 +255,12 @@ namespace GroupProject
 
             //If we can get the current file continue else do not continue
             if (getCurrentSongFilePath(out filePath))
-
+            {
                 foreach (Global.Song song in currentPlaylist.GetSongs())
                 {
                     //Loop thourg the users songs
                     //If given song == a songs file path give back that object
+                    // File Paths are identifiers and are unique
                     if (song.FilePath == filePath)
                     {
                         MessageBox.Show(song.Title + " " + song.FilePath);
@@ -268,8 +270,9 @@ namespace GroupProject
                     }
 
                 }
-            UpdatePlaylist();
-            Global.CurrentUser.SavePlaylistToDisk();
+                UpdatePlaylist();
+                Global.CurrentUser.SavePlaylistToDisk();
+            }
         }
 
         private void btnPlaySong_Click(object sender, EventArgs e)
@@ -299,6 +302,7 @@ namespace GroupProject
 
         private void frmPlaylist_FormClosed(object sender, FormClosedEventArgs e)
         {
+            //If back button was clicked do NOT run this code
             if (!backButton)
             {
                 Application.Exit();
@@ -308,10 +312,6 @@ namespace GroupProject
         private void btnStop_Click(object sender, EventArgs e)
         {
             mediaPlayer.Ctlcontrols.pause();
-        }
-
-        private void mediaPlayer_Enter(object sender, EventArgs e)
-        {
         }
     }
 }
