@@ -59,7 +59,7 @@ namespace GroupProject
                     return;
                 }
 
-                //IDk why but we have to add Global here for c# to pickup we are talking about User
+                //Add Global here for c# to pickup we are talking about User
                 Global.User value;
 
                 if (Global.TryGetUserInfo(Username, "User", out value))
@@ -70,7 +70,7 @@ namespace GroupProject
                 }
 
                 //if user does not choose picture
-                //use default
+                //use default image
                 if (profilePath == "")
                 {
                     profilePath = "Default Image";
