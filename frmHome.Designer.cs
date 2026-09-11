@@ -45,6 +45,8 @@
             this.lblTopArtist = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnDeletePlaylists = new System.Windows.Forms.Button();
+            this.btnShowFavouritePlaylists = new System.Windows.Forms.Button();
+            this.lstFavourites = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.picProfile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAlbum)).BeginInit();
             this.SuspendLayout();
@@ -228,12 +230,38 @@
             this.btnDeletePlaylists.UseVisualStyleBackColor = false;
             this.btnDeletePlaylists.Click += new System.EventHandler(this.btnDeletePlaylists_Click);
             // 
+            // btnShowFavouritePlaylists
+            // 
+            this.btnShowFavouritePlaylists.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
+            this.btnShowFavouritePlaylists.ForeColor = System.Drawing.Color.White;
+            this.btnShowFavouritePlaylists.Location = new System.Drawing.Point(131, 417);
+            this.btnShowFavouritePlaylists.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnShowFavouritePlaylists.Name = "btnShowFavouritePlaylists";
+            this.btnShowFavouritePlaylists.Size = new System.Drawing.Size(163, 42);
+            this.btnShowFavouritePlaylists.TabIndex = 17;
+            this.btnShowFavouritePlaylists.Text = "Show Favourites";
+            this.btnShowFavouritePlaylists.UseVisualStyleBackColor = false;
+            this.btnShowFavouritePlaylists.Click += new System.EventHandler(this.btnShowFavouritePlaylists_Click);
+            // 
+            // lstFavourites
+            // 
+            this.lstFavourites.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
+            this.lstFavourites.FormattingEnabled = true;
+            this.lstFavourites.ItemHeight = 16;
+            this.lstFavourites.Location = new System.Drawing.Point(12, 473);
+            this.lstFavourites.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lstFavourites.Name = "lstFavourites";
+            this.lstFavourites.Size = new System.Drawing.Size(381, 116);
+            this.lstFavourites.TabIndex = 18;
+            // 
             // frmHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(244)))));
             this.ClientSize = new System.Drawing.Size(1248, 609);
+            this.Controls.Add(this.lstFavourites);
+            this.Controls.Add(this.btnShowFavouritePlaylists);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnDeletePlaylists);
             this.Controls.Add(this.lblTopArtist);
@@ -286,5 +314,7 @@
         private System.Windows.Forms.Label lblTopArtist;
         private System.Windows.Forms.Button btnDeletePlaylists;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnShowFavouritePlaylists;
+        private System.Windows.Forms.ListBox lstFavourites;
     }
 }

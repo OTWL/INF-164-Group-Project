@@ -16,6 +16,7 @@ namespace GroupProject
             //Load as defualt
             picAlbum.Image = Properties.Resources.Default_Cover;
             LoadProfilePic();
+            
         }
         private void greetings()
         {
@@ -169,6 +170,7 @@ namespace GroupProject
             GoToPlaylist();
         }
 
+        
         private void LoadUserPlaylists()
         {
             //Loads and filters playlists for logged in user into mPlaylist
@@ -179,6 +181,7 @@ namespace GroupProject
             //MABE AN ERROR IF THERE IS NO PLAYLISTS
 
             //Loop over list
+
             foreach (Global.Playlist p in PlayLists)
             {
                 lstPlaylists.Items.Add(p.GetTitle() + " - Created: " + p.GetDateOfCreation());
@@ -231,12 +234,31 @@ namespace GroupProject
         private void btnCreatePlaylist_Click(object sender, EventArgs e)
         {
             string title = txtTitle.Text;
+
+            //Validation to check that the user has entered a title, and not just spaces
+            if (string.IsNullOrWhiteSpace(title))
+            {
+                MessageBox.Show("Please enter a title for the playlist.");
+                return;
+            }
             //LEAVE ART PATH EMPTY FOR NOW
-            //ADD VALIDATION
+            
             Global.Playlist newPlaylist = new Global.Playlist(title, "", Global.CurrentUser.Username);
             lstPlaylists.Items.Add(newPlaylist.GetTitle() + " - Created: " + newPlaylist.GetDateOfCreation());
             Global.CurrentUser.SaveNewPlaylist(newPlaylist);
+
+            //Clear the UI
+            txtTitle.Clear();
+
+            //Reload the playlists to show the new playlist
+            LoadUserPlaylists();
+
+            //Calculate the stats again to update the total playlists
+            CalculateStats();
+            MessageBox.Show("Playlist created successfully!");
+
         }
+        
 
         private void btnAddSong_Click(object sender, EventArgs e)
         {
@@ -356,6 +378,19 @@ namespace GroupProject
         private void frmHome_Shown(object sender, EventArgs e)
         {
             CalculateStats();
+        }
+
+        private void btnShowFavouritePlaylists_Click(object sender, EventArgs e)
+        {
+            //Loop through all of the playlists and only show the ones that are marked as favourites
+            lstFavourites.Items.Clear();
+            foreach (Global.Playlist playlist in Global.CurrentUser.mUserPlaylist)
+            {
+                if (playlist.IsFavourite)
+                {
+                    lstFavourites.Items.Add(playlist.GetTitle() + " - Created: " + playlist.GetDateOfCreation());
+                }
+            }
         }
     }
 }
