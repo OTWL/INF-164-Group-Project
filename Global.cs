@@ -162,6 +162,13 @@ namespace GroupProject
 
             }
 
+            //Setters and getters for the favourite property
+            public bool IsFavourite
+            {
+                get { return mFavourite; }
+                set { mFavourite = value; }
+            }
+
             //Constructor
             public Playlist(string title, string CoverArtPath, string UserName, string DateOfCreation = "", bool isFavourite = false)
             {
@@ -219,6 +226,8 @@ namespace GroupProject
 
         }
 
+            
+
         //Make the user class be able to be Serializable need to do this for it to be able to save it to file in create account
         [Serializable]
         public class User
@@ -268,6 +277,22 @@ namespace GroupProject
             public string GetCoverPathByIndex(int index)
             {
                 return mPlaylists[index].getCoverPath();
+            }
+
+            public Playlist GetFavouritePLaylist()
+            {
+                //Make sure that the playlists are loaded from the disk
+                GetPlaylists();
+
+                foreach (Playlist playlist in mUserPlaylist)
+                {
+                    if (playlist.IsFavourite)
+                    {
+                        return playlist;
+                    }
+                }
+                //Return null if no favourite playlist is found
+                return null;
             }
 
             //Constructor

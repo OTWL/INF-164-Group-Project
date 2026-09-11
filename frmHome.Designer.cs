@@ -38,12 +38,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtTitle = new System.Windows.Forms.TextBox();
             this.lblPlaylistTitle = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.cbxFavouriteCheck = new System.Windows.Forms.CheckBox();
             this.btnAddSong = new System.Windows.Forms.Button();
             this.lblTotalPlaylists = new System.Windows.Forms.Label();
             this.lblTotalSongs = new System.Windows.Forms.Label();
             this.lblTopArtist = new System.Windows.Forms.Label();
             this.btnDeletePlaylists = new System.Windows.Forms.Button();
+            this.btnShowFavouritePlaylists = new System.Windows.Forms.Button();
+            this.lstFavourites = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.picProfile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAlbum)).BeginInit();
             this.SuspendLayout();
@@ -52,7 +54,7 @@
             // 
             this.btnGoToPlaylist.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
             this.btnGoToPlaylist.ForeColor = System.Drawing.Color.White;
-            this.btnGoToPlaylist.Location = new System.Drawing.Point(43, 306);
+            this.btnGoToPlaylist.Location = new System.Drawing.Point(14, 306);
             this.btnGoToPlaylist.Margin = new System.Windows.Forms.Padding(2);
             this.btnGoToPlaylist.Name = "btnGoToPlaylist";
             this.btnGoToPlaylist.Size = new System.Drawing.Size(80, 34);
@@ -76,11 +78,11 @@
             // 
             this.lstPlaylists.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
             this.lstPlaylists.FormattingEnabled = true;
-            this.lstPlaylists.Location = new System.Drawing.Point(13, 132);
+            this.lstPlaylists.Location = new System.Drawing.Point(14, 134);
             this.lstPlaylists.Margin = new System.Windows.Forms.Padding(2);
             this.lstPlaylists.Name = "lstPlaylists";
             this.lstPlaylists.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.lstPlaylists.Size = new System.Drawing.Size(251, 134);
+            this.lstPlaylists.Size = new System.Drawing.Size(164, 134);
             this.lstPlaylists.TabIndex = 2;
             this.lstPlaylists.DoubleClick += new System.EventHandler(this.lstPlaylists_DoubleClick);
             this.lstPlaylists.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lstPlaylists_MouseDown);
@@ -109,7 +111,7 @@
             // 
             this.btnCreatePlaylist.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
             this.btnCreatePlaylist.ForeColor = System.Drawing.Color.White;
-            this.btnCreatePlaylist.Location = new System.Drawing.Point(366, 176);
+            this.btnCreatePlaylist.Location = new System.Drawing.Point(418, 177);
             this.btnCreatePlaylist.Margin = new System.Windows.Forms.Padding(2);
             this.btnCreatePlaylist.Name = "btnCreatePlaylist";
             this.btnCreatePlaylist.Size = new System.Drawing.Size(80, 34);
@@ -121,15 +123,15 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(414, 52);
+            this.label1.Location = new System.Drawing.Point(466, 53);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 15);
+            this.label1.Size = new System.Drawing.Size(64, 13);
             this.label1.TabIndex = 6;
             this.label1.Text = "New Playlist";
             // 
             // txtTitle
             // 
-            this.txtTitle.Location = new System.Drawing.Point(399, 100);
+            this.txtTitle.Location = new System.Drawing.Point(451, 101);
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.Size = new System.Drawing.Size(100, 20);
             this.txtTitle.TabIndex = 7;
@@ -137,27 +139,27 @@
             // lblPlaylistTitle
             // 
             this.lblPlaylistTitle.AutoSize = true;
-            this.lblPlaylistTitle.Location = new System.Drawing.Point(396, 84);
+            this.lblPlaylistTitle.Location = new System.Drawing.Point(448, 85);
             this.lblPlaylistTitle.Name = "lblPlaylistTitle";
-            this.lblPlaylistTitle.Size = new System.Drawing.Size(30, 15);
+            this.lblPlaylistTitle.Size = new System.Drawing.Size(27, 13);
             this.lblPlaylistTitle.TabIndex = 9;
             this.lblPlaylistTitle.Text = "Title";
             // 
-            // checkBox1
+            // cbxFavouriteCheck
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(400, 132);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(87, 19);
-            this.checkBox1.TabIndex = 11;
-            this.checkBox1.Text = "Is favourite";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.cbxFavouriteCheck.AutoSize = true;
+            this.cbxFavouriteCheck.Location = new System.Drawing.Point(452, 133);
+            this.cbxFavouriteCheck.Name = "cbxFavouriteCheck";
+            this.cbxFavouriteCheck.Size = new System.Drawing.Size(78, 17);
+            this.cbxFavouriteCheck.TabIndex = 11;
+            this.cbxFavouriteCheck.Text = "Is favourite";
+            this.cbxFavouriteCheck.UseVisualStyleBackColor = true;
             // 
             // btnAddSong
             // 
             this.btnAddSong.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
             this.btnAddSong.ForeColor = System.Drawing.Color.White;
-            this.btnAddSong.Location = new System.Drawing.Point(451, 176);
+            this.btnAddSong.Location = new System.Drawing.Point(503, 177);
             this.btnAddSong.Name = "btnAddSong";
             this.btnAddSong.Size = new System.Drawing.Size(75, 34);
             this.btnAddSong.TabIndex = 12;
@@ -168,35 +170,35 @@
             // lblTotalPlaylists
             // 
             this.lblTotalPlaylists.AutoSize = true;
-            this.lblTotalPlaylists.Location = new System.Drawing.Point(347, 243);
+            this.lblTotalPlaylists.Location = new System.Drawing.Point(399, 244);
             this.lblTotalPlaylists.Name = "lblTotalPlaylists";
-            this.lblTotalPlaylists.Size = new System.Drawing.Size(91, 15);
+            this.lblTotalPlaylists.Size = new System.Drawing.Size(78, 13);
             this.lblTotalPlaylists.TabIndex = 13;
             this.lblTotalPlaylists.Text = "lblTotalPlaylists";
             // 
             // lblTotalSongs
             // 
             this.lblTotalSongs.AutoSize = true;
-            this.lblTotalSongs.Location = new System.Drawing.Point(458, 243);
+            this.lblTotalSongs.Location = new System.Drawing.Point(510, 244);
             this.lblTotalSongs.Name = "lblTotalSongs";
-            this.lblTotalSongs.Size = new System.Drawing.Size(82, 15);
+            this.lblTotalSongs.Size = new System.Drawing.Size(71, 13);
             this.lblTotalSongs.TabIndex = 14;
             this.lblTotalSongs.Text = "lblTotalSongs";
             // 
             // lblTopArtist
             // 
             this.lblTopArtist.AutoSize = true;
-            this.lblTopArtist.Location = new System.Drawing.Point(347, 277);
+            this.lblTopArtist.Location = new System.Drawing.Point(399, 278);
             this.lblTopArtist.Name = "lblTopArtist";
-            this.lblTopArtist.Size = new System.Drawing.Size(67, 15);
+            this.lblTopArtist.Size = new System.Drawing.Size(59, 13);
             this.lblTopArtist.TabIndex = 15;
             this.lblTopArtist.Text = "lblTopArtist";
             // 
             // btnDeletePlaylists
-            //
+            // 
             this.btnDeletePlaylists.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
             this.btnDeletePlaylists.ForeColor = System.Drawing.Color.White;
-            this.btnDeletePlaylists.Location = new System.Drawing.Point(152, 306);
+            this.btnDeletePlaylists.Location = new System.Drawing.Point(98, 306);
             this.btnDeletePlaylists.Margin = new System.Windows.Forms.Padding(2);
             this.btnDeletePlaylists.Name = "btnDeletePlaylists";
             this.btnDeletePlaylists.Size = new System.Drawing.Size(80, 34);
@@ -204,19 +206,45 @@
             this.btnDeletePlaylists.Text = "Delete Playlist";
             this.btnDeletePlaylists.UseVisualStyleBackColor = false;
             this.btnDeletePlaylists.Click += new System.EventHandler(this.btnDeletePlaylists_Click);
-            //
+            // 
+            // btnShowFavouritePlaylists
+            // 
+            this.btnShowFavouritePlaylists.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
+            this.btnShowFavouritePlaylists.ForeColor = System.Drawing.Color.White;
+            this.btnShowFavouritePlaylists.Location = new System.Drawing.Point(230, 306);
+            this.btnShowFavouritePlaylists.Margin = new System.Windows.Forms.Padding(2);
+            this.btnShowFavouritePlaylists.Name = "btnShowFavouritePlaylists";
+            this.btnShowFavouritePlaylists.Size = new System.Drawing.Size(80, 34);
+            this.btnShowFavouritePlaylists.TabIndex = 17;
+            this.btnShowFavouritePlaylists.Text = "Show Favourites";
+            this.btnShowFavouritePlaylists.UseVisualStyleBackColor = false;
+            this.btnShowFavouritePlaylists.Click += new System.EventHandler(this.btnShowFavouritePlaylists_Click);
+            // 
+            // lstFavourites
+            // 
+            this.lstFavourites.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
+            this.lstFavourites.FormattingEnabled = true;
+            this.lstFavourites.Location = new System.Drawing.Point(200, 134);
+            this.lstFavourites.Margin = new System.Windows.Forms.Padding(2);
+            this.lstFavourites.Name = "lstFavourites";
+            this.lstFavourites.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.lstFavourites.Size = new System.Drawing.Size(150, 134);
+            this.lstFavourites.TabIndex = 18;
+            // 
             // frmHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(244)))));
             this.ClientSize = new System.Drawing.Size(1044, 495);
+            this.Controls.Add(this.lstFavourites);
+            this.Controls.Add(this.btnShowFavouritePlaylists);
             this.Controls.Add(this.btnDeletePlaylists);
             this.Controls.Add(this.lblTopArtist);
             this.Controls.Add(this.lblTotalSongs);
             this.Controls.Add(this.lblTotalPlaylists);
             this.Controls.Add(this.btnAddSong);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.cbxFavouriteCheck);
             this.Controls.Add(this.lblPlaylistTitle);
             this.Controls.Add(this.txtTitle);
             this.Controls.Add(this.label1);
@@ -255,11 +283,13 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtTitle;
         private System.Windows.Forms.Label lblPlaylistTitle;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox cbxFavouriteCheck;
         private System.Windows.Forms.Button btnAddSong;
         private System.Windows.Forms.Label lblTotalPlaylists;
         private System.Windows.Forms.Label lblTotalSongs;
         private System.Windows.Forms.Label lblTopArtist;
         private System.Windows.Forms.Button btnDeletePlaylists;
+        private System.Windows.Forms.Button btnShowFavouritePlaylists;
+        private System.Windows.Forms.ListBox lstFavourites;
     }
 }
