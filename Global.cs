@@ -9,10 +9,13 @@ namespace GroupProject
     public static class Global
     {
 
+        //List containg all the user's
         public static List<User> allUsers = new List<User>();
 
         //Use static so that we do not create a new object. Belongs to Global
         //Updated to desirilaze the serialized file
+
+        //Returns an user object
         public static bool TryGetUserInfo(string Username, string FileName, out User Output)
         {
             //Returns true if found; false if not
@@ -25,7 +28,7 @@ namespace GroupProject
             //Check if the file is empty to avoid errors
             if (new FileInfo(FileName + ".ser").Length == 0)
             {
-                Output = new User("", "", "");
+                Output = null;
                 return false;
             }
 
@@ -35,11 +38,14 @@ namespace GroupProject
             {
                 //Create a file stream to read from serilized file
                 inFile = new FileStream(FileName + ".ser", FileMode.Open, FileAccess.Read);
+
                 //Create a bin formatter
                 BinaryFormatter bFormatter = new BinaryFormatter();
-                //Clean all users to ensure a fresh list
+
+                //Clean all users to ensure a fresh list is being worked with
                 allUsers.Clear();
-                //  Create a temp list of all the User objects saved in the Deserialized file
+
+                //Create a temp list of all the User objects saved in the Deserialized file
                 allUsers = (List<User>)bFormatter.Deserialize(inFile);
 
                 foreach (User myUser in allUsers)
@@ -48,16 +54,15 @@ namespace GroupProject
                     if (myUser.Username == Username)
                     {
                         Output = myUser;
-                        //Found user
+                        //Found user break
                         return true;
                     }
-
-
                 }
+
                 inFile.Close();
 
-                //If no username found give dummy data bool saves us
-                Output = new User("", "", "");
+                //Return null instead of dummy data to avoid possiable errors of empty users being returned
+                Output = null;
                 return false;
 
             }
@@ -75,6 +80,7 @@ namespace GroupProject
             }
             finally
             {
+                //If file opened or exist close it otherwise we try to clos an closed file
                 if (inFile != null)
                 {
                     inFile.Close();
@@ -82,7 +88,7 @@ namespace GroupProject
             }
         }
 
-        //Add header to allow it to be saved as bin
+        //Add header to allow it to be saved as binary
         [Serializable]
         public class Song
         {
@@ -90,7 +96,6 @@ namespace GroupProject
             private string mArtist;
             private string mAlbum;
             private string mGenre;
-            private string mUser;
             private string mFilePath;
 
             public string Title
@@ -131,13 +136,10 @@ namespace GroupProject
                 mArtist = artist;
                 mAlbum = album;
                 mGenre = genere;
-                //Always assign the user as the current user to keep track of ownership
-                mUser = CurrentUser.Username;
+                //Always assign FilePath as the current user to keep track of ownership
                 mFilePath = filePath;
 
             }
-            // USER|Title|Artist|Album|Genre
-
         };
 
 
@@ -177,7 +179,6 @@ namespace GroupProject
                 mFavourite = isFavourite;
 
                 mUsername = UserName;
-
 
                 if (DateOfCreation == "")
                 {
@@ -255,27 +256,27 @@ namespace GroupProject
 
             public void populateUserSongs()
             {
-                //Clear songs
+                //Clear Users songs
                 mSongs.Clear();
 
-                //Populate it with all of the users songs
+                //Populate list with all of the users songs
 
+
+                // Loop throught all the playlist of the user
                 foreach (Playlist playlist in mUserPlaylist)
                 {
+                    //Loop through all the playlist songs
                     foreach (Song song in playlist.GetSongs())
                     {
+                        //Add song to list which belongs to this user
                         mSongs.Add(song);
                     }
                 }
             }
 
-            public Playlist GetPlaylistByIndex(int index)
-            {
-                return mPlaylists[index];
-            }
-
             public string GetCoverPathByIndex(int index)
             {
+                //Could rework
                 return mPlaylists[index].getCoverPath();
             }
 
@@ -314,9 +315,7 @@ namespace GroupProject
                 set { mProfilePath = value; }
             }
 
-            // Playlists will be stored in text file
-            // Songs will be stored in a songs folder
-            // Save Playlists Names in a LIST cuz we then fetch the names of the song selected
+            // Save Playlists Names in a LIST, we then fetch the names of the song selected
 
             //Return Playlists
             public List<Playlist> GetPlaylists()
@@ -355,7 +354,7 @@ namespace GroupProject
 
                     //WE NEED TO RETURN THE USER PLAYLISTs
 
-                    //Clear playlist to avoid acidental rubbbish
+                    //Clear playlist to avoid acidental stale data
                     mUserPlaylist.Clear();
 
                     foreach (Playlist newplaylist in mPlaylists)

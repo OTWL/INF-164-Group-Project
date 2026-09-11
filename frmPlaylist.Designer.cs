@@ -64,6 +64,7 @@
             this.lblName.Size = new System.Drawing.Size(330, 59);
             this.lblName.TabIndex = 0;
             this.lblName.Text = "Playlist Name";
+            this.lblName.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lblDateCreated
             // 
@@ -79,7 +80,7 @@
             // picCoverArt
             // 
             this.picCoverArt.Location = new System.Drawing.Point(16, 122);
-            this.picCoverArt.Margin = new System.Windows.Forms.Padding(4);
+            this.picCoverArt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.picCoverArt.Name = "picCoverArt";
             this.picCoverArt.Size = new System.Drawing.Size(277, 212);
             this.picCoverArt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -91,7 +92,7 @@
             this.btnSelectCoverImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
             this.btnSelectCoverImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSelectCoverImage.ForeColor = System.Drawing.Color.White;
-            this.btnSelectCoverImage.Location = new System.Drawing.Point(12, 389);
+            this.btnSelectCoverImage.Location = new System.Drawing.Point(15, 340);
             this.btnSelectCoverImage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSelectCoverImage.Name = "btnSelectCoverImage";
             this.btnSelectCoverImage.Size = new System.Drawing.Size(112, 49);
@@ -106,7 +107,7 @@
             this.BtnSaveCover.Enabled = false;
             this.BtnSaveCover.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnSaveCover.ForeColor = System.Drawing.Color.White;
-            this.BtnSaveCover.Location = new System.Drawing.Point(159, 389);
+            this.BtnSaveCover.Location = new System.Drawing.Point(179, 340);
             this.BtnSaveCover.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BtnSaveCover.Name = "BtnSaveCover";
             this.BtnSaveCover.Size = new System.Drawing.Size(115, 49);
@@ -119,7 +120,7 @@
             // 
             this.btnBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
             this.btnBack.ForeColor = System.Drawing.Color.White;
-            this.btnBack.Location = new System.Drawing.Point(1113, 389);
+            this.btnBack.Location = new System.Drawing.Point(1304, 421);
             this.btnBack.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(115, 49);
@@ -146,7 +147,7 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvSongs.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgvSongs.Location = new System.Drawing.Point(391, 122);
-            this.dgvSongs.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvSongs.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvSongs.MultiSelect = false;
             this.dgvSongs.Name = "dgvSongs";
             this.dgvSongs.ReadOnly = true;
@@ -200,10 +201,10 @@
             // btnAddSong
             // 
             this.btnAddSong.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
-            this.btnAddSong.Location = new System.Drawing.Point(391, 389);
-            this.btnAddSong.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAddSong.Location = new System.Drawing.Point(391, 395);
+            this.btnAddSong.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAddSong.Name = "btnAddSong";
-            this.btnAddSong.Size = new System.Drawing.Size(100, 48);
+            this.btnAddSong.Size = new System.Drawing.Size(100, 44);
             this.btnAddSong.TabIndex = 7;
             this.btnAddSong.Text = "Add Song";
             this.btnAddSong.UseVisualStyleBackColor = false;
@@ -213,8 +214,7 @@
             // 
             this.lblNumTracks.AutoSize = true;
             this.lblNumTracks.ForeColor = System.Drawing.Color.Black;
-            this.lblNumTracks.Location = new System.Drawing.Point(847, 386);
-            this.lblNumTracks.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNumTracks.Location = new System.Drawing.Point(851, 386);
             this.lblNumTracks.Name = "lblNumTracks";
             this.lblNumTracks.Size = new System.Drawing.Size(120, 16);
             this.lblNumTracks.TabIndex = 8;
@@ -223,10 +223,10 @@
             // btnDeleteSong
             // 
             this.btnDeleteSong.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
-            this.btnDeleteSong.Location = new System.Drawing.Point(715, 391);
-            this.btnDeleteSong.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDeleteSong.Location = new System.Drawing.Point(608, 395);
+            this.btnDeleteSong.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDeleteSong.Name = "btnDeleteSong";
-            this.btnDeleteSong.Size = new System.Drawing.Size(100, 48);
+            this.btnDeleteSong.Size = new System.Drawing.Size(100, 44);
             this.btnDeleteSong.TabIndex = 9;
             this.btnDeleteSong.Text = "Delete Song";
             this.btnDeleteSong.UseVisualStyleBackColor = false;
@@ -235,10 +235,10 @@
             // btnPlaySong
             // 
             this.btnPlaySong.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
-            this.btnPlaySong.Location = new System.Drawing.Point(499, 391);
-            this.btnPlaySong.Margin = new System.Windows.Forms.Padding(4);
+            this.btnPlaySong.Location = new System.Drawing.Point(497, 395);
+            this.btnPlaySong.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnPlaySong.Name = "btnPlaySong";
-            this.btnPlaySong.Size = new System.Drawing.Size(100, 48);
+            this.btnPlaySong.Size = new System.Drawing.Size(100, 44);
             this.btnPlaySong.TabIndex = 11;
             this.btnPlaySong.Text = "Play Song";
             this.btnPlaySong.UseVisualStyleBackColor = false;
@@ -247,8 +247,8 @@
             // btnStop
             // 
             this.btnStop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
-            this.btnStop.Location = new System.Drawing.Point(607, 391);
-            this.btnStop.Margin = new System.Windows.Forms.Padding(4);
+            this.btnStop.Location = new System.Drawing.Point(728, 391);
+            this.btnStop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(100, 48);
             this.btnStop.TabIndex = 12;
@@ -259,20 +259,19 @@
             // mediaPlayer
             // 
             this.mediaPlayer.Enabled = true;
-            this.mediaPlayer.Location = new System.Drawing.Point(792, 84);
-            this.mediaPlayer.Margin = new System.Windows.Forms.Padding(4);
+            this.mediaPlayer.Location = new System.Drawing.Point(1085, 68);
+            this.mediaPlayer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mediaPlayer.Name = "mediaPlayer";
             this.mediaPlayer.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("mediaPlayer.OcxState")));
-            this.mediaPlayer.Size = new System.Drawing.Size(128, 136);
+            this.mediaPlayer.Size = new System.Drawing.Size(277, 212);
             this.mediaPlayer.TabIndex = 10;
-            this.mediaPlayer.Enter += new System.EventHandler(this.mediaPlayer_Enter);
             // 
             // frmPlaylist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(244)))));
-            this.ClientSize = new System.Drawing.Size(1243, 484);
+            this.ClientSize = new System.Drawing.Size(1433, 484);
             this.Controls.Add(this.btnStop);
             this.Controls.Add(this.btnPlaySong);
             this.Controls.Add(this.mediaPlayer);
@@ -294,6 +293,7 @@
             this.Name = "frmPlaylist";
             this.Opacity = 0.99D;
             this.Text = "View Playlist";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmPlaylist_FormClosed);
             this.Load += new System.EventHandler(this.frmPlaylist_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picCoverArt)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSongs)).EndInit();
