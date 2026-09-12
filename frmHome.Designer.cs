@@ -235,7 +235,7 @@
             this.lstFavourites.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
             this.lstFavourites.FormattingEnabled = true;
             this.lstFavourites.ItemHeight = 16;
-            this.lstFavourites.Location = new System.Drawing.Point(12, 473);
+            this.lstFavourites.Location = new System.Drawing.Point(12, 463);
             this.lstFavourites.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lstFavourites.Name = "lstFavourites";
             this.lstFavourites.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
