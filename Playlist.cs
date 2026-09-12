@@ -34,7 +34,7 @@ namespace GroupProject
 
             mUsername = UserName;
 
-            if (DateOfCreation == "")
+            if (DateOfCreation == "" || DateOfCreation == null)
             {
                 mDateOfCreation = DateTime.Now.ToString("yyyy/MM/dd");
             }
@@ -43,6 +43,12 @@ namespace GroupProject
                 mDateOfCreation = DateOfCreation;
             }
             //USE THIS DATE FORMAT OR Problems will occur
+        }
+
+        public bool IsFavourite
+        {
+            get { return mFavourite; }
+            set { mFavourite = value; }
         }
 
         public void Remove(Song song)
@@ -69,9 +75,18 @@ namespace GroupProject
             mCoverArtPath = CoverPath;
         }
 
-        public void AddSong(Song song)
+        public bool AddSong(Song song)
         {
+            foreach (Song newSong in mSongs)
+            {
+                if (newSong.FilePath == song.FilePath)
+                {
+                    return false;
+                }
+            }
+
             mSongs.Add(song);
+            return true;
         }
 
         public List<Song> GetSongs()
