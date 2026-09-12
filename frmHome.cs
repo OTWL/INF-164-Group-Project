@@ -390,9 +390,27 @@ namespace GroupProject
                     }
                 }
 
+                CalculateStats();
                 Global.CurrentUser.SavePlaylistToDisk();
             }
         }
+
+        private Playlist getPlaylistToDelete()
+        {
+            string selectedLine = lastListBox.SelectedItem.ToString();
+            string playlistTitle = selectedLine.Split('-')[0].Trim();
+
+            foreach (Playlist newPlaylist in Global.CurrentUser.mUserPlaylist)
+            {
+                if (newPlaylist.GetTitle() == playlistTitle && newPlaylist.Username == Global.CurrentUser.Username)
+                {
+                    return p;
+                }
+            }
+
+            return null;
+        }
+
 
         private void btnDeletePlaylists_Click(object sender, EventArgs e)
         {
@@ -403,9 +421,13 @@ namespace GroupProject
                 return;
             }
 
-            //Get the selected playlist
-            int selectedIndex = lastListBox.SelectedIndex;
-            Playlist playlistToDelete = Global.CurrentUser.mUserPlaylist[selectedIndex];
+            string selectedLine = lastListBox.SelectedItem.ToString();
+            Playlist playlistToDelete = getPlaylistToDelete();
+            if (playlistToDelete == null)
+            {
+                MessageBox.Show("Couldn't find that playlist.");
+                return;
+            }
 
             //Ask the user for confirmation
             DialogResult answer = MessageBox.Show($"Are you sure you want to delete the playlist '{playlistToDelete.GetTitle()}'?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -416,7 +438,7 @@ namespace GroupProject
                 Global.CurrentUser.DeletePlaylist(playlistToDelete);
 
                 //Remove the playlist from the ListBox
-                lastListBox.Items.RemoveAt(selectedIndex);
+                lastListBox.Items.Remove(selectedLine);
 
                 //Remove from HashSet
                 playlistNames.Remove(playlistToDelete.GetTitle());
