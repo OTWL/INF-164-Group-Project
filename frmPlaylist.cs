@@ -313,5 +313,17 @@ namespace GroupProject
         {
             mediaPlayer.Ctlcontrols.pause();
         }
+
+        private void dgvSongs_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+
+        }
+
+        private void dgvSongs_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            int columnIndex = e.ColumnIndex;
+            dgvSongs.Columns[columnIndex].SortMode = DataGridViewColumnSortMode.Automatic;
+
+        }
     }
 }
