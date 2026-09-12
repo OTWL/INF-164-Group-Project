@@ -20,7 +20,7 @@ namespace GroupProject
         //ID is the tilte of the playlist
         string playlistId = Global.CurrentUser.GetSelectedPlaylistId();
         //Create the current playlistt playlist 
-        Global.Playlist currentPlaylist;
+        Playlist currentPlaylist;
 
         //Keep track if the back button is hit or the form is being closed to kill the hidden form
         //False at the start sa back button has not yet been pressed
@@ -187,7 +187,7 @@ namespace GroupProject
                     saveForm.ShowDialog();
 
                     // Create new song object with values from the save form
-                    Global.Song mySong = new Global.Song(saveForm.SongName, saveForm.SongArtist, saveForm.SongAlbum, saveForm.SongGenre, song);
+                    Song mySong = new Song(saveForm.SongName, saveForm.SongArtist, saveForm.SongAlbum, saveForm.SongGenre, song);
 
 
                     //Add the song to the current playlist
@@ -256,7 +256,7 @@ namespace GroupProject
             //If we can get the current file continue else do not continue
             if (getCurrentSongFilePath(out filePath))
             {
-                foreach (Global.Song song in currentPlaylist.GetSongs())
+                foreach (Song song in currentPlaylist.GetSongs())
                 {
                     //Loop thourg the users songs
                     //If given song == a songs file path give back that object
