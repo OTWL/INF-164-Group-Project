@@ -16,8 +16,12 @@ namespace GroupProject
             //Load as defualt
             picAlbum.Image = Properties.Resources.Default_Cover;
             LoadProfilePic();
-            
+
         }
+
+        //Create a hashset almost like a list but stores unique values and fast lookup time stores only keys
+        HashSet<string> playlistNames = new HashSet<string>();
+
         private void greetings()
         {
 
@@ -114,10 +118,29 @@ namespace GroupProject
                 }
                 lblTopArtist.Text = "Top Artist: " + topArtist;
             }
+            else
+            {
+                lblTotalSongs.Text = "No songs yet!";
+                lblTopArtist.Text = "No Artists yet!";
+            }
         }
         private void frmHome_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+
+        //Keep track to reduce the amount of UI clutter and code
+        public ListBox lastListBox;
+
+        private void lstPlaylists_Click(object sender, EventArgs e)
+        {
+            lastListBox = lstPlaylists;
+        }
+
+        private void lstFavourites_Click(object sender, EventArgs e)
+        {
+            lastListBox = lstFavourites;
         }
 
         private void GoToPlaylist()
@@ -128,7 +151,7 @@ namespace GroupProject
             {
                 //control name for listbox should be lstPlaylists
                 //Fixed
-                if (lstPlaylists.SelectedItem != null)
+                if (lastListBox.SelectedItem != null)
                 {
                     string selectedLine = lstPlaylists.SelectedItem.ToString();
                     string[] playlistDetails = selectedLine.Split('-');
@@ -170,7 +193,7 @@ namespace GroupProject
             GoToPlaylist();
         }
 
-        
+
         private void LoadUserPlaylists()
         {
             //Loads and filters playlists for logged in user into mPlaylist
@@ -183,7 +206,11 @@ namespace GroupProject
             //Loop over list
             foreach (Playlist p in PlayLists)
             {
-                lstPlaylists.Items.Add(p.GetTitle() + " - Created: " + p.GetDateOfCreation());
+
+                //Use ternary to shorthand if statement
+                addToList(p.IsFavourite ? lstFavourites : lstPlaylists, p);
+                //Populate the HashSet on load
+                playlistNames.Add(p.GetTitle());
             }
         }
 
@@ -233,6 +260,8 @@ namespace GroupProject
         private void btnCreatePlaylist_Click(object sender, EventArgs e)
         {
             string title = txtTitle.Text;
+            //Get checkbox value
+            bool isFavourite = chkFavourite.Checked;
 
             //Validation to check that the user has entered a title, and not just spaces
             if (string.IsNullOrWhiteSpace(title))
@@ -240,31 +269,57 @@ namespace GroupProject
                 MessageBox.Show("Please enter a title for the playlist.");
                 return;
             }
-            //LEAVE ART PATH EMPTY FOR NOW
-            //ADD VALIDATION
-            Playlist newPlaylist = new Playlist(title, "", Global.CurrentUser.Username);
-            lstPlaylists.Items.Add(newPlaylist.GetTitle() + " - Created: " + newPlaylist.GetDateOfCreation());
-            Global.CurrentUser.SaveNewPlaylist(newPlaylist);
 
-            //Clear the UI
-            txtTitle.Clear();
+            //Try to add playlist to the Hashset but if title already in there return false
+            if (playlistNames.Add(title))
+            {
 
-            //Reload the playlists to show the new playlist
-            LoadUserPlaylists();
+                //LEAVE ART PATH EMPTY FOR NOW
 
-            //Calculate the stats again to update the total playlists
-            CalculateStats();
-            MessageBox.Show("Playlist created successfully!");
+                //ADD VALIDATION To see if the user already has a playlist like this
+
+                Playlist newPlaylist = new Playlist(title, "", Global.CurrentUser.Username, null, isFavourite);
+                Global.CurrentUser.SaveNewPlaylist(newPlaylist);
+
+                //Clear the UI
+                txtTitle.Clear();
+
+                //Reload the playlists to show the new playlist
+                //LoadUserPlaylists();
+
+                if (isFavourite)
+                {
+                    addToList(lstFavourites, newPlaylist);
+                }
+                else
+                {
+                    addToList(lstPlaylists, newPlaylist);
+                }
+
+                //Calculate the stats again to update the total playlists
+                CalculateStats();
+                MessageBox.Show("Playlist created successfully!");
+            }
+            else
+            {
+                MessageBox.Show("Playlist already exists!");
+            }
 
         }
-        
+
+        private void addToList(ListBox Givenlistbox, Playlist playlist)
+        {
+            //Takes a list box and playlist
+            Givenlistbox.Items.Add(playlist.GetTitle() + " - Created: " + playlist.GetDateOfCreation());
+        }
 
         private void btnAddSong_Click(object sender, EventArgs e)
         {
 
             //CHECK IF THE FILE PATH IS ALREADY IN THIS USRERS PlAYLIST
+
             // Make sure the user has selected at least one playlist
-            if (lstPlaylists.SelectedItems.Count == 0)
+            if (lastListBox.SelectedItems.Count == 0)
             {
                 MessageBox.Show("Please select at least one playlist.");
                 return;
@@ -283,7 +338,7 @@ namespace GroupProject
                 List<Playlist> allPlaylists = Global.CurrentUser.GetPlaylists();
 
                 //Go through every playlist selected
-                foreach (var selectedItem in lstPlaylists.SelectedItems)
+                foreach (var selectedItem in lastListBox.SelectedItems)
                 {
                     string selectedLine = selectedItem.ToString();
                     string[] playlistDetails = selectedLine.Split('-');
@@ -328,7 +383,10 @@ namespace GroupProject
                     // Add the same Song object to every selected playlist
                     foreach (Playlist playlist in selectedPlaylists)
                     {
-                        playlist.AddSong(mySong);
+                        if (!playlist.AddSong(mySong))
+                        {
+                            MessageBox.Show($"'{mySong.Title}' is already in '{playlist.GetTitle()}'.");
+                        }
                     }
                 }
 
@@ -339,14 +397,14 @@ namespace GroupProject
         private void btnDeletePlaylists_Click(object sender, EventArgs e)
         {
             //Only delete one playlist at a time
-            if (lstPlaylists.SelectedItems.Count != 1)
+            if (lastListBox.SelectedItems.Count != 1)
             {
                 MessageBox.Show("Please select one playlist to delete.");
                 return;
             }
 
             //Get the selected playlist
-            int selectedIndex = lstPlaylists.SelectedIndex;
+            int selectedIndex = lastListBox.SelectedIndex;
             Playlist playlistToDelete = Global.CurrentUser.mUserPlaylist[selectedIndex];
 
             //Ask the user for confirmation
@@ -358,7 +416,10 @@ namespace GroupProject
                 Global.CurrentUser.DeletePlaylist(playlistToDelete);
 
                 //Remove the playlist from the ListBox
-                lstPlaylists.Items.RemoveAt(selectedIndex);
+                lastListBox.Items.RemoveAt(selectedIndex);
+
+                //Remove from HashSet
+                playlistNames.Remove(playlistToDelete.GetTitle());
 
                 //Reset the cover picture and update stats
                 picAlbum.Image = Properties.Resources.Default_Cover;
@@ -377,19 +438,6 @@ namespace GroupProject
         private void frmHome_Shown(object sender, EventArgs e)
         {
             CalculateStats();
-        }
-
-        private void btnShowFavouritePlaylists_Click(object sender, EventArgs e)
-        {
-            //Loop through all of the playlists and only show the ones that are marked as favourites
-            lstFavourites.Items.Clear();
-            foreach (Global.Playlist playlist in Global.CurrentUser.mUserPlaylist)
-            {
-                if (playlist.IsFavourite)
-                {
-                    lstFavourites.Items.Add(playlist.GetTitle() + " - Created: " + playlist.GetDateOfCreation());
-                }
-            }
         }
     }
 }
