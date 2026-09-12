@@ -75,9 +75,18 @@ namespace GroupProject
             mCoverArtPath = CoverPath;
         }
 
-        public void AddSong(Song song)
+        public bool AddSong(Song song)
         {
+            foreach (Song newSong in mSongs)
+            {
+                if (newSong.FilePath == song.FilePath)
+                {
+                    return false;
+                }
+            }
+
             mSongs.Add(song);
+            return true;
         }
 
         public List<Song> GetSongs()

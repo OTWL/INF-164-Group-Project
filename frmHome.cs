@@ -18,6 +18,10 @@ namespace GroupProject
             LoadProfilePic();
 
         }
+
+        //Create a hashset almost like a list but stores unique values and fast lookup time stores only keys
+        HashSet<string> playlistNames = new HashSet<string>();
+
         private void greetings()
         {
 
@@ -203,10 +207,10 @@ namespace GroupProject
             foreach (Playlist p in PlayLists)
             {
 
-                //                if (p.IsFavourite) { addToList(lstFavourites, p); }
-
+                //Use ternary to shorthand if statement
                 addToList(p.IsFavourite ? lstFavourites : lstPlaylists, p);
-
+                //Populate the HashSet on load
+                playlistNames.Add(p.GetTitle());
             }
         }
 
@@ -265,34 +269,41 @@ namespace GroupProject
                 MessageBox.Show("Please enter a title for the playlist.");
                 return;
             }
-            //LEAVE ART PATH EMPTY FOR NOW
 
-            //ADD VALIDATION
-
-            Playlist newPlaylist = new Playlist(title, "", Global.CurrentUser.Username, null, isFavourite);
-            Global.CurrentUser.SaveNewPlaylist(newPlaylist);
-
-            //Clear the UI
-            txtTitle.Clear();
-
-            //Reload the playlists to show the new playlist
-            //LoadUserPlaylists();
-
-            if (isFavourite)
+            //Try to add playlist to the Hashset but if title already in there return false
+            if (playlistNames.Add(title))
             {
-                addToList(lstFavourites, newPlaylist);
+
+                //LEAVE ART PATH EMPTY FOR NOW
+
+                //ADD VALIDATION To see if the user already has a playlist like this
+
+                Playlist newPlaylist = new Playlist(title, "", Global.CurrentUser.Username, null, isFavourite);
+                Global.CurrentUser.SaveNewPlaylist(newPlaylist);
+
+                //Clear the UI
+                txtTitle.Clear();
+
+                //Reload the playlists to show the new playlist
+                //LoadUserPlaylists();
+
+                if (isFavourite)
+                {
+                    addToList(lstFavourites, newPlaylist);
+                }
+                else
+                {
+                    addToList(lstPlaylists, newPlaylist);
+                }
+
+                //Calculate the stats again to update the total playlists
+                CalculateStats();
+                MessageBox.Show("Playlist created successfully!");
             }
             else
             {
-                addToList(lstPlaylists, newPlaylist);
+                MessageBox.Show("Playlist already exists!");
             }
-
-
-
-
-            //Calculate the stats again to update the total playlists
-            CalculateStats();
-            MessageBox.Show("Playlist created successfully!");
 
         }
 
@@ -306,8 +317,9 @@ namespace GroupProject
         {
 
             //CHECK IF THE FILE PATH IS ALREADY IN THIS USRERS PlAYLIST
+
             // Make sure the user has selected at least one playlist
-            if (lstPlaylists.SelectedItems.Count == 0)
+            if (lastListBox.SelectedItems.Count == 0)
             {
                 MessageBox.Show("Please select at least one playlist.");
                 return;
@@ -326,7 +338,7 @@ namespace GroupProject
                 List<Playlist> allPlaylists = Global.CurrentUser.GetPlaylists();
 
                 //Go through every playlist selected
-                foreach (var selectedItem in lstPlaylists.SelectedItems)
+                foreach (var selectedItem in lastListBox.SelectedItems)
                 {
                     string selectedLine = selectedItem.ToString();
                     string[] playlistDetails = selectedLine.Split('-');
@@ -371,7 +383,10 @@ namespace GroupProject
                     // Add the same Song object to every selected playlist
                     foreach (Playlist playlist in selectedPlaylists)
                     {
-                        playlist.AddSong(mySong);
+                        if (!playlist.AddSong(mySong))
+                        {
+                            MessageBox.Show($"'{mySong.Title}' is already in '{playlist.GetTitle()}'.");
+                        }
                     }
                 }
 
@@ -402,6 +417,9 @@ namespace GroupProject
 
                 //Remove the playlist from the ListBox
                 lastListBox.Items.RemoveAt(selectedIndex);
+
+                //Remove from HashSet
+                playlistNames.Remove(playlistToDelete.GetTitle());
 
                 //Reset the cover picture and update stats
                 picAlbum.Image = Properties.Resources.Default_Cover;

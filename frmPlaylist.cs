@@ -19,7 +19,8 @@ namespace GroupProject
         //call user object to get id
         //ID is the tilte of the playlist
         string playlistId = Global.CurrentUser.GetSelectedPlaylistId();
-        //Create the current playlistt playlist 
+
+        //Create the current playlist playlist get's assigned on init
         Playlist currentPlaylist;
 
         //Keep track if the back button is hit or the form is being closed to kill the hidden form
@@ -31,6 +32,9 @@ namespace GroupProject
 
         private void LoadSelectedPlaylist()
         {
+            //Load PlayList information not DATA happens on form LOAD
+
+
             try
             {
                 //We can check if it is null as we return null if none found
@@ -38,13 +42,13 @@ namespace GroupProject
                 {
                     //Create the playlist object based of the object selected
                     currentPlaylist = Global.CurrentUser.GetPlaylistID(playlistId);
-
-                    //Set the labels of the name and the date of creation to the values from the playlist id
-                    lblName.Text = currentPlaylist.GetTitle();
-                    lblDateCreated.Text = currentPlaylist.GetDateOfCreation();
-
                     if (currentPlaylist != null)
                     {
+
+                        //Set the labels of the name and the date of creation to the values from the playlist id
+                        lblName.Text = currentPlaylist.GetTitle();
+                        lblDateCreated.Text = currentPlaylist.GetDateOfCreation();
+
                         //Set's the current form name to name of the playlist
                         this.Text = "Playlist - " + currentPlaylist.GetTitle();
 
@@ -104,6 +108,7 @@ namespace GroupProject
             {
                 MessageBox.Show("No songs are added to the playlist yet");
             }
+
         }
 
         private void frmPlaylist_Load(object sender, EventArgs e)
@@ -182,6 +187,7 @@ namespace GroupProject
 
                 foreach (string song in selectedSongs)
                 {
+
                     //Create new form and show it
                     frmSongInfo saveForm = new frmSongInfo();
                     saveForm.ShowDialog();
@@ -189,13 +195,14 @@ namespace GroupProject
                     // Create new song object with values from the save form
                     Song mySong = new Song(saveForm.SongName, saveForm.SongArtist, saveForm.SongAlbum, saveForm.SongGenre, song);
 
-
-                    //Add the song to the current playlist
-                    currentPlaylist.AddSong(mySong);
-
-                    //Display the newly added song in the DataGridView
-                    dgvSongs.Rows.Add(mySong.Title, mySong.Artist, mySong.Album, mySong.Genre, mySong.FilePath);
-
+                    if (currentPlaylist.AddSong(mySong))
+                    {
+                        dgvSongs.Rows.Add(mySong.Title, mySong.Artist, mySong.Album, mySong.Genre, mySong.FilePath);
+                    }
+                    else
+                    {
+                        MessageBox.Show("This song already exists in this playlist");
+                    }
                 }
                 //Upadate label
                 updateNumberOfRecords();
@@ -314,16 +321,10 @@ namespace GroupProject
             mediaPlayer.Ctlcontrols.pause();
         }
 
-        private void dgvSongs_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-
-        }
-
         private void dgvSongs_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             int columnIndex = e.ColumnIndex;
             dgvSongs.Columns[columnIndex].SortMode = DataGridViewColumnSortMode.Automatic;
-
         }
     }
 }
