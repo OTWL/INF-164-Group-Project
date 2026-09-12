@@ -60,7 +60,7 @@ namespace GroupProject
                 }
 
                 //Add Global here for c# to pickup we are talking about User
-                Global.User value;
+                User value;
 
                 if (Global.TryGetUserInfo(Username, "User", out value))
                 {
@@ -76,7 +76,7 @@ namespace GroupProject
                     profilePath = "Default Image";
                 }
 
-                Global.allUsers.Add(new Global.User(Username, profilePath, Password));
+                Global.allUsers.Add(new User(Username, profilePath, Password));
 
                 //New saving method
                 //NEED TO SAVE ALL USERS

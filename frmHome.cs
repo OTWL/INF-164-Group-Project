@@ -177,12 +177,11 @@ namespace GroupProject
             Global.CurrentUser.GetPlaylists();
             //Forgot to push this to main
             //Gets only playlists created by current user
-            List<Global.Playlist> PlayLists = Global.CurrentUser.mUserPlaylist;
+            List<Playlist> PlayLists = Global.CurrentUser.mUserPlaylist;
             //MABE AN ERROR IF THERE IS NO PLAYLISTS
 
             //Loop over list
-
-            foreach (Global.Playlist p in PlayLists)
+            foreach (Playlist p in PlayLists)
             {
                 lstPlaylists.Items.Add(p.GetTitle() + " - Created: " + p.GetDateOfCreation());
             }
@@ -242,8 +241,8 @@ namespace GroupProject
                 return;
             }
             //LEAVE ART PATH EMPTY FOR NOW
-            
-            Global.Playlist newPlaylist = new Global.Playlist(title, "", Global.CurrentUser.Username);
+            //ADD VALIDATION
+            Playlist newPlaylist = new Playlist(title, "", Global.CurrentUser.Username);
             lstPlaylists.Items.Add(newPlaylist.GetTitle() + " - Created: " + newPlaylist.GetDateOfCreation());
             Global.CurrentUser.SaveNewPlaylist(newPlaylist);
 
@@ -278,10 +277,10 @@ namespace GroupProject
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 //Store actual playlist objects selected by user
-                List<Global.Playlist> selectedPlaylists = new List<Global.Playlist>();
+                List<Playlist> selectedPlaylists = new List<Playlist>();
 
                 //Gets all playlists currently stores
-                List<Global.Playlist> allPlaylists = Global.CurrentUser.GetPlaylists();
+                List<Playlist> allPlaylists = Global.CurrentUser.GetPlaylists();
 
                 //Go through every playlist selected
                 foreach (var selectedItem in lstPlaylists.SelectedItems)
@@ -293,9 +292,9 @@ namespace GroupProject
                     //Finds playlist object with this title
 
                     //Create empty playlist object
-                    Global.Playlist playlist = null;
+                    Playlist playlist = null;
 
-                    foreach (Global.Playlist p in allPlaylists)
+                    foreach (Playlist p in allPlaylists)
                     {
                         //Look if current plalist == playlist id and belongs to the user
                         if (p.GetTitle() == playlistId && p.Username == Global.CurrentUser.Username)
@@ -324,10 +323,10 @@ namespace GroupProject
                     saveForm.ShowDialog();
 
                     // Create new song object
-                    Global.Song mySong = new Global.Song(saveForm.SongName, saveForm.SongArtist, saveForm.SongAlbum, saveForm.SongGenre, song);
+                    Song mySong = new Song(saveForm.SongName, saveForm.SongArtist, saveForm.SongAlbum, saveForm.SongGenre, song);
 
                     // Add the same Song object to every selected playlist
-                    foreach (Global.Playlist playlist in selectedPlaylists)
+                    foreach (Playlist playlist in selectedPlaylists)
                     {
                         playlist.AddSong(mySong);
                     }
@@ -348,7 +347,7 @@ namespace GroupProject
 
             //Get the selected playlist
             int selectedIndex = lstPlaylists.SelectedIndex;
-            Global.Playlist playlistToDelete = Global.CurrentUser.mUserPlaylist[selectedIndex];
+            Playlist playlistToDelete = Global.CurrentUser.mUserPlaylist[selectedIndex];
 
             //Ask the user for confirmation
             DialogResult answer = MessageBox.Show($"Are you sure you want to delete the playlist '{playlistToDelete.GetTitle()}'?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
