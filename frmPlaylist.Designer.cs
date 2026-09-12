@@ -80,7 +80,7 @@
             // picCoverArt
             // 
             this.picCoverArt.Location = new System.Drawing.Point(16, 122);
-            this.picCoverArt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.picCoverArt.Margin = new System.Windows.Forms.Padding(4);
             this.picCoverArt.Name = "picCoverArt";
             this.picCoverArt.Size = new System.Drawing.Size(277, 212);
             this.picCoverArt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -147,15 +147,16 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvSongs.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgvSongs.Location = new System.Drawing.Point(391, 122);
-            this.dgvSongs.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvSongs.Margin = new System.Windows.Forms.Padding(4);
             this.dgvSongs.MultiSelect = false;
             this.dgvSongs.Name = "dgvSongs";
             this.dgvSongs.ReadOnly = true;
             this.dgvSongs.RowHeadersWidth = 51;
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
             this.dgvSongs.RowsDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvSongs.Size = new System.Drawing.Size(591, 261);
+            this.dgvSongs.Size = new System.Drawing.Size(553, 261);
             this.dgvSongs.TabIndex = 6;
+            this.dgvSongs.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvSongs_ColumnHeaderMouseClick);
             // 
             // ColTitle
             // 
@@ -214,7 +215,7 @@
             // 
             this.lblNumTracks.AutoSize = true;
             this.lblNumTracks.ForeColor = System.Drawing.Color.Black;
-            this.lblNumTracks.Location = new System.Drawing.Point(851, 386);
+            this.lblNumTracks.Location = new System.Drawing.Point(824, 387);
             this.lblNumTracks.Name = "lblNumTracks";
             this.lblNumTracks.Size = new System.Drawing.Size(120, 16);
             this.lblNumTracks.TabIndex = 8;
@@ -223,7 +224,7 @@
             // btnDeleteSong
             // 
             this.btnDeleteSong.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
-            this.btnDeleteSong.Location = new System.Drawing.Point(608, 395);
+            this.btnDeleteSong.Location = new System.Drawing.Point(605, 395);
             this.btnDeleteSong.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDeleteSong.Name = "btnDeleteSong";
             this.btnDeleteSong.Size = new System.Drawing.Size(100, 44);
@@ -235,8 +236,8 @@
             // btnPlaySong
             // 
             this.btnPlaySong.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
-            this.btnPlaySong.Location = new System.Drawing.Point(497, 395);
-            this.btnPlaySong.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnPlaySong.Location = new System.Drawing.Point(498, 395);
+            this.btnPlaySong.Margin = new System.Windows.Forms.Padding(4);
             this.btnPlaySong.Name = "btnPlaySong";
             this.btnPlaySong.Size = new System.Drawing.Size(100, 44);
             this.btnPlaySong.TabIndex = 11;
@@ -247,8 +248,8 @@
             // btnStop
             // 
             this.btnStop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
-            this.btnStop.Location = new System.Drawing.Point(728, 391);
-            this.btnStop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnStop.Location = new System.Drawing.Point(712, 391);
+            this.btnStop.Margin = new System.Windows.Forms.Padding(4);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(100, 48);
             this.btnStop.TabIndex = 12;
@@ -260,7 +261,7 @@
             // 
             this.mediaPlayer.Enabled = true;
             this.mediaPlayer.Location = new System.Drawing.Point(1085, 68);
-            this.mediaPlayer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mediaPlayer.Margin = new System.Windows.Forms.Padding(4);
             this.mediaPlayer.Name = "mediaPlayer";
             this.mediaPlayer.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("mediaPlayer.OcxState")));
             this.mediaPlayer.Size = new System.Drawing.Size(277, 212);
