@@ -153,7 +153,7 @@ namespace GroupProject
                 //Fixed
                 if (lastListBox.SelectedItem != null)
                 {
-                    string selectedLine = lstPlaylists.SelectedItem.ToString();
+                    string selectedLine = lastListBox.SelectedItem.ToString();
                     string[] playlistDetails = selectedLine.Split('-');
 
 
@@ -171,6 +171,9 @@ namespace GroupProject
                         this.Hide();
                         playlistForm.ShowDialog();
                         this.Show();
+
+                        //Calculate stats after changes are mad ein the playlist form
+                        CalculateStats();
                     }
 
 
@@ -377,6 +380,13 @@ namespace GroupProject
                     frmSongInfo saveForm = new frmSongInfo();
                     saveForm.ShowDialog();
 
+                    if (!saveForm.SavedSuccessfully)
+                    {
+                        MessageBox.Show("Could not add song");
+                        //No input for that song, continue to next song
+                        continue;
+                    }
+
                     // Create new song object
                     Song mySong = new Song(saveForm.SongName, saveForm.SongArtist, saveForm.SongAlbum, saveForm.SongGenre, song);
 
@@ -404,7 +414,7 @@ namespace GroupProject
             {
                 if (newPlaylist.GetTitle() == playlistTitle && newPlaylist.Username == Global.CurrentUser.Username)
                 {
-                    return p;
+                    return newPlaylist;
                 }
             }
 
@@ -457,9 +467,9 @@ namespace GroupProject
             CalculateStats();
         }
 
-        private void frmHome_Shown(object sender, EventArgs e)
+        private void lstFavourites_DoubleClick(object sender, EventArgs e)
         {
-            CalculateStats();
+            GoToPlaylist();
         }
     }
 }

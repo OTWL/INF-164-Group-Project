@@ -15,12 +15,27 @@ namespace GroupProject
             InitializeComponent();
         }
 
+        public bool SavedSuccessfully = false;
+
         private void btnSaveInfo_Click(object sender, System.EventArgs e)
         {
+
+            //Check that all required fields have been entered
+            if (string.IsNullOrWhiteSpace(txtTitle.Text) ||
+                string.IsNullOrWhiteSpace(txtArtist.Text) ||
+                string.IsNullOrWhiteSpace(txtAlbum.Text) ||
+                string.IsNullOrWhiteSpace(txtGenre.Text))
+            {
+                MessageBox.Show("Please fill in all song information.");
+                return;
+            }
+
             SongName = txtTitle.Text.Trim();
             SongArtist = txtArtist.Text.Trim();
             SongAlbum = txtAlbum.Text.Trim();
             SongGenre = txtGenre.Text.Trim();
+
+            SavedSuccessfully = true;
 
             MessageBox.Show("Song created succesfully");
 

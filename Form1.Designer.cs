@@ -42,76 +42,84 @@
             // 
             // txtTitle
             // 
-            this.txtTitle.Location = new System.Drawing.Point(84, 38);
+            this.txtTitle.Location = new System.Drawing.Point(112, 47);
+            this.txtTitle.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtTitle.Name = "txtTitle";
-            this.txtTitle.Size = new System.Drawing.Size(100, 20);
+            this.txtTitle.Size = new System.Drawing.Size(132, 22);
             this.txtTitle.TabIndex = 0;
             // 
             // lblName
             // 
             this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(84, 19);
+            this.lblName.Location = new System.Drawing.Point(112, 23);
+            this.lblName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(27, 13);
+            this.lblName.Size = new System.Drawing.Size(33, 16);
             this.lblName.TabIndex = 1;
             this.lblName.Text = "Title";
             // 
             // lblArtist
             // 
             this.lblArtist.AutoSize = true;
-            this.lblArtist.Location = new System.Drawing.Point(84, 71);
+            this.lblArtist.Location = new System.Drawing.Point(112, 87);
+            this.lblArtist.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblArtist.Name = "lblArtist";
-            this.lblArtist.Size = new System.Drawing.Size(30, 13);
+            this.lblArtist.Size = new System.Drawing.Size(36, 16);
             this.lblArtist.TabIndex = 3;
             this.lblArtist.Text = "Artist";
             // 
             // txtArtist
             // 
-            this.txtArtist.Location = new System.Drawing.Point(84, 90);
+            this.txtArtist.Location = new System.Drawing.Point(112, 111);
+            this.txtArtist.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtArtist.Name = "txtArtist";
-            this.txtArtist.Size = new System.Drawing.Size(100, 20);
+            this.txtArtist.Size = new System.Drawing.Size(132, 22);
             this.txtArtist.TabIndex = 2;
             // 
             // lblAlbum
             // 
             this.lblAlbum.AutoSize = true;
-            this.lblAlbum.Location = new System.Drawing.Point(84, 117);
+            this.lblAlbum.Location = new System.Drawing.Point(112, 144);
+            this.lblAlbum.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAlbum.Name = "lblAlbum";
-            this.lblAlbum.Size = new System.Drawing.Size(36, 13);
+            this.lblAlbum.Size = new System.Drawing.Size(45, 16);
             this.lblAlbum.TabIndex = 5;
             this.lblAlbum.Text = "Album";
             // 
             // txtAlbum
             // 
-            this.txtAlbum.Location = new System.Drawing.Point(84, 136);
+            this.txtAlbum.Location = new System.Drawing.Point(112, 167);
+            this.txtAlbum.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtAlbum.Name = "txtAlbum";
-            this.txtAlbum.Size = new System.Drawing.Size(100, 20);
+            this.txtAlbum.Size = new System.Drawing.Size(132, 22);
             this.txtAlbum.TabIndex = 4;
             // 
             // lblGenre
             // 
             this.lblGenre.AutoSize = true;
-            this.lblGenre.Location = new System.Drawing.Point(84, 168);
+            this.lblGenre.Location = new System.Drawing.Point(112, 207);
+            this.lblGenre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblGenre.Name = "lblGenre";
-            this.lblGenre.Size = new System.Drawing.Size(36, 13);
+            this.lblGenre.Size = new System.Drawing.Size(44, 16);
             this.lblGenre.TabIndex = 7;
             this.lblGenre.Text = "Genre";
             // 
             // txtGenre
             // 
-            this.txtGenre.Location = new System.Drawing.Point(84, 187);
+            this.txtGenre.Location = new System.Drawing.Point(112, 230);
+            this.txtGenre.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtGenre.Name = "txtGenre";
-            this.txtGenre.Size = new System.Drawing.Size(100, 20);
+            this.txtGenre.Size = new System.Drawing.Size(132, 22);
             this.txtGenre.TabIndex = 6;
             // 
             // btnSaveInfo
             // 
             this.btnSaveInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
             this.btnSaveInfo.ForeColor = System.Drawing.Color.White;
-            this.btnSaveInfo.Location = new System.Drawing.Point(84, 224);
-            this.btnSaveInfo.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSaveInfo.Location = new System.Drawing.Point(112, 276);
+            this.btnSaveInfo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSaveInfo.Name = "btnSaveInfo";
-            this.btnSaveInfo.Size = new System.Drawing.Size(100, 36);
+            this.btnSaveInfo.Size = new System.Drawing.Size(133, 44);
             this.btnSaveInfo.TabIndex = 9;
             this.btnSaveInfo.Text = "Save song";
             this.btnSaveInfo.UseVisualStyleBackColor = false;
@@ -119,10 +127,10 @@
             // 
             // frmSongInfo
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(244)))));
-            this.ClientSize = new System.Drawing.Size(288, 350);
+            this.ClientSize = new System.Drawing.Size(384, 431);
             this.Controls.Add(this.btnSaveInfo);
             this.Controls.Add(this.lblGenre);
             this.Controls.Add(this.txtGenre);
@@ -134,6 +142,7 @@
             this.Controls.Add(this.txtTitle);
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(7)))), ((int)(((byte)(5)))));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "frmSongInfo";
             this.Opacity = 0.99D;

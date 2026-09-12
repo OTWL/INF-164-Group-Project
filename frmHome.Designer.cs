@@ -242,6 +242,7 @@
             this.lstFavourites.Size = new System.Drawing.Size(381, 116);
             this.lstFavourites.TabIndex = 18;
             this.lstFavourites.Click += new System.EventHandler(this.lstFavourites_Click);
+            this.lstFavourites.DoubleClick += new System.EventHandler(this.lstFavourites_DoubleClick);
             // 
             // frmHome
             // 
@@ -276,7 +277,6 @@
             this.Text = " ";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmHome_FormClosed);
             this.Load += new System.EventHandler(this.frmHome_Load);
-            this.Shown += new System.EventHandler(this.frmHome_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.picProfile)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAlbum)).EndInit();
             this.ResumeLayout(false);

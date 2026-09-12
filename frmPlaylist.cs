@@ -192,6 +192,13 @@ namespace GroupProject
                     frmSongInfo saveForm = new frmSongInfo();
                     saveForm.ShowDialog();
 
+                    if (!saveForm.SavedSuccessfully)
+                    {
+                        MessageBox.Show("Could not add song");
+                        //No input for that song continue to next song
+                        continue;
+                    }
+
                     // Create new song object with values from the save form
                     Song mySong = new Song(saveForm.SongName, saveForm.SongArtist, saveForm.SongAlbum, saveForm.SongGenre, song);
 

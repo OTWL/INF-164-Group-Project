@@ -248,10 +248,10 @@
             // btnStop
             // 
             this.btnStop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
-            this.btnStop.Location = new System.Drawing.Point(712, 391);
+            this.btnStop.Location = new System.Drawing.Point(712, 395);
             this.btnStop.Margin = new System.Windows.Forms.Padding(4);
             this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(100, 48);
+            this.btnStop.Size = new System.Drawing.Size(100, 44);
             this.btnStop.TabIndex = 12;
             this.btnStop.Text = "Stop Song";
             this.btnStop.UseVisualStyleBackColor = false;
@@ -260,7 +260,7 @@
             // mediaPlayer
             // 
             this.mediaPlayer.Enabled = true;
-            this.mediaPlayer.Location = new System.Drawing.Point(1085, 68);
+            this.mediaPlayer.Location = new System.Drawing.Point(732, 74);
             this.mediaPlayer.Margin = new System.Windows.Forms.Padding(4);
             this.mediaPlayer.Name = "mediaPlayer";
             this.mediaPlayer.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("mediaPlayer.OcxState")));
