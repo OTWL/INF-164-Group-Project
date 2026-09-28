@@ -150,16 +150,9 @@ This project does not specify a license. Please refer to the GitHub repository f
 
 ---
 
-<p align="center"><i>Built with C#, text files, and the collective patience of 8 people in one repo.</i></p>
-
----
-
-## Footer
-
 <div align="center">
   <p><b>INF-164-Group-Project</b></p>
-  <p><a href="https://github.com/OTWL/INF-164-Group-Project">View Repository</a></p>
-  <p>Built by the INF 164 Group</p>
+  <p align="center"><i>Built with C#, text files, and the collective patience of 8 people in one repo.</i></p>
   <p>
     <a href="https://github.com/OTWL/INF-164-Group-Project/stargazers"><img alt="Stars" src="https://img.shields.io/github/stars/OTWL/INF-164-Group-Project?style=social"></a>
     <a href="https://github.com/OTWL/INF-164-Group-Project/forks"><img alt="Forks" src="https://img.shields.io/github/forks/OTWL/INF-164-Group-Project?style=social"></a>
