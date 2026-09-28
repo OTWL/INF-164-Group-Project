@@ -17,13 +17,15 @@ This project is a group effort for **INF 164** where 8 individuals collaborated 
 ## 📋 Table of Contents
 
 - [About the Project](#-what-is-this)
-- [Key Features](#key-features)
+- [Key Features](#-key-features)
 - [Tech Stack](#-tech-stack)
 - [Project Structure](#-project-structure)
 - [Installation](#-installation)
 - [Usage](#-usage)
 - [How to Use](#-how-to-use)
+- [Branching Strategy](#-branching-strategy)
 - [License](#-license)
+- [Important Links](#-important-links)
 - [Footer](#footer)
 
 ---
